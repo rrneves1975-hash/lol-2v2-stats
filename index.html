@@ -106,7 +106,7 @@
 
    <script>
         const BIN_ID = "6af21d0affd5d16053b4807e";
-        const READ_KEY = "$2a$10$lupWpV8BB2R3lLe.KGQu4uNn4jw0NpYpg0XRvmbT1i5PvMZTuOAd2";
+        const READ_KEY = "$2a$10$3VLeKxmuIFl.E1lL5rw/j.NugOW06il.UbTSj8oCq3WqUm7q34/va";
         const TRACKED_PLAYERS = ["grcx", "rikiplancha12", "babygolem", "ragnarneves"];
         const DISPLAY_NAMES = {
             "grcx": "GRCX",
@@ -118,7 +118,7 @@
         async function fetchStats() {
             try {
                 const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-                    headers: { "X-Master-Key": READ_KEY }
+                    headers: { "X-Access-Key": READ_KEY }
                 });
                 const result = await res.json();
                 const games = result.record || result;
