@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <script>
+   <script>
         const BIN_ID = "6af21d0affd5d16053b4807e";
         const READ_KEY = "$2a$10$lupWpV8BB2R3lLe.KGQu4uNn4jw0NpYpg0XRvmbT1i5PvMZTuOAd2";
         const TRACKED_PLAYERS = ["grcx", "rikiplancha12", "babygolem", "ragnarneves"];
@@ -119,5 +119,78 @@
             try {
                 const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
                     headers: { "X-Master-Key": READ_KEY }
+                });
+                const result = await res.json();
+                const games = result.record || result;
+                
+                renderDashboard(games);
+            } catch (err) {
+                console.error("Erro ao carregar estatísticas:", err);
+                document.getElementById("player-stats").innerHTML = `<p style="color: #ff4444;">Erro ao carregar da nuvem: ${err.message}</p>`;
+            }
+        }
+
+        function renderDashboard(games) {
+            try {
+                let players = {};
+                let duos = {};
+
+                TRACKED_PLAYERS.forEach(p => {
+                    players[p] = { W: 0, L: 0, BlueW: 0, BlueL: 0, RedW: 0, RedL: 0 };
+                });
+
+                if (!Array.isArray(games)) {
+                    throw new Error("Os dados recebidos da nuvem não são uma lista válida de jogos.");
+                }
+
+                games.forEach(game => {
+                    let idToName = {};
+                    (game.participantIdentities || []).forEach(i => {
+                        const playerObj = i.player || {};
+                        const name = (playerObj.gameName || playerObj.summonerName || "").toLowerCase();
+                        if (i.participantId) idToName[i.participantId] = name;
+                    });
+
+                    let teams = {};
+                    (game.participants || []).forEach(p => {
+                        const name = idToName[p.participantId];
+                        if (TRACKED_PLAYERS.includes(name)) {
+                            if (!teams[p.teamId]) {
+                                teams[p.teamId] = { names: [], win: p.stats && p.stats.win, side: p.teamId === 100 ? 'Blue' : 'Red' };
+                            }
+                            teams[p.teamId].names.push(name);
+                        }
+                    });
+
+                    Object.values(teams).forEach(team => {
+                        const won = team.win;
+                        team.names.forEach(name => {
+                            if (won) {
+                                players[name].W++;
+                                if (team.side === 'Blue') players[name].BlueW++; else players[name].RedW++;
+                            } else {
+                                players[name].L++;
+                                if (team.side === 'Blue') players[name].BlueL++; else players[name].RedL++;
+                            }
+                        });
+
+                        if (team.names.length === 2) {
+                            const duoKey = team.names.sort().join(" + ");
+                            if (!duos[duoKey]) duos[duoKey] = { W: 0, L: 0 };
+                            if (won) duos[duoKey].W++; else duos[duoKey].L++;
+                        }
+                    });
+                });
+
+                // Tabela de Jogadores
+                let playerHtml = `<table><tr><th>Jogador</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th><th>Lado Azul</th><th>Lado Vermelho</th></tr>`;
+                Object.keys(players).sort((a,b) => {
+                    let wrA = (players[a].W / (players[a].W + players[a].L)) || 0;
+                    let wrB = (players[b].W / (players[b].W + players[b].L)) || 0;
+                    return wrB - wrA;
+                }).forEach(p => {
+                    let st = players[p];
+                    let total = st.W + st.L;
+                    let wr =
                 });
                 const result =
