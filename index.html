@@ -3,417 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>League of Legends - 2v2 Custom Stats</title>
-    <!-- Importar Chart.js para os gráficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Estatísticas de Partidas Personalizadas - LoL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #090b10;
-            --panel-bg: #141821;
-            --panel-border: #2a3447;
-            --accent-gold: #f0e6d2;
-            --accent-gold-bright: #c8aa6e;
-            --accent-blue: #0ac8b9;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --win-color: #3fb950;
-            --loss-color: #f85149;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Inter, system-ui, sans-serif;
-            margin: 0;
-            padding: 30px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        header h1 {
-            color: var(--accent-gold-bright);
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(200, 170, 110, 0.2);
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media(min-width: 1000px) {
-            .grid-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-            .full-width {
-                grid-column: span 2;
-            }
-        }
-
-        .card {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            overflow-x: auto;
-        }
-
-        h2 {
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--panel-border);
-            padding-bottom: 12px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            white-space: nowrap;
-        }
-
-        th, td {
-            padding: 14px 10px;
-            text-align: left;
-            border-bottom: 1px solid #1f2937;
-        }
-
-        th {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        td {
-            font-size: 0.9rem;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        .winrate {
-            font-weight: 700;
-            color: var(--accent-gold-bright);
-        }
-
-        .loading {
-            text-align: center;
-            color: var(--text-muted);
-            font-style: italic;
-            padding: 30px;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .card-bg { background-color: #1e293b; border: 1px solid #334155; }
     </style>
 </head>
-<body>
-
-    <div class="container">
-        <header>
-            <h1>Estatísticas 2v2 Custom</h1>
-            <p>GRCX &bull; RikiPlancha12 &bull; BabyGolem &bull; ragnarneves</p>
+<body class="min-p-6 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+        <!-- Header -->
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                Estatísticas de Partidas Personalizadas
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base">Painel de desempenho dos jogadores nas partidas customizadas</p>
         </header>
 
-        <div class="grid-layout">
-            <!-- Tabela de Jogadores Principal -->
-            <div class="card full-width">
-                <h2>Resumo Geral & Winrates</h2>
-                <div id="player-stats"><div class="loading">A carregar dados...</div></div>
+        <!-- Summary / Leaderboard Section -->
+        <section class="card-bg rounded-2xl p-6 shadow-xl space-y-4">
+            <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">
+                🏆 Classificação Geral dos Jogadores
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-slate-400 text-xs md:text-sm uppercase tracking-wider">
+                            <th class="py-3 px-4">Jogador</th>
+                            <th class="py-3 px-4 text-center">Jogos</th>
+                            <th class="py-3 px-4 text-center">Vitórias</th>
+                            <th class="py-3 px-4 text-center">Derrotas</th>
+                            <th class="py-3 px-4 text-center">Winrate</th>
+                            <th class="py-3 px-4 text-center">KDA</th>
+                            <th class="py-3 px-4 text-right">Dano Médio</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-700/50 text-sm md:text-base">
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="py-3 px-4 font-semibold text-cyan-400">GRCX <span class="text-xs text-slate-500">#0719</span></td>
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4 text-center text-emerald-400 font-medium">6</td>
+                            <td class="py-3 px-4 text-center text-rose-400">4</td>
+                            <td class="py-3 px-4 text-center font-bold">60%</td>
+                            <td class="py-3 px-4 text-center">1.88</td>
+                            <td class="py-3 px-4 text-right">29,877</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="py-3 px-4 font-semibold text-cyan-400">BabyGolem <span class="text-xs text-slate-500">#EUW</span></td>
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4 text-center text-emerald-400 font-medium">6</td>
+                            <td class="py-3 px-4 text-center text-rose-400">4</td>
+                            <td class="py-3 px-4 text-center font-bold">60%</td>
+                            <td class="py-3 px-4 text-center">1.75</td>
+                            <td class="py-3 px-4 text-right">24,477</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="py-3 px-4 font-semibold text-indigo-400">ragnarneves <span class="text-xs text-slate-500">#EUW</span></td>
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4 text-center text-emerald-400 font-medium">4</td>
+                            <td class="py-3 px-4 text-center text-rose-400">6</td>
+                            <td class="py-3 px-4 text-center font-bold">40%</td>
+                            <td class="py-3 px-4 text-center">1.88</td>
+                            <td class="py-3 px-4 text-right">22,263</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="py-3 px-4 font-semibold text-indigo-400">RIkiPlancha12 <span class="text-xs text-slate-500">#EUW</span></td>
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4 text-center text-emerald-400 font-medium">4</td>
+                            <td class="py-3 px-4 text-center text-rose-400">6</td>
+                            <td class="py-3 px-4 text-center font-bold">40%</td>
+                            <td class="py-3 px-4 text-center">1.68</td>
+                            <td class="py-3 px-4 text-right">27,789</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <!-- Tabela de KDA e Combate -->
-            <div class="card full-width">
-                <h2>Estatísticas de Combate (KDA & Dano)</h2>
-                <div id="combat-stats"><div class="loading">A carregar dados...</div></div>
-            </div>
-
-            <!-- Gráfico de Desempenho -->
-            <div class="card">
-                <h2>Vitórias vs Derrotas</h2>
-                <div class="chart-container">
-                    <canvas id="winsChart"></canvas>
+        <!-- Match History Quick View -->
+        <section class="card-bg rounded-2xl p-6 shadow-xl space-y-4">
+            <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">
+                📜 Partidas Recentes Registadas (10 Jogos)
+            </h2>
+            <div id="matches-container" class="space-y-3">
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI (Custom)</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 11m 22s | ID: 8040574185</p>
+                    </div>
+                    <div class="text-xs text-slate-400 flex flex-wrap gap-4">
+                        <div><strong class="text-slate-200">GRCX:</strong> 8/3/3 (Mordekaiser)</div>
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 5/3/5 (Rek'Sai)</div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Tabela de Duplas -->
-            <div class="card">
-                <h2>Desempenho por Dupla</h2>
-                <div id="duo-stats"><div class="loading">A carregar dados...</div></div>
-            </div>
-        </div>
+        <!-- Footer -->
+        <footer class="text-center text-xs text-slate-500 py-4">
+            Gerado automaticamente para Vercel &bull; Atualizado com base em customs_raw.json
+        </footer>
     </div>
-
-    <script>
-        const BIN_ID = "6af21d0affd5d16053b4807e";
-        const READ_KEY = "$2a$10$wKPWDJHIr9kqT4uq7zMQj.qEwjusfATZe4HQni0mIDVmX0DLuGhba";
-        const TRACKED_PLAYERS = ["grcx", "rikiplancha12", "babygolem", "ragnarneves"];
-        const DISPLAY_NAMES = {
-            "grcx": "GRCX",
-            "rikiplancha12": "RikiPlancha12",
-            "babygolem": "BabyGolem",
-            "ragnarneves": "ragnarneves"
-        };
-
-        let winsChartInstance = null;
-
-        async function fetchStats() {
-            try {
-                const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-                    headers: { "X-Access-Key": READ_KEY }
-                });
-                const result = await res.json();
-                const games = result.record || result;
-                
-                renderDashboard(games);
-            } catch (err) {
-                console.error("Erro ao carregar estatísticas:", err);
-                document.getElementById("player-stats").innerHTML = `<p style="color: var(--loss-color);">Erro ao carregar da nuvem: ${err.message}</p>`;
-            }
-        }
-
-        function renderDashboard(games) {
-            try {
-                let players = {};
-                let duos = {};
-
-                TRACKED_PLAYERS.forEach(p => {
-                    players[p] = { 
-                        W: 0, L: 0, 
-                        BlueW: 0, BlueL: 0, 
-                        RedW: 0, RedL: 0,
-                        kills: 0, deaths: 0, assists: 0,
-                        totalDamage: 0
-                    };
-                });
-
-                if (!Array.isArray(games)) {
-                    throw new Error("Os dados recebidos da nuvem não são uma lista válida de jogos.");
-                }
-
-                games.forEach(game => {
-                    let idToName = {};
-                    (game.participantIdentities || []).forEach(i => {
-                        const playerObj = i.player || {};
-                        const name = (playerObj.gameName || playerObj.summonerName || "").toLowerCase();
-                        if (i.participantId) idToName[i.participantId] = name;
-                    });
-
-                    let teams = {};
-                    (game.participants || []).forEach(p => {
-                        const name = idToName[p.participantId];
-                        if (TRACKED_PLAYERS.includes(name)) {
-                            const stats = p.stats || {};
-                            
-                            // Acumular estatísticas individuais
-                            players[name].kills += (stats.kills || 0);
-                            players[name].deaths += (stats.deaths || 0);
-                            players[name].assists += (stats.assists || 0);
-                            players[name].totalDamage += (stats.totalDamageDealtToChampions || 0);
-
-                            if (!teams[p.teamId]) {
-                                teams[p.teamId] = { names: [], win: stats.win, side: p.teamId === 100 ? 'Blue' : 'Red' };
-                            }
-                            teams[p.teamId].names.push(name);
-                        }
-                    });
-
-                    Object.values(teams).forEach(team => {
-                        const won = team.win;
-                        team.names.forEach(name => {
-                            if (players[name]) {
-                                if (won) {
-                                    players[name].W++;
-                                    if (team.side === 'Blue') players[name].BlueW++; else players[name].RedW++;
-                                } else {
-                                    players[name].L++;
-                                    if (team.side === 'Blue') players[name].BlueL++; else players[name].RedL++;
-                                }
-                            }
-                        });
-
-                        if (team.names.length === 2) {
-                            const duoKey = team.names.sort().join(" + ");
-                            if (!duos[duoKey]) duos[duoKey] = { W: 0, L: 0 };
-                            if (won) duos[duoKey].W++; else duos[duoKey].L++;
-                        }
-                    });
-                });
-
-                // Ordenar Jogadores por Winrate
-                const sortedPlayers = Object.keys(players).sort((a,b) => {
-                    let totalA = players[a].W + players[a].L;
-                    let totalB = players[b].W + players[b].L;
-                    let wrA = totalA > 0 ? (players[a].W / totalA) : 0;
-                    let wrB = totalB > 0 ? (players[b].W / totalB) : 0;
-                    return wrB - wrA;
-                });
-
-                // 1. Tabela Principal de Jogadores
-                let playerHtml = `<table><tr><th>Jogador</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th><th>Lado Azul</th><th>Lado Vermelho</th></tr>`;
-                sortedPlayers.forEach(p => {
-                    let st = players[p];
-                    let total = st.W + st.L;
-                    let wr = total > 0 ? ((st.W / total) * 100).toFixed(1) + "%" : "0%";
-                    let blueWr = (st.BlueW + st.BlueL) > 0 ? `${((st.BlueW / (st.BlueW + st.BlueL)) * 100).toFixed(0)}% (${st.BlueW}-${st.BlueL})` : "-";
-                    let redWr = (st.RedW + st.RedL) > 0 ? `${((st.RedW / (st.RedW + st.RedL)) * 100).toFixed(0)}% (${st.RedW}-${st.RedL})` : "-";
-                    
-                    playerHtml += `<tr>
-                        <td><strong>${DISPLAY_NAMES[p] || p}</strong></td>
-                        <td>${total}</td>
-                        <td style="color: var(--win-color)">${st.W}</td>
-                        <td style="color: var(--loss-color)">${st.L}</td>
-                        <td class="winrate">${wr}</td>
-                        <td>${blueWr}</td>
-                        <td>${redWr}</td>
-                    </tr>`;
-                });
-                playerHtml += `</table>`;
-                document.getElementById("player-stats").innerHTML = playerHtml;
-
-                // 2. Tabela de Combate (Kills, Mortes, Assistências, KDA e Dano)
-                let combatHtml = `<table><tr><th>Jogador</th><th>Kills (Média)</th><th>Mortes (Média)</th><th>Assist. (Média)</th><th>KDA</th><th>Dano Total (Média)</th></tr>`;
-                sortedPlayers.forEach(p => {
-                    let st = players[p];
-                    let totalGames = st.W + st.L;
-                    if (totalGames === 0) return;
-
-                    let avgKills = (st.kills / totalGames).toFixed(1);
-                    let avgDeaths = (st.deaths / totalGames).toFixed(1);
-                    let avgAssists = (st.assists / totalGames).toFixed(1);
-                    // Cálculo do KDA: (Kills + Assistências) / Mortes (evitar divisão por zero)
-                    let kda = st.deaths === 0 ? (st.kills + st.assists).toFixed(2) : ((st.kills + st.assists) / st.deaths).toFixed(2);
-                    let avgDamage = Math.round(st.totalDamage / totalGames).toLocaleString();
-
-                    combatHtml += `<tr>
-                        <td><strong>${DISPLAY_NAMES[p] || p}</strong></td>
-                        <td>${st.kills} (${avgKills})</td>
-                        <td style="color: var(--loss-color)">${st.deaths} (${avgDeaths})</td>
-                        <td>${st.assists} (${avgAssists})</td>
-                        <td class="winrate">${kda}</td>
-                        <td>${avgDamage}</td>
-                    </tr>`;
-                });
-                combatHtml += `</table>`;
-                document.getElementById("combat-stats").innerHTML = combatHtml;
-
-                // 3. Tabela de Duplas
-                let duoHtml = `<table><tr><th>Dupla</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th></tr>`;
-                const duoKeys = Object.keys(duos);
-                if (duoKeys.length === 0) {
-                    duoHtml += `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Ainda sem duplas suficientes registadas.</td></tr>`;
-                } else {
-                    duoKeys.sort((a,b) => {
-                        let wrA = (duos[a].W / (duos[a].W + duos[a].L)) || 0;
-                        let wrB = (duos[b].W / (duos[b].W + duos[b].L)) || 0;
-                        return wrB - wrA;
-                    }).forEach(d => {
-                        let st = duos[d];
-                        let total = st.W + st.L;
-                        let wr = total > 0 ? ((st.W / total) * 100).toFixed(1) + "%" : "0%";
-                        let duoFormatted = d.split(" + ").map(n => DISPLAY_NAMES[n] || n).join(" + ");
-                        
-                        duoHtml += `<tr>
-                            <td><strong>${duoFormatted}</strong></td>
-                            <td>${total}</td>
-                            <td style="color: var(--win-color)">${st.W}</td>
-                            <td style="color: var(--loss-color)">${st.L}</td>
-                            <td class="winrate">${wr}</td>
-                        </tr>`;
-                    });
-                }
-                duoHtml += `</table>`;
-                document.getElementById("duo-stats").innerHTML = duoHtml;
-
-                // 4. Renderizar Gráfico
-                renderChart(sortedPlayers, players);
-
-            } catch (renderErr) {
-                console.error("Erro no renderDashboard:", renderErr);
-                document.getElementById("player-stats").innerHTML = `<p style="color: var(--loss-color);">Erro ao processar os dados: ${renderErr.message}</p>`;
-            }
-        }
-
-        function renderChart(sortedPlayers, players) {
-            const ctx = document.getElementById('winsChart').getContext('2d');
-            
-            const labels = sortedPlayers.map(p => DISPLAY_NAMES[p] || p);
-            const winsData = sortedPlayers.map(p => players[p].W);
-            const lossesData = sortedPlayers.map(p => players[p].L);
-
-            if (winsChartInstance) {
-                winsChartInstance.destroy();
-            }
-
-            winsChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Vitórias',
-                            data: winsData,
-                            backgroundColor: '#3fb950',
-                            borderRadius: 4
-                        },
-                        {
-                            label: 'Derrotas',
-                            data: lossesData,
-                            backgroundColor: '#f85149',
-                            borderRadius: 4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: { color: '#8b949e', font: { family: 'Segoe UI' } }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#f0f6fc' }
-                        },
-                        y: {
-                            grid: { color: '#2a3447' },
-                            ticks: { color: '#8b949e', precision: 0 }
-                        }
-                    }
-                }
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", fetchStats);
-    </script>
 </body>
 </html>
