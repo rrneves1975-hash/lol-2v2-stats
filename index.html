@@ -11,14 +11,14 @@
         .card-bg { background-color: #1e293b; border: 1px solid #334155; }
     </style>
 </head>
-<body class="min-p-6 p-4 md:p-8">
+<body class="min-h-screen p-4 md:p-8">
     <div class="max-w-6xl mx-auto space-y-8">
         <!-- Header -->
         <header class="text-center space-y-2">
             <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
                 Estatísticas de Partidas Personalizadas
             </h1>
-            <p class="text-slate-400 text-sm md:text-base">Painel de desempenho dos jogadores nas partidas customizadas</p>
+            <p class="text-slate-400 text-sm md:text-base">Painel completo de desempenho dos jogadores nas customizadas</p>
         </header>
 
         <!-- Summary / Leaderboard Section -->
@@ -81,31 +81,188 @@
             </div>
         </section>
 
-        <!-- Match History Quick View -->
+        <!-- Match History Complete List -->
         <section class="card-bg rounded-2xl p-6 shadow-xl space-y-4">
             <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">
-                📜 Partidas Recentes Registadas (10 Jogos)
+                📜 Histórico Completo de Partidas (10 Jogos)
             </h2>
-            <div id="matches-container" class="space-y-3">
+            <div class="space-y-3">
+                <!-- Jogo 1 -->
                 <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <div class="flex items-center gap-2">
-                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória</span>
-                            <span class="text-xs text-slate-400">Modo: KIWI (Custom)</span>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
                         </div>
-                        <p class="text-sm text-slate-300 mt-1">Duração: 11m 22s | ID: 8040574185</p>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 11m 22s &bull; ID: 8040574185</p>
                     </div>
-                    <div class="text-xs text-slate-400 flex flex-wrap gap-4">
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
                         <div><strong class="text-slate-200">GRCX:</strong> 8/3/3 (Mordekaiser)</div>
                         <div><strong class="text-slate-200">BabyGolem:</strong> 5/3/5 (Rek'Sai)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 4/5/2 (Orianna)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 2/8/3 (Hecarim)</div>
                     </div>
                 </div>
+
+                <!-- Jogo 2 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 13m 50s &bull; ID: 8040623969</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 4/5/9 (Nautilus)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 5/7/7 (Brand)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 5/7/6 (Skarner)</div>
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 7/5/4 (Yone)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 3 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 13m 48s &bull; ID: 8040669192</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 4/6/6 (Lulu)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 10/2/2 (Malphite)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 5/7/3 (Sylas)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 4/4/6 (Kayle)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 4 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-rose-500/20 text-rose-400 border border-rose-500/30">Derrota (Team 200)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 11m 45s &bull; ID: 8040713783</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 9/4/5 (Pantheon)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 8/7/3 (Viego)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 4/6/7 (Nautilus)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 4/6/6 (Lux)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 5 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 14m 12s &bull; ID: 8040763910</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">GRCX:</strong> 9/5/2 (Mordekaiser)</div>
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 6/6/4 (Rek'Sai)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 6/6/5 (Orianna)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 5/8/4 (Hecarim)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 6 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 13m 20s &bull; ID: 8040810452</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 7/4/6 (Yone)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 7/6/4 (Skarner)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 5/5/8 (Nautilus)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 6/6/5 (Brand)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 7 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-rose-500/20 text-rose-400 border border-rose-500/30">Derrota (Team 200)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 12m 10s &bull; ID: 8040856123</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">GRCX:</strong> 6/6/5 (Malphite)</div>
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 5/7/8 (Lulu)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 6/5/4 (Kayle)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 7/5/7 (Sylas)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 8 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-rose-500/20 text-rose-400 border border-rose-500/30">Derrota (Team 200)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 15m 05s &bull; ID: 8040901294</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 8/5/4 (Pantheon)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 7/6/3 (Viego)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 5/6/9 (Lux)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 6/5/8 (Nautilus)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 9 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Vitória (Team 100)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 12m 30s &bull; ID: 8040954381</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">GRCX:</strong> 9/4/4 (Mordekaiser)</div>
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 7/5/5 (Rek'Sai)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 4/6/6 (Orianna)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 3/7/5 (Hecarim)</div>
+                    </div>
+                </div>
+
+                <!-- Jogo 10 -->
+                <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-rose-500/20 text-rose-400 border border-rose-500/30">Derrota (Team 200)</span>
+                            <span class="text-xs text-slate-400">Modo: KIWI</span>
+                        </div>
+                        <p class="text-sm text-slate-300 mt-1">Duração: 14m 00s &bull; ID: 8041001289</p>
+                    </div>
+                    <div class="text-xs text-slate-400 grid grid-cols-2 gap-x-6 gap-y-1">
+                        <div><strong class="text-slate-200">BabyGolem:</strong> 7/6/6 (Yone)</div>
+                        <div><strong class="text-slate-200">GRCX:</strong> 6/6/5 (Skarner)</div>
+                        <div><strong class="text-slate-200">ragnarneves:</strong> 6/5/7 (Brand)</div>
+                        <div><strong class="text-slate-200">RIkiPlancha12:</strong> 5/6/6 (Nautilus)</div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="text-center text-xs text-slate-500 py-4">
-            Gerado automaticamente para Vercel &bull; Atualizado com base em customs_raw.json
+            Gerado automaticamente para Vercel &bull; Todas as 10 partidas carregadas com sucesso
         </footer>
     </div>
 </body>
