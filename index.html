@@ -105,7 +105,9 @@
                     headers: { "X-Access-Key": READ_KEY }
                 });
                 const result = await res.json();
-                const games = result.record;
+                
+                // Suporta tanto se vier em result.record como diretamente em result
+                const games = result.record || result;
                 
                 renderDashboard(games);
             } catch (err) {
