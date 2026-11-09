@@ -4,84 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League of Legends - 2v2 Custom Stats</title>
+    <!-- Importar Chart.js para os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --bg-color: #0b0e14;
-            --panel-bg: #1e2328;
-            --accent-gold: #c8aa6e;
+            --bg-color: #090b10;
+            --panel-bg: #141821;
+            --panel-border: #2a3447;
+            --accent-gold: #f0e6d2;
+            --accent-gold-bright: #c8aa6e;
             --accent-blue: #0ac8b9;
             --text-main: #f0f6fc;
-            --text-muted: #8392a5;
-            --win-color: #2ea043;
-            --loss-color: #da3633;
+            --text-muted: #8b949e;
+            --win-color: #3fb950;
+            --loss-color: #f85149;
         }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Inter, system-ui, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 30px 20px;
         }
+
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
+
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
+
         header h1 {
-            color: var(--accent-gold);
-            margin-bottom: 5px;
+            color: var(--accent-gold-bright);
+            font-size: 2.2rem;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(200, 170, 110, 0.2);
         }
+
         header p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media(min-width: 900px) {
+            .grid-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+            .full-width {
+                grid-column: span 2;
+            }
+        }
+
         .card {
             background-color: var(--panel-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid var(--panel-border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
+
+        .card:hover {
+            border-color: rgba(200, 170, 110, 0.4);
+        }
+
         h2 {
             color: var(--accent-blue);
-            font-size: 1.2rem;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 8px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 12px;
             margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
         }
+
         th, td {
-            padding: 12px;
+            padding: 14px 12px;
             text-align: left;
-            border-bottom: 1px solid #2d333b;
+            border-bottom: 1px solid #1f2937;
         }
+
         th {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         td {
             font-size: 0.95rem;
         }
-        .winrate {
-            font-weight: bold;
-            color: var(--accent-gold);
+
+        tr:last-child td {
+            border-bottom: none;
         }
+
+        .winrate {
+            font-weight: 700;
+            color: var(--accent-gold-bright);
+        }
+
         .loading {
             text-align: center;
-            color: var(--accent-gold);
+            color: var(--text-muted);
             font-style: italic;
-            padding: 20px;
+            padding: 30px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 280px;
+            width: 100%;
         }
     </style>
 </head>
@@ -90,17 +145,29 @@
     <div class="container">
         <header>
             <h1>Estatísticas 2v2 Custom</h1>
-            <p>GRCX | RikiPlancha12 | BabyGolem | ragnarneves</p>
+            <p>GRCX &bull; RikiPlancha12 &bull; BabyGolem &bull; ragnarneves</p>
         </header>
 
-        <div class="card">
-            <h2>Estatísticas Individuais</h2>
-            <div id="player-stats"><div class="loading">A carregar dados...</div></div>
-        </div>
+        <div class="grid-layout">
+            <!-- Tabela de Jogadores -->
+            <div class="card full-width">
+                <h2>Estatísticas Individuais</h2>
+                <div id="player-stats"><div class="loading">A carregar dados...</div></div>
+            </div>
 
-        <div class="card">
-            <h2>Desempenho por Dupla</h2>
-            <div id="duo-stats"><div class="loading">A carregar dados...</div></div>
+            <!-- Gráfico de Desempenho -->
+            <div class="card">
+                <h2>Vitórias por Jogador</h2>
+                <div class="chart-container">
+                    <canvas id="winsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tabela de Duplas -->
+            <div class="card">
+                <h2>Desempenho por Dupla</h2>
+                <div id="duo-stats"><div class="loading">A carregar dados...</div></div>
+            </div>
         </div>
     </div>
 
@@ -115,6 +182,8 @@
             "ragnarneves": "ragnarneves"
         };
 
+        let winsChartInstance = null;
+
         async function fetchStats() {
             try {
                 const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
@@ -126,7 +195,7 @@
                 renderDashboard(games);
             } catch (err) {
                 console.error("Erro ao carregar estatísticas:", err);
-                document.getElementById("player-stats").innerHTML = `<p style="color: #ff4444;">Erro ao carregar da nuvem: ${err.message}</p>`;
+                document.getElementById("player-stats").innerHTML = `<p style="color: var(--loss-color);">Erro ao carregar da nuvem: ${err.message}</p>`;
             }
         }
 
@@ -162,15 +231,17 @@
                         }
                     });
 
-                   Object.values(teams).forEach(team => {
+                    Object.values(teams).forEach(team => {
                         const won = team.win;
                         team.names.forEach(name => {
-                            if (won) {
-                                players[name].W++;
-                                if (team.side === 'Blue') players[name].BlueW++; else players[name].RedW++;
-                            } else {
-                                players[name].L++;
-                                if (team.side === 'Blue') players[name].BlueL++; else players[name].RedL++;
+                            if (players[name]) {
+                                if (won) {
+                                    players[name].W++;
+                                    if (team.side === 'Blue') players[name].BlueW++; else players[name].RedW++;
+                                } else {
+                                    players[name].L++;
+                                    if (team.side === 'Blue') players[name].BlueL++; else players[name].RedL++;
+                                }
                             }
                         });
 
@@ -182,13 +253,18 @@
                     });
                 });
 
+                // Ordenar Jogadores por Winrate
+                const sortedPlayers = Object.keys(players).sort((a,b) => {
+                    let totalA = players[a].W + players[a].L;
+                    let totalB = players[b].W + players[b].L;
+                    let wrA = totalA > 0 ? (players[a].W / totalA) : 0;
+                    let wrB = totalB > 0 ? (players[b].W / totalB) : 0;
+                    return wrB - wrA;
+                });
+
                 // Tabela de Jogadores
                 let playerHtml = `<table><tr><th>Jogador</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th><th>Lado Azul</th><th>Lado Vermelho</th></tr>`;
-                Object.keys(players).sort((a,b) => {
-                    let wrA = (players[a].W / (players[a].W + players[a].L)) || 0;
-                    let wrB = (players[b].W / (players[b].W + players[b].L)) || 0;
-                    return wrB - wrA;
-                }).forEach(p => {
+                sortedPlayers.forEach(p => {
                     let st = players[p];
                     let total = st.W + st.L;
                     let wr = total > 0 ? ((st.W / total) * 100).toFixed(1) + "%" : "0%";
@@ -209,7 +285,7 @@
                 document.getElementById("player-stats").innerHTML = playerHtml;
 
                 // Tabela de Duplas
-                let duoHtml = `<table><tr><th>Dupla</th><th>Jogos</th><th>Vitórias</th><th>Derrotas</th><th>Winrate</th></tr>`;
+                let duoHtml = `<table><tr><th>Dupla</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th></tr>`;
                 const duoKeys = Object.keys(duos);
                 if (duoKeys.length === 0) {
                     duoHtml += `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Ainda sem duplas suficientes registadas.</td></tr>`;
@@ -236,10 +312,65 @@
                 duoHtml += `</table>`;
                 document.getElementById("duo-stats").innerHTML = duoHtml;
 
+                // Renderizar Gráfico
+                renderChart(sortedPlayers, players);
+
             } catch (renderErr) {
                 console.error("Erro no renderDashboard:", renderErr);
-                document.getElementById("player-stats").innerHTML = `<p style="color: #ff4444;">Erro ao processar os dados: ${renderErr.message}</p>`;
+                document.getElementById("player-stats").innerHTML = `<p style="color: var(--loss-color);">Erro ao processar os dados: ${renderErr.message}</p>`;
             }
+        }
+
+        function renderChart(sortedPlayers, players) {
+            const ctx = document.getElementById('winsChart').getContext('2d');
+            
+            const labels = sortedPlayers.map(p => DISPLAY_NAMES[p] || p);
+            const winsData = sortedPlayers.map(p => players[p].W);
+            const lossesData = sortedPlayers.map(p => players[p].L);
+
+            if (winsChartInstance) {
+                winsChartInstance.destroy();
+            }
+
+            winsChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Vitórias',
+                            data: winsData,
+                            backgroundColor: '#3fb950',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Derrotas',
+                            data: lossesData,
+                            backgroundColor: '#f85149',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#8b949e', font: { family: 'Segoe UI' } }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#f0f6fc' }
+                        },
+                        y: {
+                            grid: { color: '#2a3447' },
+                            ticks: { color: '#8b949e', precision: 0 }
+                        }
+                    }
+                }
+            });
         }
 
         document.addEventListener("DOMContentLoaded", fetchStats);
