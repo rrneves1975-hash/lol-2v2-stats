@@ -104,7 +104,7 @@
         </div>
     </div>
 
-   <script>
+    <script>
         const BIN_ID = "6af21d0affd5d16053b4807e";
         const READ_KEY = "$2a$10$wKPWDJHIr9kqT4uq7zMQj.qEwjusfATZe4HQni0mIDVmX0DLuGhba";
         const TRACKED_PLAYERS = ["grcx", "rikiplancha12", "babygolem", "ragnarneves"];
@@ -162,7 +162,7 @@
                         }
                     });
 
-                    Object.values(teams).forEach(team => {
+                   Object.values(teams).forEach(team => {
                         const won = team.win;
                         team.names.forEach(name => {
                             if (won) {
@@ -191,6 +191,58 @@
                 }).forEach(p => {
                     let st = players[p];
                     let total = st.W + st.L;
-                    let wr =
+                    let wr = total > 0 ? ((st.W / total) * 100).toFixed(1) + "%" : "0%";
+                    let blueWr = (st.BlueW + st.BlueL) > 0 ? `${((st.BlueW / (st.BlueW + st.BlueL)) * 100).toFixed(0)}% (${st.BlueW}-${st.BlueL})` : "-";
+                    let redWr = (st.RedW + st.RedL) > 0 ? `${((st.RedW / (st.RedW + st.RedL)) * 100).toFixed(0)}% (${st.RedW}-${st.RedL})` : "-";
+                    
+                    playerHtml += `<tr>
+                        <td><strong>${DISPLAY_NAMES[p] || p}</strong></td>
+                        <td>${total}</td>
+                        <td style="color: var(--win-color)">${st.W}</td>
+                        <td style="color: var(--loss-color)">${st.L}</td>
+                        <td class="winrate">${wr}</td>
+                        <td>${blueWr}</td>
+                        <td>${redWr}</td>
+                    </tr>`;
                 });
-                const result =
+                playerHtml += `</table>`;
+                document.getElementById("player-stats").innerHTML = playerHtml;
+
+                // Tabela de Duplas
+                let duoHtml = `<table><tr><th>Dupla</th><th>Jogos</th><th>Vitórias</th><th>Derrotas</th><th>Winrate</th></tr>`;
+                const duoKeys = Object.keys(duos);
+                if (duoKeys.length === 0) {
+                    duoHtml += `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Ainda sem duplas suficientes registadas.</td></tr>`;
+                } else {
+                    duoKeys.sort((a,b) => {
+                        let wrA = (duos[a].W / (duos[a].W + duos[a].L)) || 0;
+                        let wrB = (duos[b].W / (duos[b].W + duos[b].L)) || 0;
+                        return wrB - wrA;
+                    }).forEach(d => {
+                        let st = duos[d];
+                        let total = st.W + st.L;
+                        let wr = total > 0 ? ((st.W / total) * 100).toFixed(1) + "%" : "0%";
+                        let duoFormatted = d.split(" + ").map(n => DISPLAY_NAMES[n] || n).join(" + ");
+                        
+                        duoHtml += `<tr>
+                            <td><strong>${duoFormatted}</strong></td>
+                            <td>${total}</td>
+                            <td style="color: var(--win-color)">${st.W}</td>
+                            <td style="color: var(--loss-color)">${st.L}</td>
+                            <td class="winrate">${wr}</td>
+                        </tr>`;
+                    });
+                }
+                duoHtml += `</table>`;
+                document.getElementById("duo-stats").innerHTML = duoHtml;
+
+            } catch (renderErr) {
+                console.error("Erro no renderDashboard:", renderErr);
+                document.getElementById("player-stats").innerHTML = `<p style="color: #ff4444;">Erro ao processar os dados: ${renderErr.message}</p>`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchStats);
+    </script>
+</body>
+</html>
