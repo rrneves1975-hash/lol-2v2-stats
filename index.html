@@ -1,0 +1,20 @@
+const BIN_ID = "TEU_BIN_ID_AQUI";
+const READ_KEY = "$2a$10$TUA_CHAVE_DE_LEITURA_AQUI"; // Chave pública de leitura
+
+async function fetchStats() {
+    try {
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+            headers: { "X-Access-Key": READ_KEY }
+        });
+        const result = await res.json();
+        const games = result.record;
+        
+        // Renderizar tabelas com os dados atualizados
+        renderDashboard(games);
+    } catch (err) {
+        console.error("Erro ao carregar estatísticas:", err);
+    }
+}
+
+// Carrega automaticamente quando a página abre
+document.addEventListener("DOMContentLoaded", fetchStats);
