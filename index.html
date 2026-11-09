@@ -29,7 +29,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -59,7 +59,7 @@
             gap: 25px;
         }
 
-        @media(min-width: 900px) {
+        @media(min-width: 1000px) {
             .grid-layout {
                 grid-template-columns: 1fr 1fr;
             }
@@ -74,11 +74,7 @@
             border-radius: 12px;
             padding: 24px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .card:hover {
-            border-color: rgba(200, 170, 110, 0.4);
+            overflow-x: auto;
         }
 
         h2 {
@@ -90,18 +86,16 @@
             padding-bottom: 12px;
             margin-top: 0;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            white-space: nowrap;
         }
 
         th, td {
-            padding: 14px 12px;
+            padding: 14px 10px;
             text-align: left;
             border-bottom: 1px solid #1f2937;
         }
@@ -114,7 +108,7 @@
         }
 
         td {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         tr:last-child td {
@@ -135,7 +129,7 @@
 
         .chart-container {
             position: relative;
-            height: 280px;
+            height: 300px;
             width: 100%;
         }
     </style>
@@ -149,15 +143,21 @@
         </header>
 
         <div class="grid-layout">
-            <!-- Tabela de Jogadores -->
+            <!-- Tabela de Jogadores Principal -->
             <div class="card full-width">
-                <h2>Estatísticas Individuais</h2>
+                <h2>Resumo Geral & Winrates</h2>
                 <div id="player-stats"><div class="loading">A carregar dados...</div></div>
+            </div>
+
+            <!-- Tabela de KDA e Combate -->
+            <div class="card full-width">
+                <h2>Estatísticas de Combate (KDA & Dano)</h2>
+                <div id="combat-stats"><div class="loading">A carregar dados...</div></div>
             </div>
 
             <!-- Gráfico de Desempenho -->
             <div class="card">
-                <h2>Vitórias por Jogador</h2>
+                <h2>Vitórias vs Derrotas</h2>
                 <div class="chart-container">
                     <canvas id="winsChart"></canvas>
                 </div>
@@ -205,7 +205,13 @@
                 let duos = {};
 
                 TRACKED_PLAYERS.forEach(p => {
-                    players[p] = { W: 0, L: 0, BlueW: 0, BlueL: 0, RedW: 0, RedL: 0 };
+                    players[p] = { 
+                        W: 0, L: 0, 
+                        BlueW: 0, BlueL: 0, 
+                        RedW: 0, RedL: 0,
+                        kills: 0, deaths: 0, assists: 0,
+                        totalDamage: 0
+                    };
                 });
 
                 if (!Array.isArray(games)) {
@@ -224,8 +230,16 @@
                     (game.participants || []).forEach(p => {
                         const name = idToName[p.participantId];
                         if (TRACKED_PLAYERS.includes(name)) {
+                            const stats = p.stats || {};
+                            
+                            // Acumular estatísticas individuais
+                            players[name].kills += (stats.kills || 0);
+                            players[name].deaths += (stats.deaths || 0);
+                            players[name].assists += (stats.assists || 0);
+                            players[name].totalDamage += (stats.totalDamageDealtToChampions || 0);
+
                             if (!teams[p.teamId]) {
-                                teams[p.teamId] = { names: [], win: p.stats && p.stats.win, side: p.teamId === 100 ? 'Blue' : 'Red' };
+                                teams[p.teamId] = { names: [], win: stats.win, side: p.teamId === 100 ? 'Blue' : 'Red' };
                             }
                             teams[p.teamId].names.push(name);
                         }
@@ -262,7 +276,7 @@
                     return wrB - wrA;
                 });
 
-                // Tabela de Jogadores
+                // 1. Tabela Principal de Jogadores
                 let playerHtml = `<table><tr><th>Jogador</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th><th>Lado Azul</th><th>Lado Vermelho</th></tr>`;
                 sortedPlayers.forEach(p => {
                     let st = players[p];
@@ -284,7 +298,33 @@
                 playerHtml += `</table>`;
                 document.getElementById("player-stats").innerHTML = playerHtml;
 
-                // Tabela de Duplas
+                // 2. Tabela de Combate (Kills, Mortes, Assistências, KDA e Dano)
+                let combatHtml = `<table><tr><th>Jogador</th><th>Kills (Média)</th><th>Mortes (Média)</th><th>Assist. (Média)</th><th>KDA</th><th>Dano Total (Média)</th></tr>`;
+                sortedPlayers.forEach(p => {
+                    let st = players[p];
+                    let totalGames = st.W + st.L;
+                    if (totalGames === 0) return;
+
+                    let avgKills = (st.kills / totalGames).toFixed(1);
+                    let avgDeaths = (st.deaths / totalGames).toFixed(1);
+                    let avgAssists = (st.assists / totalGames).toFixed(1);
+                    // Cálculo do KDA: (Kills + Assistências) / Mortes (evitar divisão por zero)
+                    let kda = st.deaths === 0 ? (st.kills + st.assists).toFixed(2) : ((st.kills + st.assists) / st.deaths).toFixed(2);
+                    let avgDamage = Math.round(st.totalDamage / totalGames).toLocaleString();
+
+                    combatHtml += `<tr>
+                        <td><strong>${DISPLAY_NAMES[p] || p}</strong></td>
+                        <td>${st.kills} (${avgKills})</td>
+                        <td style="color: var(--loss-color)">${st.deaths} (${avgDeaths})</td>
+                        <td>${st.assists} (${avgAssists})</td>
+                        <td class="winrate">${kda}</td>
+                        <td>${avgDamage}</td>
+                    </tr>`;
+                });
+                combatHtml += `</table>`;
+                document.getElementById("combat-stats").innerHTML = combatHtml;
+
+                // 3. Tabela de Duplas
                 let duoHtml = `<table><tr><th>Dupla</th><th>Jogos</th><th>V</th><th>D</th><th>Winrate</th></tr>`;
                 const duoKeys = Object.keys(duos);
                 if (duoKeys.length === 0) {
@@ -312,7 +352,7 @@
                 duoHtml += `</table>`;
                 document.getElementById("duo-stats").innerHTML = duoHtml;
 
-                // Renderizar Gráfico
+                // 4. Renderizar Gráfico
                 renderChart(sortedPlayers, players);
 
             } catch (renderErr) {
