@@ -21,6 +21,9 @@
         .glow-cyan {
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
         }
+        .glow-amber {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+        }
         table th, table td {
             white-space: nowrap;
         }
@@ -56,14 +59,35 @@
                 <p class="text-xs text-slate-400 mt-1">75.0% Winrate (3V - 1D)</p>
             </div>
             <div class="glass-card p-5 rounded-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Maior Dano Médio</p>
-                <h3 class="text-2xl font-bold text-indigo-400 mt-1">GRCX</h3>
-                <p class="text-xs text-slate-400 mt-1">29,877 Dano por Jogo</p>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Rei da Sobrevivência</p>
+                <h3 class="text-2xl font-bold text-amber-400 mt-1">ragnarneves</h3>
+                <p class="text-xs text-slate-400 mt-1">8.9 min sem morrer &bull; 89.6% KP</p>
             </div>
             <div class="glass-card p-5 rounded-2xl">
                 <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Mais Tanque (Dano Tomado)</p>
                 <h3 class="text-2xl font-bold text-purple-400 mt-1">RIkiPlancha12</h3>
                 <p class="text-xs text-slate-400 mt-1">31,180 Dano Tomado/Jogo</p>
+            </div>
+        </div>
+
+        <!-- Section: Destaques & Hall of Fame Ragnarneves -->
+        <div class="glass-card rounded-2xl p-6 glow-amber space-y-3 bg-gradient-to-r from-amber-500/10 via-slate-900/40 to-indigo-500/10 border-amber-500/30">
+            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                ⭐ Destaque Especial: ragnarneves (O Cérebro Coletivo & Sobrevivente)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
+                    <span class="text-xs uppercase font-bold text-amber-400">🧠 Jogador Coletivo (89.6% KP)</span>
+                    <p class="text-slate-300 text-xs leading-relaxed">Presente em quase 90% das kills da equipa. Sempre onde a ação acontece para servir os colegas!</p>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
+                    <span class="text-xs uppercase font-bold text-emerald-400">🛡️ Mestre da Sobrevivência</span>
+                    <p class="text-slate-300 text-xs leading-relaxed">Detém o recorde absoluto de posicionamento com <strong>8.9 minutos seguidos vivo</strong> sem conceder mortes.</p>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700/50 space-y-1">
+                    <span class="text-xs uppercase font-bold text-cyan-400">💥 Performance Monstra (47.6k Dano)</span>
+                    <p class="text-slate-300 text-xs leading-relaxed">Masterclass épica de <strong>47,682 de dano</strong> a jogar de Lillia e mais de 52k de dano em jogos de garra com Darius!</p>
+                </div>
             </div>
         </div>
 
@@ -119,7 +143,7 @@
                             <td class="py-3 px-4 text-center">40.0% (2-3)</td>
                             <td class="py-3 px-4 text-center">60.0% (3-2)</td>
                             <td class="py-3 px-4 text-center">40.0% (2-3)</td>
-                            <td class="py-3 px-4 text-center">60.0% (3-2)</td>
+                            <td class="py-3 px-4 text-center text-emerald-400 font-bold">60.0% (3-2)</td>
                         </tr>
                         <tr class="hover:bg-slate-800/40">
                             <td class="py-3 px-4 font-semibold text-slate-300">Avg K / D / A</td>
@@ -147,7 +171,14 @@
                             <td class="py-3 px-4 text-center font-bold text-cyan-300">74.6%</td>
                             <td class="py-3 px-4 text-center">71.4%</td>
                             <td class="py-3 px-4 text-center">63.5%</td>
-                            <td class="py-3 px-4 text-center">68.3%</td>
+                            <td class="py-3 px-4 text-center font-bold text-amber-400">89.6%</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/40">
+                            <td class="py-3 px-4 font-semibold text-slate-300">Tempo Máx. Vivo (Recorde)</td>
+                            <td class="py-3 px-4 text-center">6.4 min</td>
+                            <td class="py-3 px-4 text-center">7.5 min</td>
+                            <td class="py-3 px-4 text-center">6.0 min</td>
+                            <td class="py-3 px-4 text-center font-bold text-amber-400">8.9 min (Recorde)</td>
                         </tr>
                         <tr class="hover:bg-slate-800/40">
                             <td class="py-3 px-4 font-semibold text-slate-300">Damage / Game</td>
@@ -175,7 +206,7 @@
                             <td class="py-3 px-4 text-center text-emerald-400 font-semibold">Carrying</td>
                             <td class="py-3 px-4 text-center text-sky-400 font-semibold">Solid Performer</td>
                             <td class="py-3 px-4 text-center text-amber-400 font-semibold">Fighter</td>
-                            <td class="py-3 px-4 text-center text-rose-400 font-semibold">Struggling</td>
+                            <td class="py-3 px-4 text-center text-amber-400 font-semibold">Team Brain / Survivor</td>
                         </tr>
                     </tbody>
                 </table>
@@ -265,7 +296,7 @@
                                 <td class="py-2 px-2 text-center text-slate-500">-</td>
                                 <td class="py-2 px-2 text-center">42.9%</td>
                                 <td class="py-2 px-2 text-center">47.8%</td>
-                                <td class="py-2 px-2 text-center">39.1%</td>
+                                <td class="py-2 px-2 text-center text-emerald-400 font-bold">60.9%</td>
                                 <td class="py-2 px-2 text-center text-rose-400 font-semibold">ragnar</td>
                             </tr>
                             <tr class="hover:bg-slate-800/30">
@@ -273,7 +304,7 @@
                                 <td class="py-2 px-2 text-center">57.1%</td>
                                 <td class="py-2 px-2 text-center text-slate-500">-</td>
                                 <td class="py-2 px-2 text-center">52.2%</td>
-                                <td class="py-2 px-2 text-center">43.5%</td>
+                                <td class="py-2 px-2 text-center text-emerald-400 font-bold">56.5%</td>
                                 <td class="py-2 px-2 text-center text-rose-400 font-semibold">ragnar</td>
                             </tr>
                             <tr class="hover:bg-slate-800/30">
@@ -281,16 +312,16 @@
                                 <td class="py-2 px-2 text-center">52.2%</td>
                                 <td class="py-2 px-2 text-center">47.8%</td>
                                 <td class="py-2 px-2 text-center text-slate-500">-</td>
-                                <td class="py-2 px-2 text-center">35.7%</td>
+                                <td class="py-2 px-2 text-center text-emerald-400 font-bold">64.3%</td>
                                 <td class="py-2 px-2 text-center text-rose-400 font-semibold">ragnar</td>
                             </tr>
                             <tr class="hover:bg-slate-800/30">
-                                <td class="py-2 px-2 font-bold text-indigo-400">ragnarneves</td>
+                                <td class="py-2 px-2 font-bold text-amber-400">ragnarneves</td>
                                 <td class="py-2 px-2 text-center">60.9%</td>
                                 <td class="py-2 px-2 text-center">56.5%</td>
                                 <td class="py-2 px-2 text-center">64.3%</td>
                                 <td class="py-2 px-2 text-center text-slate-500">-</td>
-                                <td class="py-2 px-2 text-center text-emerald-400 font-semibold">Nenhum</td>
+                                <td class="py-2 px-2 text-center text-emerald-400 font-semibold">Nenhum (Pesadelo de Todos)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -317,6 +348,11 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-2.5 px-3 text-amber-400 font-semibold">Tempo Máximo Vivo (Sem Morrer)</td>
+                                <td class="py-2.5 px-3 text-center font-bold text-amber-400">ragnarneves</td>
+                                <td class="py-2.5 px-3 text-right font-bold text-amber-400">8.9 Minutos (Recorde!)</td>
+                            </tr>
                             <tr class="hover:bg-slate-800/30">
                                 <td class="py-2.5 px-3 text-slate-300">Maior Dano num Jogo</td>
                                 <td class="py-2.5 px-3 text-center font-bold text-cyan-400">GRCX</td>
@@ -370,10 +406,10 @@
                                 <td class="py-2.5 px-3 text-right font-medium">43,148</td>
                             </tr>
                             <tr class="hover:bg-slate-800/30">
-                                <td class="py-2.5 px-3 font-semibold text-emerald-400">Lillia</td>
+                                <td class="py-2.5 px-3 font-semibold text-emerald-400">Lillia (ragnarneves)</td>
                                 <td class="py-2.5 px-3 text-center font-bold">2</td>
                                 <td class="py-2.5 px-3 text-center text-emerald-400 font-bold">100%</td>
-                                <td class="py-2.5 px-3 text-right font-medium">31,577</td>
+                                <td class="py-2.5 px-3 text-right font-medium">47,682</td>
                             </tr>
                             <tr class="hover:bg-slate-800/30">
                                 <td class="py-2.5 px-3 font-semibold text-amber-400">Kai'Sa</td>
