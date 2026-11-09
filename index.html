@@ -12,6 +12,8 @@
             --accent-blue: #0ac8b9;
             --text-main: #f0f6fc;
             --text-muted: #8392a5;
+            --win-color: #2ea043;
+            --loss-color: #da3633;
         }
         body {
             background-color: var(--bg-color);
@@ -21,7 +23,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         header {
@@ -43,7 +45,7 @@
             border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         h2 {
@@ -71,6 +73,10 @@
         td {
             font-size: 0.95rem;
         }
+        .winrate {
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
         .loading {
             text-align: center;
             color: var(--accent-gold);
@@ -88,55 +94,30 @@
         </header>
 
         <div class="card">
-            <h2>Resumo da Nuvem</h2>
-            <div id="stats-content">
-                <div class="loading">A carregar dados da nuvem...</div>
-            </div>
+            <h2>Estatísticas Individuais</h2>
+            <div id="player-stats"><div class="loading">A carregar dados...</div></div>
+        </div>
+
+        <div class="card">
+            <h2>Desempenho por Dupla</h2>
+            <div id="duo-stats"><div class="loading">A carregar dados...</div></div>
         </div>
     </div>
 
     <script>
         const BIN_ID = "6af21d0affd5d16053b4807e";
         const READ_KEY = "$2a$10$lupWpV8BB2R3lLe.KGQu4uNn4jw0NpYpg0XRvmbT1i5PvMZTuOAd2";
+        const TRACKED_PLAYERS = ["grcx", "rikiplancha12", "babygolem", "ragnarneves"];
+        const DISPLAY_NAMES = {
+            "grcx": "GRCX",
+            "rikiplancha12": "RikiPlancha12",
+            "babygolem": "BabyGolem",
+            "ragnarneves": "ragnarneves"
+        };
 
         async function fetchStats() {
             try {
                 const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
                     headers: { "X-Master-Key": READ_KEY }
                 });
-                const result = await res.json();
-                
-                // Suporta tanto se vier em result.record como diretamente em result
-                const games = result.record || result;
-                
-                renderDashboard(games);
-            } catch (err) {
-                console.error("Erro ao carregar estatísticas:", err);
-                document.getElementById("stats-content").innerHTML = `<p style="color: #ff4444;">Erro ao carregar os dados da nuvem.</p>`;
-            }
-        }
-
-        function renderDashboard(games) {
-            const container = document.getElementById("stats-content");
-            
-            if (!games || games.length === 0) {
-                container.innerHTML = "<p>Ainda não há jogos guardados.</p>";
-                return;
-            }
-
-            let html = `<p>Total de jogos sincronizados: <strong>${games.length}</strong></p>`;
-            html += `<table><tr><th>Data do Jogo</th><th>ID do Jogo</th></tr>`;
-            
-            games.forEach(g => {
-                const dataFormatada = g.gameCreationDate ? g.gameCreationDate.replace("T", " ").substring(0, 16) : "Desconhecida";
-                html += `<tr><td>${dataFormatada}</td><td>${g.gameId}</td></tr>`;
-            });
-            
-            html += `</table>`;
-            container.innerHTML = html;
-        }
-
-        document.addEventListener("DOMContentLoaded", fetchStats);
-    </script>
-</body>
-</html>
+                const result =
