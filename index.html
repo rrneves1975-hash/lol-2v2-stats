@@ -102,7 +102,7 @@
         async function fetchStats() {
             try {
                 const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-                    headers: { "X-Access-Key": READ_KEY }
+                    headers: { "X-Master-Key": READ_KEY }
                 });
                 const result = await res.json();
                 
