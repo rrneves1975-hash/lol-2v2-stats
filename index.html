@@ -233,7 +233,7 @@
 
                 const redTotal = stats[p].redWins + stats[p].redLosses;
                 const redWR = redTotal > 0 ? (stats[p].redWins / redTotal) * 100 : 0;
-                if (redWR > maxRedWR) { maxRedWR = redWR; bestRed = DISPLAY_NAMES[p]; bestRedDetail = `${redRedWR = redWR; bestRed = DISPLAY_NAMES[p]; bestRedDetail = `${redWR.toFixed(1)}% Red Side (${stats[p].redWins}V - ${stats[p].redLosses}D)`; }
+                if (redWR > maxRedWR) { maxRedWR = redWR; bestRed = DISPLAY_NAMES[p]; bestRedDetail = `${redWR.toFixed(1)}% Red Side (${stats[p].redWins}V - ${stats[p].redLosses}D)`; }
             });
 
             document.getElementById('kpiBestPlayer').innerText = bestPlayer;
