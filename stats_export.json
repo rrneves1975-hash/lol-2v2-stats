@@ -1,0 +1,70 @@
+{
+  "totalGames": 13,
+  "lastUpdated": "2026-11-10T16:46:19.245119+00:00",
+  "players": {
+    "grcx": {
+      "displayName": "GRCX",
+      "wins": 7,
+      "losses": 6,
+      "winRate": 53.84615384615385,
+      "blueWins": 3,
+      "blueLosses": 1,
+      "redWins": 4,
+      "redLosses": 5,
+      "avgDamage": 29225.846153846152,
+      "avgTaken": 29447.46153846154,
+      "avgGold": 13725.307692307691,
+      "avgKills": 7.153846153846154,
+      "avgDeaths": 6.076923076923077,
+      "avgAssists": 3.5384615384615383
+    },
+    "babygolem": {
+      "displayName": "BabyGolem",
+      "wins": 9,
+      "losses": 4,
+      "winRate": 69.23076923076923,
+      "blueWins": 6,
+      "blueLosses": 2,
+      "redWins": 3,
+      "redLosses": 2,
+      "avgDamage": 23631.30769230769,
+      "avgTaken": 28527.923076923078,
+      "avgGold": 13445.615384615385,
+      "avgKills": 6.3076923076923075,
+      "avgDeaths": 6.153846153846154,
+      "avgAssists": 5.615384615384615
+    },
+    "rikiplancha12": {
+      "displayName": "RikiPlancha12",
+      "wins": 6,
+      "losses": 7,
+      "winRate": 46.15384615384615,
+      "blueWins": 5,
+      "blueLosses": 4,
+      "redWins": 1,
+      "redLosses": 3,
+      "avgDamage": 29784.0,
+      "avgTaken": 32283.69230769231,
+      "avgGold": 13395.076923076924,
+      "avgKills": 5.230769230769231,
+      "avgDeaths": 6.0,
+      "avgAssists": 5.461538461538462
+    },
+    "ragnarneves": {
+      "displayName": "ragnarneves",
+      "wins": 4,
+      "losses": 9,
+      "winRate": 30.76923076923077,
+      "blueWins": 2,
+      "blueLosses": 3,
+      "redWins": 2,
+      "redLosses": 6,
+      "avgDamage": 21930.0,
+      "avgTaken": 31431.76923076923,
+      "avgGold": 13024.0,
+      "avgKills": 5.3076923076923075,
+      "avgDeaths": 5.923076923076923,
+      "avgAssists": 4.769230769230769
+    }
+  }
+}
