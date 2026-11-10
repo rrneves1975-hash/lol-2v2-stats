@@ -8,306 +8,520 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0f19;
-            color: #f1f5f9;
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glow-cyan {
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
-        }
-        table th, table td {
-            white-space: nowrap;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f19; color: #f1f5f9; }
+        .glass-card { background: rgba(30, 41, 59, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glow-cyan { box-shadow: 0 0 25px rgba(6, 182, 212, 0.15); }
+        table th, table td { white-space: nowrap; }
+        .sticky-nav { position: sticky; top: 0; z-index: 30; background: rgba(11, 15, 25, 0.92); backdrop-filter: blur(10px); }
+        .chip { transition: background .15s, color .15s; }
+        .chip:hover { background: rgba(6, 182, 212, 0.2); color: #67e8f9; }
+        .sortable { cursor: pointer; user-select: none; }
+        .sortable:hover { color: #67e8f9; }
+        .scroll-y { max-height: 28rem; overflow-y: auto; }
+        .scroll-y thead th { position: sticky; top: 0; background: #162032; z-index: 5; }
+        section[id^="sec-"] { scroll-margin-top: 4.5rem; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] > summary .chev { transform: rotate(90deg); }
+        .chev { display: inline-block; transition: transform .15s; }
+        .best { background: rgba(16, 185, 129, 0.12); border-radius: 6px; }
+        input.filter { background: #0f172a; border: 1px solid #334155; color: #e2e8f0; }
+        input.filter:focus { outline: 2px solid #06b6d4; outline-offset: 1px; }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
     <div class="max-w-7xl mx-auto space-y-8">
-        
+
         <!-- Header -->
         <header class="flex flex-col md:flex-row justify-between items-center gap-4 pb-6 border-b border-slate-800">
             <div>
                 <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500">
                     Custom Games Ultimate Analytics
                 </h1>
-                <p class="text-slate-400 text-sm md:text-base mt-1">Painel avançado de estatísticas atualizado via Python</p>
+                <p class="text-slate-400 text-sm md:text-base mt-1">Painel completo de estatísticas atualizado via Python</p>
             </div>
-            <div class="flex items-center gap-3 bg-slate-900/80 border border-slate-800 px-4 py-2 rounded-xl text-xs md:text-sm text-slate-300">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span id="totalGamesText">A carregar partidas...</span>
+            <div class="flex flex-col items-end gap-1">
+                <div class="flex items-center gap-3 bg-slate-900/80 border border-slate-800 px-4 py-2 rounded-xl text-xs md:text-sm text-slate-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="totalGamesText">A carregar partidas...</span>
+                </div>
+                <p class="text-[11px] text-slate-500" id="metaText"></p>
             </div>
         </header>
 
-        <!-- KPI Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="glass-card p-5 rounded-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Melhor Win Rate</p>
-                <h3 class="text-2xl font-bold text-cyan-400 mt-1" id="kpiBestPlayer">-</h3>
-                <p class="text-xs text-slate-400 mt-1" id="kpiBestPlayerDetail">-</p>
-            </div>
-            <div class="glass-card p-5 rounded-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Maior Dano Médio</p>
-                <h3 class="text-2xl font-bold text-emerald-400 mt-1" id="kpiTopDamage">-</h3>
-                <p class="text-xs text-slate-400 mt-1" id="kpiTopDamageDetail">-</p>
-            </div>
-            <div class="glass-card p-5 rounded-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Rei do Lado Azul</p>
-                <h3 class="text-2xl font-bold text-amber-400 mt-1" id="kpiBestBlue">-</h3>
-                <p class="text-xs text-slate-400 mt-1" id="kpiBestBlueDetail">-</p>
-            </div>
-            <div class="glass-card p-5 rounded-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Rei do Lado Vermelho</p>
-                <h3 class="text-2xl font-bold text-purple-400 mt-1" id="kpiBestRed">-</h3>
-                <p class="text-xs text-slate-400 mt-1" id="kpiBestRedDetail">-</p>
-            </div>
-        </div>
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiGrid"></div>
 
-        <!-- Global Charts Section -->
+        <!-- Charts -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="glass-card p-6 rounded-2xl glow-cyan">
                 <h3 class="text-lg font-bold text-slate-200 mb-4">⚔️ Dano Causado vs Dano Tomado (Média)</h3>
-                <div class="relative h-64 md:h-80">
-                    <canvas id="chartDamage"></canvas>
-                </div>
+                <div class="relative h-64 md:h-80"><canvas id="chartDamage"></canvas></div>
             </div>
             <div class="glass-card p-6 rounded-2xl">
                 <h3 class="text-lg font-bold text-slate-200 mb-4">💰 Média de Ouro por Jogo</h3>
-                <div class="relative h-64 md:h-80">
-                    <canvas id="chartGold"></canvas>
-                </div>
+                <div class="relative h-64 md:h-80"><canvas id="chartGold"></canvas></div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="text-lg font-bold text-slate-200 mb-4">🟦🟥 Win Rate por Lado</h3>
+                <div class="relative h-64 md:h-80"><canvas id="chartSides"></canvas></div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="text-lg font-bold text-slate-200 mb-4">🎯 KDA e Média K / D / A</h3>
+                <div class="relative h-64 md:h-80"><canvas id="chartKda"></canvas></div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="text-lg font-bold text-slate-200 mb-4">🤝 Quotas da Equipa (%)</h3>
+                <div class="relative h-64 md:h-80"><canvas id="chartShare"></canvas></div>
+            </div>
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="text-lg font-bold text-slate-200 mb-4">⏱️ Ritmo por Minuto</h3>
+                <div class="relative h-64 md:h-80"><canvas id="chartPace"></canvas></div>
             </div>
         </div>
 
-        <!-- Player Scorecard Table -->
+        <!-- Player Scorecard -->
         <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
-            <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">
-                📋 Player Scorecard (Placar de Jogadores)
-            </h2>
+            <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">📋 Player Scorecard (Placar de Jogadores)</h2>
+            <p class="text-xs text-slate-500">O valor destacado a verde é o melhor da linha (quando faz sentido comparar).</p>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-sm">
-                    <thead>
-                        <tr class="border-b border-slate-700/60 text-slate-400 text-xs uppercase tracking-wider">
-                            <th class="py-3 px-4">Métrica</th>
-                            <th class="py-3 px-4 text-center">GRCX</th>
-                            <th class="py-3 px-4 text-center">BabyGolem</th>
-                            <th class="py-3 px-4 text-center">RIkiPlancha12</th>
-                            <th class="py-3 px-4 text-center">ragnarneves</th>
-                        </tr>
-                    </thead>
+                    <thead id="scorecardHead"></thead>
                     <tbody class="divide-y divide-slate-800" id="playerScorecardBody">
-                        <tr><td colspan="5" class="py-4 text-center text-slate-400">A carregar estatísticas...</td></tr>
+                        <tr><td class="py-4 text-center text-slate-400">A carregar estatísticas...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- Section navigation -->
+        <nav class="sticky-nav -mx-4 md:-mx-8 px-4 md:px-8 py-3 border-y border-slate-800">
+            <div class="flex gap-2 overflow-x-auto pb-1" id="sectionNav"></div>
+        </nav>
+
+        <!-- Dynamic sections (todas as tabelas do script) -->
+        <div class="space-y-8" id="sectionsContainer"></div>
+
+        <!-- Match history -->
+        <section id="sec-historico" class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <h2 class="text-xl font-bold text-slate-200">🗂️ Histórico de Partidas</h2>
+                <input id="gameFilter" type="search" placeholder="Filtrar por jogador ou campeão..." class="filter rounded-lg px-3 py-1.5 text-sm w-full sm:w-72">
+            </div>
+            <div class="space-y-2" id="gamesList"></div>
+            <div class="text-center">
+                <button id="moreGames" class="hidden px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm text-slate-200">Mostrar mais partidas</button>
+            </div>
+        </section>
+
+        <footer class="text-center text-xs text-slate-600 pb-6">Dados gerados por lcu_stats.py · stats_export.json</footer>
     </div>
 
-    <!-- Script de Carregamento Local (stats_export.json) -->
     <script>
-        const TRACKED_PLAYERS = ["grcx", "babygolem", "rikiplancha12", "ragnarneves"];
-        let chartDamageInstance = null;
-        let chartGoldInstance = null;
+        // ------------------------------------------------------------------ helpers
+        const SECTION_META = {
+            "player-win-rates": ["🏆", "Win rate por jogador"],
+            "duo-win-rates": ["👥", "Win rate dos duos"],
+            "champion-win-rates": ["🧙", "Win rate por campeão"],
+            "tilt-tracker": ["😤", "Tilt (resultado após vitória / derrota)"],
+            "session-fatigue": ["🥱", "Fadiga de sessão"],
+            "time-of-day": ["🌙", "Hora do dia"],
+            "game-length-buckets": ["⏳", "Duração dos jogos"],
+            "stomp-vs-throw": ["💥", "Stomp vs throw"],
+            "multikills": ["🔥", "Multikills"],
+            "first-blood": ["🩸", "First Blood"],
+            "combat-profile": ["⚔️", "Perfil de combate"],
+            "team-share": ["🤝", "Quota da equipa"],
+            "champion-pool": ["🎲", "Pool de campeões"],
+            "liability-index": ["⚠️", "Índice de risco dos campeões"],
+            "records": ["📈", "Recordes"],
+            "worst-defeats": ["💀", "Piores derrotas"],
+            "clean-execution": ["✨", "Vitórias sem morrer"],
+            "time-dead": ["⚰️", "Tempo morto"],
+            "head-to-head": ["🥊", "Frente a frente"],
+            "streaks": ["📊", "Sequências de vitórias / derrotas"],
+            "augments": ["🔮", "Augments"]
+        };
+        const CHART_COLORS = ['rgba(6,182,212,.8)', 'rgba(168,85,247,.8)', 'rgba(245,158,11,.8)', 'rgba(16,185,129,.8)'];
+        const charts = [];
+        const sectionState = {};
+        let DATA = null;
+        let gamesShown = 15;
 
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const n0 = v => Math.round(v).toLocaleString('pt-PT');
+        const n1 = v => v.toLocaleString('pt-PT', {minimumFractionDigits: 1, maximumFractionDigits: 1});
+        const n2 = v => v.toLocaleString('pt-PT', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        const mmss = sec => { sec = Math.round(sec); return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`; };
+        const fmtDate = iso => new Date(iso).toLocaleString('pt-PT', {timeZone: DATA.timezone || 'Europe/Lisbon', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'});
+
+        function fmtCell(v, kind) {
+            if (v === null || v === undefined) return '-';
+            if (typeof v !== 'number') return esc(v);
+            switch (kind) {
+                case 'pct': return (v * 100).toFixed(1) + '%';
+                case 'int': return n0(v);
+                case 'f1': return n1(v);
+                case 'f2': return n2(v);
+                default: return esc(v);
+            }
+        }
+
+        // ------------------------------------------------------------------ load
         async function fetchDashboardData() {
             try {
-                const response = await fetch('./stats_export.json');
+                const response = await fetch('./stats_export.json', {cache: 'no-store'});
                 if (!response.ok) throw new Error("Não foi possível carregar o ficheiro stats_export.json");
-                
-                const data = await response.json();
-                renderDashboard(data);
+                DATA = await response.json();
+                renderDashboard(DATA);
             } catch (err) {
                 console.error("Erro a carregar dados:", err);
-                document.getElementById('totalGamesText').innerText = "Erro ao carregar dados estáticos";
+                document.getElementById('totalGamesText').innerText = "Erro ao carregar stats_export.json";
             }
         }
 
         function renderDashboard(data) {
             document.getElementById('totalGamesText').innerText = `${data.totalGames} Partidas Registadas`;
-            const players = data.players;
+            const parts = [];
+            if (data.firstGame && data.lastGame) parts.push(`${fmtDate(data.firstGame).split(',')[0]} → ${fmtDate(data.lastGame).split(',')[0]}`);
+            if (data.lastUpdated) parts.push(`atualizado ${fmtDate(data.lastUpdated)}`);
+            document.getElementById('metaText').innerText = parts.join(' · ');
 
-            // KPIs
-            let bestWRPlayer = "-", maxWR = -1, bestWRDetail = "";
-            let topDmgPlayer = "-", maxDmg = -1, topDmgDetail = "";
-            let bestBluePlayer = "-", maxBlueWR = -1, bestBlueDetail = "";
-            let bestRedPlayer = "-", maxRedWR = -1, bestRedDetail = "";
+            const names = Object.keys(data.players);
+            renderKpis(data.players, names);
+            renderScorecard(data.players, names);
+            renderCharts(data.players, names);
+            renderSections(data.sections || []);
+            renderGames();
+        }
 
-            TRACKED_PLAYERS.forEach(p => {
-                const pData = players[p];
-                if (!pData) return;
+        // ------------------------------------------------------------------ KPIs
+        function renderKpis(players, names) {
+            const list = names.map(k => players[k]);
+            const best = (fn, hi = true) => list.reduce((a, b) => (hi ? fn(b) > fn(a) : fn(b) < fn(a)) ? b : a);
+            const sideWR = (d, s) => { const t = d[s + 'Wins'] + d[s + 'Losses']; return t ? d[s + 'Wins'] / t * 100 : 0; };
+            const mk = d => d.multikills.double + d.multikills.triple + d.multikills.quadra + d.multikills.penta;
 
-                if (pData.winRate > maxWR) {
-                    maxWR = pData.winRate;
-                    bestWRPlayer = pData.displayName;
-                    bestWRDetail = `${pData.winRate.toFixed(1)}% (${pData.wins}V - ${pData.losses}D)`;
-                }
+            const cards = [
+                ["Melhor Win Rate", "text-cyan-400", best(d => d.winRate), d => d.displayName, d => `${d.winRate.toFixed(1)}% (${d.wins}V - ${d.losses}D)`],
+                ["Maior Dano Médio", "text-emerald-400", best(d => d.avgDamage), d => d.displayName, d => `${n0(d.avgDamage)} Dano/Jogo`],
+                ["Rei do Lado Azul", "text-amber-400", best(d => sideWR(d, 'blue')), d => d.displayName, d => `${sideWR(d, 'blue').toFixed(1)}% (${d.blueWins}V - ${d.blueLosses}D)`],
+                ["Rei do Lado Vermelho", "text-purple-400", best(d => sideWR(d, 'red')), d => d.displayName, d => `${sideWR(d, 'red').toFixed(1)}% (${d.redWins}V - ${d.redLosses}D)`],
+                ["Melhor KDA", "text-sky-400", best(d => d.kda), d => d.displayName, d => `${n2(d.kda)} KDA · ${n1(d.avgKills)}/${n1(d.avgDeaths)}/${n1(d.avgAssists)}`],
+                ["Mais Multikills", "text-rose-400", best(mk), d => d.displayName, d => `${mk(d)} no total · ${d.multikills.penta} penta(s)`],
+                ["Mais First Bloods", "text-red-400", best(d => d.firstBloodKills), d => d.displayName, d => `${d.firstBloodKills} kills · ${d.firstBloodAssists} assists`],
+                ["Menos Tempo Morto", "text-teal-400", best(d => d.estDeadPct, false), d => d.displayName, d => `${d.estDeadPct.toFixed(1)}% do jogo (estimado)`],
+                ["Maior Participação em Kills", "text-lime-400", best(d => d.killParticipation ?? -1), d => d.displayName, d => `${(d.killParticipation ?? 0).toFixed(1)}% KP`],
+                ["Maior Quota de Dano", "text-orange-400", best(d => d.damageShare), d => d.displayName, d => `${d.damageShare.toFixed(1)}% do dano da equipa`],
+                ["Mais Jogos Sem Morrer", "text-fuchsia-400", best(d => d.deathlessGames), d => d.displayName, d => `${d.deathlessGames} jogos sem morrer (${d.deathlessWins} vitórias)`],
+                ["Maior Ouro / Minuto", "text-yellow-400", best(d => d.goldPerMin), d => d.displayName, d => `${n0(d.goldPerMin)} ouro/min`]
+            ];
+            document.getElementById('kpiGrid').innerHTML = cards.map(([label, color, p, name, detail]) => `
+                <div class="glass-card p-5 rounded-2xl">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">${label}</p>
+                    <h3 class="text-2xl font-bold ${color} mt-1">${esc(name(p))}</h3>
+                    <p class="text-xs text-slate-400 mt-1">${esc(detail(p))}</p>
+                </div>`).join('');
+        }
 
-                if (pData.avgDamage > maxDmg) {
-                    maxDmg = pData.avgDamage;
-                    topDmgPlayer = pData.displayName;
-                    topDmgDetail = `${Math.round(pData.avgDamage).toLocaleString()} Dano/Jogo`;
-                }
+        // ------------------------------------------------------------------ Scorecard
+        function renderScorecard(players, names) {
+            document.getElementById('scorecardHead').innerHTML = `
+                <tr class="border-b border-slate-700/60 text-slate-400 text-xs uppercase tracking-wider">
+                    <th class="py-3 px-4">Métrica</th>
+                    ${names.map(k => `<th class="py-3 px-4 text-center">${esc(players[k].displayName)}</th>`).join('')}
+                </tr>`;
 
-                const blueTotal = pData.blueWins + pData.blueLosses;
-                const blueWR = blueTotal > 0 ? (pData.blueWins / blueTotal) * 100 : 0;
-                if (blueWR > maxBlueWR) {
-                    maxBlueWR = blueWR;
-                    bestBluePlayer = pData.displayName;
-                    bestBlueDetail = `${blueWR.toFixed(1)}% (${pData.blueWins}V - ${pData.blueLosses}D)`;
-                }
+            const sideTxt = (d, s) => { const w = d[s + 'Wins'], l = d[s + 'Losses'], t = w + l; return `${t ? (w / t * 100).toFixed(1) : '0.0'}% (${w}-${l})`; };
+            const sideVal = (d, s) => { const t = d[s + 'Wins'] + d[s + 'Losses']; return t ? d[s + 'Wins'] / t : 0; };
+            const mkTotal = d => d.multikills.double + d.multikills.triple + d.multikills.quadra + d.multikills.penta;
 
-                const redTotal = pData.redWins + pData.redLosses;
-                const redWR = redTotal > 0 ? (pData.redWins / redTotal) * 100 : 0;
-                if (redWR > maxRedWR) {
-                    maxRedWR = redWR;
-                    bestRedPlayer = pData.displayName;
-                    bestRedDetail = `${redWR.toFixed(1)}% (${pData.redWins}V - ${pData.redLosses}D)`;
-                }
-            });
-
-            document.getElementById('kpiBestPlayer').innerText = bestWRPlayer;
-            document.getElementById('kpiBestPlayerDetail').innerText = bestWRDetail;
-            document.getElementById('kpiTopDamage').innerText = topDmgPlayer;
-            document.getElementById('kpiTopDamageDetail').innerText = topDmgDetail;
-            document.getElementById('kpiBestBlue').innerText = bestBluePlayer;
-            document.getElementById('kpiBestBlueDetail').innerText = bestBlueDetail;
-            document.getElementById('kpiBestRed').innerText = bestRedPlayer;
-            document.getElementById('kpiBestRedDetail').innerText = bestRedDetail;
-
-            // Scorecard Table
-            const tbody = document.getElementById('playerScorecardBody');
-            const metrics = [
-                {
-                    label: "Win Rate",
-                    render: p => {
-                        const d = players[p];
-                        if (!d) return "-";
-                        const color = d.winRate >= 50 ? "text-emerald-400" : "text-rose-400";
-                        return `<span class="font-bold ${color}">${d.winRate.toFixed(1)}% (${d.wins}-${d.losses})</span>`;
-                    }
-                },
-                {
-                    label: "Lado Azul (Blue Side)",
-                    render: p => {
-                        const d = players[p];
-                        if (!d) return "-";
-                        const total = d.blueWins + d.blueLosses;
-                        const wr = total > 0 ? ((d.blueWins / total) * 100).toFixed(1) : "0.0";
-                        return `<span>${wr}% (${d.blueWins}-${d.blueLosses})</span>`;
-                    }
-                },
-                {
-                    label: "Lado Vermelho (Red Side)",
-                    render: p => {
-                        const d = players[p];
-                        if (!d) return "-";
-                        const total = d.redWins + d.redLosses;
-                        const wr = total > 0 ? ((d.redWins / total) * 100).toFixed(1) : "0.0";
-                        return `<span>${wr}% (${d.redWins}-${d.redLosses})</span>`;
-                    }
-                },
-                {
-                    label: "Média K / D / A",
-                    render: p => {
-                        const d = players[p];
-                        return d ? `${d.avgKills.toFixed(1)} / ${d.avgDeaths.toFixed(1)} / ${d.avgAssists.toFixed(1)}` : "-";
-                    }
-                },
-                {
-                    label: "Dano Causado / Jogo",
-                    render: p => {
-                        const d = players[p];
-                        return d ? `<span class="font-bold text-cyan-300">${Math.round(d.avgDamage).toLocaleString()}</span>` : "-";
-                    }
-                },
-                {
-                    label: "Dano Tomado / Jogo",
-                    render: p => {
-                        const d = players[p];
-                        return d ? `<span class="font-bold text-purple-400">${Math.round(d.avgTaken).toLocaleString()}</span>` : "-";
-                    }
-                },
-                {
-                    label: "Ouro Obtido / Jogo",
-                    render: p => {
-                        const d = players[p];
-                        return d ? `<span class="font-bold text-amber-400">${Math.round(d.avgGold).toLocaleString()}</span>` : "-";
-                    }
-                }
+            // g = cabeçalho de grupo | l = label | v = valor para comparar | f = texto | hb = higher is better | c = classe de cor
+            const M = [
+                {g: "Resultados"},
+                {l: "Jogos", v: d => d.games, f: d => n0(d.games)},
+                {l: "Win Rate", v: d => d.winRate, f: d => `${d.winRate.toFixed(1)}% (${d.wins}-${d.losses})`, hb: true, dyn: d => d.winRate >= 50 ? 'text-emerald-400' : 'text-rose-400'},
+                {l: "Lado Azul (Blue Side)", v: d => sideVal(d, 'blue'), f: d => sideTxt(d, 'blue'), hb: true},
+                {l: "Lado Vermelho (Red Side)", v: d => sideVal(d, 'red'), f: d => sideTxt(d, 'red'), hb: true},
+                {l: "Tempo de jogo total (min)", v: d => d.playtimeMin, f: d => n1(d.playtimeMin)},
+                {l: "Duração média do jogo (min)", v: d => d.avgGameMin, f: d => n1(d.avgGameMin)},
+                {g: "Combate"},
+                {l: "Média K / D / A", v: null, f: d => `${d.avgKills.toFixed(1)} / ${d.avgDeaths.toFixed(1)} / ${d.avgAssists.toFixed(1)}`},
+                {l: "Totais K / D / A", v: null, f: d => `${n0(d.totalKills)} / ${n0(d.totalDeaths)} / ${n0(d.totalAssists)}`},
+                {l: "KDA", v: d => d.kda, f: d => n2(d.kda), hb: true, c: 'font-bold text-sky-300'},
+                {l: "Kills / min", v: d => d.killsPerMin, f: d => n2(d.killsPerMin), hb: true},
+                {l: "Mortes / min", v: d => d.deathsPerMin, f: d => n2(d.deathsPerMin), hb: false},
+                {l: "Assists / min", v: d => d.assistsPerMin, f: d => n2(d.assistsPerMin), hb: true},
+                {l: "Participação em kills", v: d => d.killParticipation ?? -1, f: d => d.killParticipation == null ? '-' : d.killParticipation.toFixed(1) + '%', hb: true},
+                {l: "Quota de mortes da equipa", v: d => d.deathShare, f: d => d.deathShare.toFixed(1) + '%', hb: false},
+                {l: "Jogos sem morrer", v: d => d.deathlessGames, f: d => `${d.deathlessGames} (${d.deathlessWins} vitórias)`, hb: true},
+                {g: "Dano, ouro e tanque"},
+                {l: "Dano Causado / Jogo", v: d => d.avgDamage, f: d => n0(d.avgDamage), hb: true, c: 'font-bold text-cyan-300'},
+                {l: "Dano Tomado / Jogo", v: d => d.avgTaken, f: d => n0(d.avgTaken), c: 'font-bold text-purple-400'},
+                {l: "Dano Mitigado / Jogo", v: d => d.avgMitigated, f: d => n0(d.avgMitigated), hb: true},
+                {l: "Dano / minuto", v: d => d.damagePerMin, f: d => n0(d.damagePerMin), hb: true},
+                {l: "Dano / morte", v: d => d.damagePerDeath, f: d => n0(d.damagePerDeath), hb: true},
+                {l: "Dano / ouro", v: d => d.damagePerGold, f: d => n2(d.damagePerGold), hb: true},
+                {l: "Quota de dano da equipa", v: d => d.damageShare, f: d => d.damageShare.toFixed(1) + '%', hb: true},
+                {l: "Quota de dano tomado", v: d => d.takenShare, f: d => d.takenShare.toFixed(1) + '%'},
+                {l: "Ouro Obtido / Jogo", v: d => d.avgGold, f: d => n0(d.avgGold), hb: true, c: 'font-bold text-amber-400'},
+                {l: "Ouro / minuto", v: d => d.goldPerMin, f: d => n0(d.goldPerMin), hb: true},
+                {l: "Nível médio final", v: d => d.avgLevel, f: d => n1(d.avgLevel), hb: true},
+                {g: "Multikills e First Blood"},
+                {l: "Doubles / Triples", v: null, f: d => `${d.multikills.double} / ${d.multikills.triple}`},
+                {l: "Quadras / Pentas", v: null, f: d => `${d.multikills.quadra} / ${d.multikills.penta}`},
+                {l: "Multikills (total)", v: d => mkTotal(d), f: d => n0(mkTotal(d)), hb: true},
+                {l: "First Blood (kills)", v: d => d.firstBloodKills, f: d => n0(d.firstBloodKills), hb: true},
+                {l: "First Blood (assists)", v: d => d.firstBloodAssists, f: d => n0(d.firstBloodAssists), hb: true},
+                {g: "Tempo vivo / morto"},
+                {l: "Tempo morto estimado (min)", v: d => d.estDeadMin, f: d => n1(d.estDeadMin), hb: false},
+                {l: "% do jogo morto (estimado)", v: d => d.estDeadPct, f: d => d.estDeadPct.toFixed(1) + '%', hb: false},
+                {l: "Maior tempo vivo (min)", v: d => d.longestAliveMin, f: d => n1(d.longestAliveMin), hb: true},
+                {l: "Média do maior tempo vivo (min)", v: d => d.avgLongestAliveMin, f: d => n1(d.avgLongestAliveMin), hb: true},
+                {g: "Campeões"},
+                {l: "Campeões únicos", v: d => d.uniqueChampions, f: d => `${d.uniqueChampions} em ${d.games} jogos`},
+                {l: "Top 3 campeões", v: null, f: d => (d.champions || []).slice(0, 3).map(c => `${esc(c.champion)} ×${c.games} (${c.winRate.toFixed(0)}%)`).join('<br>') || '-', raw: true}
             ];
 
-            tbody.innerHTML = metrics.map(m => `
+            const html = [];
+            for (const m of M) {
+                if (m.g) {
+                    html.push(`<tr><td colspan="${names.length + 1}" class="pt-5 pb-2 px-4 text-xs font-bold uppercase tracking-wider text-cyan-400/80">${m.g}</td></tr>`);
+                    continue;
+                }
+                let bestVal = null;
+                if (m.v && m.hb !== undefined) {
+                    const vals = names.map(k => m.v(players[k]));
+                    bestVal = m.hb ? Math.max(...vals) : Math.min(...vals);
+                    if (vals.filter(v => v === bestVal).length === vals.length) bestVal = null;
+                }
+                const cells = names.map(k => {
+                    const d = players[k];
+                    const isBest = bestVal !== null && m.v(d) === bestVal;
+                    const cls = [m.c || '', m.dyn ? m.dyn(d) : '', 'font-medium'].join(' ');
+                    return `<td class="py-2.5 px-4 text-center"><span class="px-2 py-0.5 ${isBest ? 'best' : ''} ${cls}">${m.raw ? m.f(d) : esc(m.f(d))}</span></td>`;
+                }).join('');
+                html.push(`<tr class="hover:bg-slate-800/40"><td class="py-2.5 px-4 font-semibold text-slate-300">${m.l}</td>${cells}</tr>`);
+            }
+            document.getElementById('playerScorecardBody').innerHTML = html.join('');
+        }
+
+        // ------------------------------------------------------------------ Charts
+        function baseOptions(extra = {}) {
+            return {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: '#94a3b8' } } },
+                scales: {
+                    x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+                    y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.05)' }, beginAtZero: true }
+                },
+                ...extra
+            };
+        }
+        function mkChart(id, type, labels, datasets, opts) {
+            const ctx = document.getElementById(id).getContext('2d');
+            charts.push(new Chart(ctx, { type, data: { labels, datasets }, options: opts || baseOptions() }));
+        }
+
+        function renderCharts(players, names) {
+            charts.splice(0).forEach(c => c.destroy());
+            const P = names.map(k => players[k]);
+            const labels = P.map(p => p.displayName);
+            const bar = (label, data, i) => ({ label, data, backgroundColor: CHART_COLORS[i % CHART_COLORS.length] });
+            const sideWR = (d, s) => { const t = d[s + 'Wins'] + d[s + 'Losses']; return t ? +(d[s + 'Wins'] / t * 100).toFixed(1) : 0; };
+
+            mkChart('chartDamage', 'bar', labels, [
+                { label: 'Dano Causado', data: P.map(p => p.avgDamage), backgroundColor: 'rgba(6, 182, 212, 0.75)' },
+                { label: 'Dano Tomado', data: P.map(p => p.avgTaken), backgroundColor: 'rgba(168, 85, 247, 0.75)' },
+                { label: 'Dano Mitigado', data: P.map(p => p.avgMitigated), backgroundColor: 'rgba(148, 163, 184, 0.6)' }
+            ]);
+
+            mkChart('chartGold', 'line', labels, [{
+                label: 'Ouro Médio por Jogo', data: P.map(p => p.avgGold),
+                borderColor: '#f59e0b', backgroundColor: 'rgba(245, 158, 11, 0.15)', fill: true, tension: 0.3,
+                pointBackgroundColor: '#f59e0b', pointRadius: 6
+            }]);
+
+            const wrOpts = baseOptions();
+            wrOpts.scales.y.max = 100;
+            mkChart('chartSides', 'bar', labels, [
+                { label: 'Lado Azul (%)', data: P.map(p => sideWR(p, 'blue')), backgroundColor: 'rgba(56, 189, 248, 0.8)' },
+                { label: 'Lado Vermelho (%)', data: P.map(p => sideWR(p, 'red')), backgroundColor: 'rgba(244, 63, 94, 0.8)' },
+                { label: 'Total (%)', data: P.map(p => +p.winRate.toFixed(1)), backgroundColor: 'rgba(226, 232, 240, 0.7)' }
+            ], wrOpts);
+
+            mkChart('chartKda', 'bar', labels, [
+                { label: 'KDA', data: P.map(p => +p.kda.toFixed(2)), backgroundColor: 'rgba(56, 189, 248, 0.85)' },
+                { label: 'Kills', data: P.map(p => +p.avgKills.toFixed(1)), backgroundColor: 'rgba(16, 185, 129, 0.75)' },
+                { label: 'Mortes', data: P.map(p => +p.avgDeaths.toFixed(1)), backgroundColor: 'rgba(244, 63, 94, 0.75)' },
+                { label: 'Assists', data: P.map(p => +p.avgAssists.toFixed(1)), backgroundColor: 'rgba(245, 158, 11, 0.75)' }
+            ]);
+
+            mkChart('chartShare', 'bar', labels, [
+                { label: 'Quota de dano', data: P.map(p => +p.damageShare.toFixed(1)), backgroundColor: CHART_COLORS[0] },
+                { label: 'Participação em kills', data: P.map(p => +(p.killParticipation ?? 0).toFixed(1)), backgroundColor: CHART_COLORS[3] },
+                { label: 'Dano tomado', data: P.map(p => +p.takenShare.toFixed(1)), backgroundColor: CHART_COLORS[1] },
+                { label: 'Mortes da equipa', data: P.map(p => +p.deathShare.toFixed(1)), backgroundColor: 'rgba(244, 63, 94, 0.75)' }
+            ]);
+
+            mkChart('chartPace', 'bar', labels, [
+                { label: 'Kills / min', data: P.map(p => +p.killsPerMin.toFixed(2)), backgroundColor: 'rgba(16, 185, 129, 0.8)' },
+                { label: 'Mortes / min', data: P.map(p => +p.deathsPerMin.toFixed(2)), backgroundColor: 'rgba(244, 63, 94, 0.8)' },
+                { label: 'Assists / min', data: P.map(p => +p.assistsPerMin.toFixed(2)), backgroundColor: 'rgba(245, 158, 11, 0.8)' }
+            ]);
+        }
+
+        // ------------------------------------------------------------------ Sections (todas as tabelas)
+        function renderSections(sections) {
+            const nav = document.getElementById('sectionNav');
+            const box = document.getElementById('sectionsContainer');
+            nav.innerHTML = sections.map(s => {
+                const [icon, title] = SECTION_META[s.id] || ['📄', s.title];
+                return `<a href="#sec-${s.id}" class="chip shrink-0 px-3 py-1.5 rounded-full bg-slate-800/80 text-xs text-slate-300 border border-slate-700/60">${icon} ${esc(title)}</a>`;
+            }).join('') + `<a href="#sec-historico" class="chip shrink-0 px-3 py-1.5 rounded-full bg-slate-800/80 text-xs text-slate-300 border border-slate-700/60">🗂️ Histórico</a>`;
+
+            box.innerHTML = sections.map(s => {
+                const [icon, title] = SECTION_META[s.id] || ['📄', s.title];
+                sectionState[s.id] = { sort: null, dir: 1, filter: '' };
+                const big = s.rows.length > 12;
+                return `
+                <section id="sec-${s.id}" class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-3">
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-200">${icon} ${esc(title)}</h2>
+                            ${title !== s.title ? `<p class="text-[11px] text-slate-500">${esc(s.title)} · ${s.rows.length} linhas</p>` : `<p class="text-[11px] text-slate-500">${s.rows.length} linhas</p>`}
+                        </div>
+                        ${big ? `<input type="search" data-filter="${s.id}" placeholder="Filtrar..." class="filter rounded-lg px-3 py-1.5 text-sm w-full sm:w-60">` : ''}
+                    </div>
+                    <p class="text-sm text-slate-300 bg-cyan-500/5 border border-cyan-500/20 rounded-xl px-4 py-3">${esc(s.tldr)}</p>
+                    <div class="overflow-x-auto ${big ? 'scroll-y' : ''}">
+                        <table class="w-full text-left border-collapse text-sm" id="tbl-${s.id}"></table>
+                    </div>
+                </section>`;
+            }).join('');
+
+            sections.forEach(s => drawTable(s));
+
+            box.addEventListener('input', e => {
+                const id = e.target.dataset?.filter;
+                if (!id) return;
+                sectionState[id].filter = e.target.value.toLowerCase();
+                drawTable(DATA.sections.find(x => x.id === id));
+            });
+            box.addEventListener('click', e => {
+                const th = e.target.closest('th[data-col]');
+                if (!th) return;
+                const id = th.dataset.sec, col = +th.dataset.col, st = sectionState[id];
+                st.dir = st.sort === col ? -st.dir : 1;
+                st.sort = col;
+                drawTable(DATA.sections.find(x => x.id === id));
+            });
+        }
+
+        function drawTable(s) {
+            const st = sectionState[s.id];
+            let rows = s.rows.map((r, i) => ({ r, i }));
+            if (st.filter) rows = rows.filter(({ r }) => r.some(v => String(v ?? '').toLowerCase().includes(st.filter)));
+            if (st.sort !== null) {
+                const c = st.sort;
+                rows.sort((a, b) => {
+                    const x = a.r[c], y = b.r[c];
+                    if (x === null || x === undefined) return 1;
+                    if (y === null || y === undefined) return -1;
+                    if (typeof x === 'number' && typeof y === 'number') return (x - y) * st.dir;
+                    const nx = parseFloat(x), ny = parseFloat(y);
+                    if (!isNaN(nx) && !isNaN(ny) && /^[-+]?\d/.test(String(x)) && /^[-+]?\d/.test(String(y))) return (nx - ny) * st.dir;
+                    return String(x).localeCompare(String(y), 'pt') * st.dir;
+                });
+            }
+            const colorize = (label, v, kind) => {
+                if (kind !== 'pct' || typeof v !== 'number') return '';
+                if (/win rate|win %| %$|^(blue|red)$/i.test(label) && !/dead|share|participation|kill rate|unique/i.test(label)) {
+                    return v >= 0.5 ? 'text-emerald-400' : 'text-rose-400';
+                }
+                return '';
+            };
+            const head = s.columns.map((c, i) => {
+                const arrow = st.sort === i ? (st.dir === 1 ? ' ▲' : ' ▼') : '';
+                return `<th data-sec="${s.id}" data-col="${i}" class="sortable py-3 px-4 ${i === 0 || c.kind === 'text' ? 'text-left' : 'text-right'}">${esc(c.label)}${arrow}</th>`;
+            }).join('');
+            const body = rows.map(({ r }) => `
                 <tr class="hover:bg-slate-800/40">
-                    <td class="py-3 px-4 font-semibold text-slate-300">${m.label}</td>
-                    ${TRACKED_PLAYERS.map(p => `<td class="py-3 px-4 text-center">${m.render(p)}</td>`).join('')}
-                </tr>
-            `).join('');
-
-            // Charts
-            renderCharts(players);
+                    ${r.map((v, i) => {
+                        const c = s.columns[i];
+                        const first = i === 0;
+                        return `<td class="py-2.5 px-4 ${first ? 'font-semibold text-slate-200 text-left' : (c.kind === 'text' ? 'text-left text-slate-300' : 'text-right text-slate-300')} ${colorize(c.label, v, c.kind)}">${fmtCell(v, c.kind)}</td>`;
+                    }).join('')}
+                </tr>`).join('') || `<tr><td colspan="${s.columns.length}" class="py-4 text-center text-slate-500">Sem resultados</td></tr>`;
+            document.getElementById('tbl-' + s.id).innerHTML =
+                `<thead><tr class="border-b border-slate-700/60 text-slate-400 text-xs uppercase tracking-wider">${head}</tr></thead><tbody class="divide-y divide-slate-800">${body}</tbody>`;
         }
 
-        function renderCharts(players) {
-            const labels = TRACKED_PLAYERS.map(p => players[p]?.displayName || p);
-            const dmgDealt = TRACKED_PLAYERS.map(p => players[p]?.avgDamage || 0);
-            const dmgTaken = TRACKED_PLAYERS.map(p => players[p]?.avgTaken || 0);
-            const avgGold = TRACKED_PLAYERS.map(p => players[p]?.avgGold || 0);
+        // ------------------------------------------------------------------ Match history
+        function renderGames() {
+            const q = document.getElementById('gameFilter').value.trim().toLowerCase();
+            let games = DATA.games || [];
+            if (q) games = games.filter(g => g.players.some(p => p.name.toLowerCase().includes(q) || p.champion.toLowerCase().includes(q)));
+            const shown = games.slice(0, gamesShown);
 
-            if (chartDamageInstance) chartDamageInstance.destroy();
-            const ctx1 = document.getElementById('chartDamage').getContext('2d');
-            chartDamageInstance = new Chart(ctx1, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Dano Causado', data: dmgDealt, backgroundColor: 'rgba(6, 182, 212, 0.75)' },
-                        { label: 'Dano Tomado', data: dmgTaken, backgroundColor: 'rgba(168, 85, 247, 0.75)' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8' } } },
-                    scales: {
-                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.05)' } }
-                    }
-                }
-            });
+            document.getElementById('gamesList').innerHTML = shown.map(g => {
+                const sideBadge = g.winnerSide === 'Blue'
+                    ? '<span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 text-xs font-semibold">Vitória Azul</span>'
+                    : '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 text-xs font-semibold">Vitória Vermelha</span>';
+                const teamTxt = side => g.players.filter(p => p.side === side).map(p => `${esc(p.name)} <span class="text-slate-500">(${esc(p.champion)})</span>`).join(' + ');
+                const rowsHtml = g.players.map(p => `
+                    <tr class="${p.win ? '' : 'opacity-90'}">
+                        <td class="py-2 px-3 font-semibold ${p.side === 'Blue' ? 'text-sky-300' : 'text-rose-300'}">${esc(p.name)}</td>
+                        <td class="py-2 px-3">${esc(p.champion)}</td>
+                        <td class="py-2 px-3 ${p.win ? 'text-emerald-400' : 'text-rose-400'} font-semibold">${p.win ? 'Vitória' : 'Derrota'}</td>
+                        <td class="py-2 px-3 text-center">${p.kills}/${p.deaths}/${p.assists}</td>
+                        <td class="py-2 px-3 text-right">${n2(p.kda)}</td>
+                        <td class="py-2 px-3 text-right text-cyan-300">${n0(p.damage)}</td>
+                        <td class="py-2 px-3 text-right text-purple-300">${n0(p.taken)}</td>
+                        <td class="py-2 px-3 text-right">${n0(p.mitigated)}</td>
+                        <td class="py-2 px-3 text-right text-amber-300">${n0(p.gold)}</td>
+                        <td class="py-2 px-3 text-center">${p.level}</td>
+                        <td class="py-2 px-3 text-right">${mmss(p.longestAliveSec)}</td>
+                        <td class="py-2 px-3 text-right">${mmss(p.estDeadSec)}</td>
+                        <td class="py-2 px-3 text-center">${p.multikills.join('/')}</td>
+                        <td class="py-2 px-3 text-center">${p.firstBloodKill ? '🩸 K' : p.firstBloodAssist ? '🩸 A' : '-'}</td>
+                        <td class="py-2 px-3 text-slate-400 whitespace-normal min-w-[14rem]">${p.augments.length ? p.augments.map(esc).join(', ') : '-'}</td>
+                    </tr>`).join('');
+                return `
+                <details class="rounded-xl border border-slate-800 bg-slate-900/50">
+                    <summary class="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3 text-sm">
+                        <span class="chev text-slate-500">▶</span>
+                        <span class="text-slate-300 font-medium">${fmtDate(g.date)}</span>
+                        <span class="text-slate-400">${mmss(g.durationSec)}</span>
+                        ${sideBadge}
+                        <span class="text-xs text-slate-500">Sessão ${g.session} · jogo ${g.sessionGame}${g.teamFirstBlood.length ? ' · First Blood: ' + (g.teamFirstBlood[0] === 'Blue' ? 'Azul' : 'Vermelho') : ''}</span>
+                        <span class="w-full text-xs text-slate-400 pl-6"><span class="text-sky-300">Azul:</span> ${teamTxt('Blue')} &nbsp;|&nbsp; <span class="text-rose-300">Vermelho:</span> ${teamTxt('Red')}</span>
+                    </summary>
+                    <div class="overflow-x-auto px-2 pb-3">
+                        <table class="w-full text-left text-xs">
+                            <thead><tr class="text-slate-400 border-b border-slate-700/60">
+                                <th class="py-2 px-3">Jogador</th><th class="py-2 px-3">Campeão</th><th class="py-2 px-3">Resultado</th>
+                                <th class="py-2 px-3 text-center">K/D/A</th><th class="py-2 px-3 text-right">KDA</th>
+                                <th class="py-2 px-3 text-right">Dano</th><th class="py-2 px-3 text-right">Tomado</th><th class="py-2 px-3 text-right">Mitigado</th>
+                                <th class="py-2 px-3 text-right">Ouro</th><th class="py-2 px-3 text-center">Nível</th>
+                                <th class="py-2 px-3 text-right">Mais tempo vivo</th><th class="py-2 px-3 text-right">Morto (est.)</th>
+                                <th class="py-2 px-3 text-center">Dbl/Tpl/Quad/Penta</th><th class="py-2 px-3 text-center">First Blood</th>
+                                <th class="py-2 px-3">Augments</th>
+                            </tr></thead>
+                            <tbody class="divide-y divide-slate-800">${rowsHtml}</tbody>
+                        </table>
+                    </div>
+                </details>`;
+            }).join('') || '<p class="text-center text-slate-500 py-4">Sem partidas para mostrar.</p>';
 
-            if (chartGoldInstance) chartGoldInstance.destroy();
-            const ctx2 = document.getElementById('chartGold').getContext('2d');
-            chartGoldInstance = new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Ouro Médio por Jogo',
-                        data: avgGold,
-                        borderColor: '#f59e0b',
-                        backgroundColor: 'rgba(245, 158, 11, 0.15)',
-                        fill: true,
-                        tension: 0.3,
-                        pointBackgroundColor: '#f59e0b',
-                        pointRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#94a3b8' } } },
-                    scales: {
-                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
-                        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255, 255, 255, 0.05)' } }
-                    }
-                }
-            });
+            const more = document.getElementById('moreGames');
+            more.classList.toggle('hidden', games.length <= gamesShown);
+            more.innerText = `Mostrar mais partidas (${games.length - gamesShown} restantes)`;
         }
+
+        document.getElementById('moreGames').addEventListener('click', () => { gamesShown += 15; renderGames(); });
+        document.getElementById('gameFilter').addEventListener('input', () => { gamesShown = 15; renderGames(); });
 
         window.onload = fetchDashboardData;
     </script>

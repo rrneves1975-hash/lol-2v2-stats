@@ -620,6 +620,144 @@ def print_sections():
         if len(cells) > 25:
             print(f"... {len(cells) - 25} more rows in the xlsx")
 
+def _clean(v):
+    """Torna valores JSON-safe e arredonda floats."""
+    if isinstance(v, float):
+        return round(v, 4)
+    if isinstance(v, (list, tuple)):
+        return [_clean(x) for x in v]
+    if isinstance(v, dict):
+        return {k: _clean(x) for k, x in v.items()}
+    return v
+
+
+def _slug(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def export_to_web(games, pp, an):
+    """Exporta TODAS as estatisticas (secoes completas + perfil por jogador + historico de jogos) para stats_export.json."""
+    export_data = {
+        "totalGames": len(games),
+        "totalPlayerGames": sum(len(v) for v in pp.values()),
+        "firstGame": games[0][0]["dt"].isoformat(),
+        "lastGame": games[-1][0]["dt"].isoformat(),
+        "timezone": ARGS.tz,
+        "lastUpdated": datetime.now(timezone.utc).isoformat(),
+        "filters": {
+            "since": None if ARGS.all else ARGS.since,
+            "minDuration": ARGS.min_duration,
+            "minChampGames": ARGS.min_champ_games,
+            "minAugmentGames": ARGS.min_augment_games,
+            "sessionGap": ARGS.session_gap,
+        },
+        "players": {},
+        "sections": [],
+        "games": [],
+    }
+
+    # ---- perfil agregado por jogador (KPIs, graficos, scorecard)
+    for p, rs in pp.items():
+        t = tally(rs)
+        gp = len(rs)
+        mins = sum(r["dur"] for r in rs) / 60
+        k, d, a = (sum(r[x] for r in rs) for x in ("k", "d", "a"))
+        dmg, taken, gold = (sum(r[x] for r in rs) for x in ("dmg", "taken", "gold"))
+        multi = [sum(r["multi"][i] for r in rs) for i in range(4)]
+        wins = [r for r in rs if r["win"]]
+        dead = sum(r["dead"] for r in rs)
+        play = sum(r["dur"] for r in rs)
+        best_alive = max(rs, key=lambda r: r["alive"])
+
+        champs = defaultdict(Tally)
+        for r in rs:
+            champs[r["champ"]].add(r["win"])
+        champ_list = [
+            {"champion": c, "games": x.n, "wins": x.w, "losses": x.l, "winRate": x.rate * 100}
+            for c, x in sorted(champs.items(), key=lambda x: (-x[1].n, -x[1].rate, x[0]))
+        ]
+        kp_vals = [div(r["k"] + r["a"], r["team_k"]) for r in rs if r["team_k"]]
+
+        export_data["players"][p.lower()] = {
+            "displayName": p,
+            "games": gp,
+            "wins": t.w,
+            "losses": t.l,
+            "winRate": t.rate * 100,
+            "blueWins": t.sw["Blue"],
+            "blueLosses": t.sl["Blue"],
+            "redWins": t.sw["Red"],
+            "redLosses": t.sl["Red"],
+            "totalKills": k, "totalDeaths": d, "totalAssists": a,
+            "avgKills": div(k, gp), "avgDeaths": div(d, gp), "avgAssists": div(a, gp),
+            "kda": (k + a) / max(d, 1),
+            "killsPerMin": div(k, mins), "deathsPerMin": div(d, mins), "assistsPerMin": div(a, mins),
+            "avgDamage": div(dmg, gp), "avgTaken": div(taken, gp), "avgGold": div(gold, gp),
+            "avgMitigated": mean(r["mit"] for r in rs),
+            "damagePerMin": div(dmg, mins), "goldPerMin": div(gold, mins),
+            "damagePerDeath": div(dmg, max(d, 1)), "damagePerGold": div(dmg, gold),
+            "damageShare": mean(div(r["dmg"], r["team_dmg"]) for r in rs) * 100,
+            "killParticipation": (mean(kp_vals) * 100) if kp_vals else None,
+            "takenShare": mean(div(r["taken"], r["team_taken"]) for r in rs) * 100,
+            "deathShare": mean(r["share"] for r in rs) * 100,
+            "avgLevel": mean(r["lvl"] for r in rs),
+            "playtimeMin": mins,
+            "avgGameMin": mins / gp,
+            "multikills": {"double": multi[0], "triple": multi[1], "quadra": multi[2], "penta": multi[3]},
+            "firstBloodKills": sum(r["fbk"] for r in rs),
+            "firstBloodAssists": sum(r["fba"] for r in rs),
+            "deathlessGames": sum(r["d"] == 0 for r in rs),
+            "deathlessWins": sum(r["d"] == 0 for r in wins),
+            "estDeadMin": dead / 60,
+            "estDeadPct": div(dead, play) * 100,
+            "longestAliveMin": best_alive["alive"] / 60,
+            "avgLongestAliveMin": mean(r["alive"] for r in rs) / 60,
+            "uniqueChampions": len(champs),
+            "champions": champ_list,
+        }
+
+    # ---- TODAS as seccoes do relatorio (as mesmas que vao para o xlsx / consola)
+    for s in SECTIONS:
+        export_data["sections"].append({
+            "id": _slug(s["title"]),
+            "title": s["title"],
+            "tldr": s["tldr"],
+            "columns": [{"label": h, "kind": kind} for h, kind in s["cols"]],
+            "rows": _clean(s["rows"]),
+        })
+
+    # ---- historico completo de jogos (do mais recente para o mais antigo)
+    for recs in reversed(games):
+        first = recs[0]
+        winner = next((r["side"] for r in recs if r["win"]), None)
+        export_data["games"].append({
+            "id": first["gid"],
+            "date": first["dt"].isoformat(),
+            "durationSec": first["dur"],
+            "session": first["session"],
+            "sessionGame": first["sess_n"],
+            "winnerSide": winner,
+            "teamFirstBlood": [s for s in ("Blue", "Red") if any(r["team_fb"] and r["side"] == s for r in recs)],
+            "players": [
+                {
+                    "name": r["player"], "champion": r["champ"], "side": r["side"], "win": r["win"],
+                    "kills": r["k"], "deaths": r["d"], "assists": r["a"], "kda": round(r["kda"], 2),
+                    "damage": r["dmg"], "taken": r["taken"], "mitigated": r["mit"], "gold": r["gold"],
+                    "level": r["lvl"], "longestAliveSec": r["alive"],
+                    "estDeadSec": round(r["dead"], 1),
+                    "multikills": r["multi"],
+                    "firstBloodKill": r["fbk"], "firstBloodAssist": r["fba"],
+                    "augments": [an.get(x, (f"Augment #{x}", ""))[0] for x in r["augs"]],
+                }
+                for r in sorted(recs, key=lambda r: (r["team"], order(r["player"])))
+            ],
+        })
+
+    with open("stats_export.json", "w", encoding="utf-8") as f:
+        json.dump(_clean(export_data), f, ensure_ascii=False, indent=1, default=str)
+    print(f"Ficheiro 'stats_export.json' gerado: {len(export_data['sections'])} seccoes, "
+          f"{len(export_data['players'])} jogadores, {len(export_data['games'])} jogos.")
+
 
 def main():
     global ARGS
@@ -663,7 +801,7 @@ def main():
     sec_h2h_streaks(games, pp)
     sec_augments(pp, an)
     print_sections()
-
+    export_to_web(games, pp, an)
 
 if __name__ == "__main__":
     main()
