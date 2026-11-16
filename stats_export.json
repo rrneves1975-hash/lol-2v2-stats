@@ -1,10 +1,10 @@
 {
- "totalGames": 30,
- "totalPlayerGames": 120,
+ "totalGames": 36,
+ "totalPlayerGames": 144,
  "firstGame": "2026-11-08T22:50:39.606000+00:00",
- "lastGame": "2026-11-15T04:05:15.007000+00:00",
+ "lastGame": "2026-11-16T02:05:39.165000+00:00",
  "timezone": "Europe/Lisbon",
- "lastUpdated": "2026-11-15T22:54:52.909268+00:00",
+ "lastUpdated": "2026-11-16T02:23:45.459566+00:00",
  "filters": {
   "since": "2026-11-08",
   "minDuration": 0,
@@ -15,61 +15,61 @@
  "players": {
   "grcx": {
    "displayName": "GRCX",
-   "games": 30,
-   "wins": 19,
-   "losses": 11,
-   "winRate": 63.3333,
-   "blueWins": 12,
+   "games": 36,
+   "wins": 23,
+   "losses": 13,
+   "winRate": 63.8889,
+   "blueWins": 13,
    "blueLosses": 6,
-   "redWins": 7,
-   "redLosses": 5,
-   "totalKills": 218,
-   "totalDeaths": 183,
-   "totalAssists": 139,
-   "avgKills": 7.2667,
-   "avgDeaths": 6.1,
-   "avgAssists": 4.6333,
-   "kda": 1.9508,
-   "killsPerMin": 0.4475,
-   "deathsPerMin": 0.3757,
-   "assistsPerMin": 0.2853,
-   "avgDamage": 35918.6667,
-   "avgTaken": 33897.0667,
-   "avgGold": 15129.8,
-   "avgMitigated": 37380.6333,
-   "damagePerMin": 2212.0432,
-   "goldPerMin": 931.7654,
-   "damagePerDeath": 5888.306,
-   "damagePerGold": 2.374,
-   "damageShare": 55.7552,
-   "killParticipation": 90.4521,
-   "takenShare": 49.855,
-   "deathShare": 52.0128,
-   "avgLevel": 17.9667,
-   "playtimeMin": 487.1333,
-   "avgGameMin": 16.2378,
+   "redWins": 10,
+   "redLosses": 7,
+   "totalKills": 267,
+   "totalDeaths": 225,
+   "totalAssists": 163,
+   "avgKills": 7.4167,
+   "avgDeaths": 6.25,
+   "avgAssists": 4.5278,
+   "kda": 1.9111,
+   "killsPerMin": 0.4469,
+   "deathsPerMin": 0.3766,
+   "assistsPerMin": 0.2728,
+   "avgDamage": 36332.3611,
+   "avgTaken": 33514.7778,
+   "avgGold": 15504.5556,
+   "avgMitigated": 37152.2222,
+   "damagePerMin": 2189.1238,
+   "goldPerMin": 934.1917,
+   "damagePerDeath": 5813.1778,
+   "damagePerGold": 2.3433,
+   "damageShare": 55.9789,
+   "killParticipation": 90.9711,
+   "takenShare": 48.9692,
+   "deathShare": 51.387,
+   "avgLevel": 17.9722,
+   "playtimeMin": 597.4833,
+   "avgGameMin": 16.5968,
    "multikills": {
-    "double": 24,
+    "double": 31,
     "triple": 0,
     "quadra": 0,
     "penta": 0
    },
-   "firstBloodKills": 14,
+   "firstBloodKills": 16,
    "firstBloodAssists": 3,
    "deathlessGames": 0,
    "deathlessWins": 0,
-   "estDeadMin": 89.943,
-   "estDeadPct": 18.4637,
+   "estDeadMin": 110.7483,
+   "estDeadPct": 18.5358,
    "longestAliveMin": 6.0667,
-   "avgLongestAliveMin": 4.1222,
-   "uniqueChampions": 25,
+   "avgLongestAliveMin": 4.0213,
+   "uniqueChampions": 28,
    "champions": [
     {
      "champion": "Tristana",
-     "games": 3,
+     "games": 4,
      "wins": 3,
-     "losses": 0,
-     "winRate": 100.0
+     "losses": 1,
+     "winRate": 75.0
     },
     {
      "champion": "Kai'Sa",
@@ -84,6 +84,20 @@
      "wins": 2,
      "losses": 0,
      "winRate": 100.0
+    },
+    {
+     "champion": "Yone",
+     "games": 2,
+     "wins": 2,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Yasuo",
+     "games": 2,
+     "wins": 1,
+     "losses": 1,
+     "winRate": 50.0
     },
     {
      "champion": "Ekko",
@@ -170,7 +184,14 @@
      "winRate": 100.0
     },
     {
-     "champion": "Yone",
+     "champion": "Zed",
+     "games": 1,
+     "wins": 1,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Zeri",
      "games": 1,
      "wins": 1,
      "losses": 0,
@@ -185,6 +206,13 @@
     },
     {
      "champion": "Graves",
+     "games": 1,
+     "wins": 0,
+     "losses": 1,
+     "winRate": 0.0
+    },
+    {
+     "champion": "Lee Sin",
      "games": 1,
      "wins": 0,
      "losses": 1,
@@ -231,66 +259,59 @@
      "wins": 0,
      "losses": 1,
      "winRate": 0.0
-    },
-    {
-     "champion": "Yasuo",
-     "games": 1,
-     "wins": 0,
-     "losses": 1,
-     "winRate": 0.0
     }
    ]
   },
   "babygolem": {
    "displayName": "BabyGolem",
-   "games": 30,
-   "wins": 14,
-   "losses": 16,
-   "winRate": 46.6667,
-   "blueWins": 7,
-   "blueLosses": 6,
-   "redWins": 7,
+   "games": 36,
+   "wins": 19,
+   "losses": 17,
+   "winRate": 52.7778,
+   "blueWins": 10,
+   "blueLosses": 7,
+   "redWins": 9,
    "redLosses": 10,
-   "totalKills": 188,
-   "totalDeaths": 205,
-   "totalAssists": 146,
-   "avgKills": 6.2667,
-   "avgDeaths": 6.8333,
-   "avgAssists": 4.8667,
-   "kda": 1.6293,
-   "killsPerMin": 0.3859,
-   "deathsPerMin": 0.4208,
-   "assistsPerMin": 0.2997,
-   "avgDamage": 27898.0667,
-   "avgTaken": 37795.4667,
-   "avgGold": 14889.2,
-   "avgMitigated": 44504.2667,
-   "damagePerMin": 1718.0963,
-   "goldPerMin": 916.9481,
-   "damagePerDeath": 4082.6439,
-   "damagePerGold": 1.8737,
-   "damageShare": 48.0854,
-   "killParticipation": 92.4028,
-   "takenShare": 48.6742,
-   "deathShare": 52.1819,
-   "avgLevel": 18.0333,
-   "playtimeMin": 487.1333,
-   "avgGameMin": 16.2378,
+   "totalKills": 229,
+   "totalDeaths": 242,
+   "totalAssists": 186,
+   "avgKills": 6.3611,
+   "avgDeaths": 6.7222,
+   "avgAssists": 5.1667,
+   "kda": 1.7149,
+   "killsPerMin": 0.3833,
+   "deathsPerMin": 0.405,
+   "assistsPerMin": 0.3113,
+   "avgDamage": 28034.5278,
+   "avgTaken": 37870.8889,
+   "avgGold": 15225.3611,
+   "avgMitigated": 46432.1389,
+   "damagePerMin": 1689.1567,
+   "goldPerMin": 917.3695,
+   "damagePerDeath": 4170.4256,
+   "damagePerGold": 1.8413,
+   "damageShare": 47.7076,
+   "killParticipation": 91.8173,
+   "takenShare": 48.6752,
+   "deathShare": 52.1202,
+   "avgLevel": 18.0278,
+   "playtimeMin": 597.4833,
+   "avgGameMin": 16.5968,
    "multikills": {
-    "double": 20,
+    "double": 24,
     "triple": 0,
     "quadra": 0,
     "penta": 0
    },
-   "firstBloodKills": 10,
-   "firstBloodAssists": 8,
+   "firstBloodKills": 11,
+   "firstBloodAssists": 10,
    "deathlessGames": 0,
    "deathlessWins": 0,
-   "estDeadMin": 101.2137,
-   "estDeadPct": 20.7774,
-   "longestAliveMin": 6.1833,
-   "avgLongestAliveMin": 3.9406,
-   "uniqueChampions": 24,
+   "estDeadMin": 119.3816,
+   "estDeadPct": 19.9807,
+   "longestAliveMin": 9.7333,
+   "avgLongestAliveMin": 4.0954,
+   "uniqueChampions": 28,
    "champions": [
     {
      "champion": "Rek'Sai",
@@ -305,6 +326,20 @@
      "wins": 1,
      "losses": 2,
      "winRate": 33.3333
+    },
+    {
+     "champion": "Sylas",
+     "games": 2,
+     "wins": 2,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Thresh",
+     "games": 2,
+     "wins": 1,
+     "losses": 1,
+     "winRate": 50.0
     },
     {
      "champion": "Neeko",
@@ -342,6 +377,27 @@
      "winRate": 100.0
     },
     {
+     "champion": "K'Sante",
+     "games": 1,
+     "wins": 1,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Lillia",
+     "games": 1,
+     "wins": 1,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Morgana",
+     "games": 1,
+     "wins": 1,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
      "champion": "Nautilus",
      "games": 1,
      "wins": 1,
@@ -363,14 +419,7 @@
      "winRate": 100.0
     },
     {
-     "champion": "Sylas",
-     "games": 1,
-     "wins": 1,
-     "losses": 0,
-     "winRate": 100.0
-    },
-    {
-     "champion": "Thresh",
+     "champion": "Taliyah",
      "games": 1,
      "wins": 1,
      "losses": 0,
@@ -464,54 +513,54 @@
   },
   "rikiplancha12": {
    "displayName": "RikiPlancha12",
-   "games": 30,
-   "wins": 16,
-   "losses": 14,
-   "winRate": 53.3333,
-   "blueWins": 10,
-   "blueLosses": 7,
+   "games": 36,
+   "wins": 17,
+   "losses": 19,
+   "winRate": 47.2222,
+   "blueWins": 11,
+   "blueLosses": 10,
    "redWins": 6,
-   "redLosses": 7,
-   "totalKills": 173,
-   "totalDeaths": 188,
-   "totalAssists": 161,
-   "avgKills": 5.7667,
-   "avgDeaths": 6.2667,
-   "avgAssists": 5.3667,
-   "kda": 1.7766,
-   "killsPerMin": 0.3551,
-   "deathsPerMin": 0.3859,
-   "assistsPerMin": 0.3305,
-   "avgDamage": 31970.8,
-   "avgTaken": 34673.9333,
-   "avgGold": 14736.1333,
-   "avgMitigated": 41307.5333,
-   "damagePerMin": 1968.9147,
-   "goldPerMin": 907.5216,
-   "damagePerDeath": 5101.7234,
-   "damagePerGold": 2.1696,
-   "damageShare": 50.889,
-   "killParticipation": 91.1072,
-   "takenShare": 50.6955,
-   "deathShare": 49.1372,
-   "avgLevel": 17.8667,
-   "playtimeMin": 487.1333,
-   "avgGameMin": 16.2378,
+   "redLosses": 9,
+   "totalKills": 211,
+   "totalDeaths": 232,
+   "totalAssists": 195,
+   "avgKills": 5.8611,
+   "avgDeaths": 6.4444,
+   "avgAssists": 5.4167,
+   "kda": 1.75,
+   "killsPerMin": 0.3531,
+   "deathsPerMin": 0.3883,
+   "assistsPerMin": 0.3264,
+   "avgDamage": 31197.0,
+   "avgTaken": 35291.6667,
+   "avgGold": 15072.0833,
+   "avgMitigated": 41111.4444,
+   "damagePerMin": 1879.7043,
+   "goldPerMin": 908.1341,
+   "damagePerDeath": 4840.9138,
+   "damagePerGold": 2.0699,
+   "damageShare": 50.7157,
+   "killParticipation": 90.7311,
+   "takenShare": 50.8532,
+   "deathShare": 49.3398,
+   "avgLevel": 17.8611,
+   "playtimeMin": 597.4833,
+   "avgGameMin": 16.5968,
    "multikills": {
-    "double": 13,
+    "double": 20,
     "triple": 0,
     "quadra": 0,
     "penta": 0
    },
-   "firstBloodKills": 4,
-   "firstBloodAssists": 8,
+   "firstBloodKills": 6,
+   "firstBloodAssists": 11,
    "deathlessGames": 0,
    "deathlessWins": 0,
-   "estDeadMin": 91.2937,
-   "estDeadPct": 18.741,
+   "estDeadMin": 112.8149,
+   "estDeadPct": 18.8817,
    "longestAliveMin": 9.1333,
-   "avgLongestAliveMin": 4.2833,
-   "uniqueChampions": 29,
+   "avgLongestAliveMin": 4.219,
+   "uniqueChampions": 33,
    "champions": [
     {
      "champion": "Seraphine",
@@ -521,14 +570,21 @@
      "winRate": 100.0
     },
     {
-     "champion": "Bard",
-     "games": 1,
+     "champion": "Briar",
+     "games": 2,
      "wins": 1,
-     "losses": 0,
-     "winRate": 100.0
+     "losses": 1,
+     "winRate": 50.0
     },
     {
-     "champion": "Briar",
+     "champion": "Samira",
+     "games": 2,
+     "wins": 0,
+     "losses": 2,
+     "winRate": 0.0
+    },
+    {
+     "champion": "Bard",
      "games": 1,
      "wins": 1,
      "losses": 0,
@@ -543,6 +599,13 @@
     },
     {
      "champion": "Draven",
+     "games": 1,
+     "wins": 1,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Galio",
      "games": 1,
      "wins": 1,
      "losses": 0,
@@ -668,6 +731,13 @@
      "winRate": 0.0
     },
     {
+     "champion": "Kai'Sa",
+     "games": 1,
+     "wins": 0,
+     "losses": 1,
+     "winRate": 0.0
+    },
+    {
      "champion": "Kalista",
      "games": 1,
      "wins": 0,
@@ -696,14 +766,14 @@
      "winRate": 0.0
     },
     {
-     "champion": "Samira",
+     "champion": "Singed",
      "games": 1,
      "wins": 0,
      "losses": 1,
      "winRate": 0.0
     },
     {
-     "champion": "Singed",
+     "champion": "Yorick",
      "games": 1,
      "wins": 0,
      "losses": 1,
@@ -715,59 +785,66 @@
      "wins": 0,
      "losses": 1,
      "winRate": 0.0
+    },
+    {
+     "champion": "Zyra",
+     "games": 1,
+     "wins": 0,
+     "losses": 1,
+     "winRate": 0.0
     }
    ]
   },
   "ragnarneves": {
    "displayName": "ragnarneves",
-   "games": 30,
-   "wins": 11,
-   "losses": 19,
-   "winRate": 36.6667,
-   "blueWins": 5,
-   "blueLosses": 7,
-   "redWins": 6,
-   "redLosses": 12,
-   "totalKills": 167,
-   "totalDeaths": 181,
-   "totalAssists": 166,
-   "avgKills": 5.5667,
-   "avgDeaths": 6.0333,
-   "avgAssists": 5.5333,
-   "kda": 1.8398,
-   "killsPerMin": 0.3428,
-   "deathsPerMin": 0.3716,
-   "assistsPerMin": 0.3408,
-   "avgDamage": 27737.5667,
-   "avgTaken": 37282.6,
-   "avgGold": 14482.3667,
-   "avgMitigated": 51094.2333,
-   "damagePerMin": 1708.212,
-   "goldPerMin": 891.8934,
-   "damagePerDeath": 4597.3867,
-   "damagePerGold": 1.9153,
-   "damageShare": 45.2704,
-   "killParticipation": 90.09,
-   "takenShare": 50.7752,
-   "deathShare": 46.6681,
-   "avgLevel": 17.9333,
-   "playtimeMin": 487.1333,
-   "avgGameMin": 16.2378,
+   "games": 36,
+   "wins": 13,
+   "losses": 23,
+   "winRate": 36.1111,
+   "blueWins": 6,
+   "blueLosses": 9,
+   "redWins": 7,
+   "redLosses": 14,
+   "totalKills": 203,
+   "totalDeaths": 225,
+   "totalAssists": 199,
+   "avgKills": 5.6389,
+   "avgDeaths": 6.25,
+   "avgAssists": 5.5278,
+   "kda": 1.7867,
+   "killsPerMin": 0.3398,
+   "deathsPerMin": 0.3766,
+   "assistsPerMin": 0.3331,
+   "avgDamage": 28285.2222,
+   "avgTaken": 37904.6389,
+   "avgGold": 14773.1944,
+   "avgMitigated": 55854.0278,
+   "damagePerMin": 1704.2618,
+   "goldPerMin": 890.1252,
+   "damagePerDeath": 4525.6356,
+   "damagePerGold": 1.9146,
+   "damageShare": 45.5978,
+   "killParticipation": 90.3196,
+   "takenShare": 51.5024,
+   "deathShare": 47.153,
+   "avgLevel": 17.9444,
+   "playtimeMin": 597.4833,
+   "avgGameMin": 16.5968,
    "multikills": {
-    "double": 7,
+    "double": 10,
     "triple": 0,
     "quadra": 0,
     "penta": 0
    },
-   "firstBloodKills": 2,
-   "firstBloodAssists": 8,
+   "firstBloodKills": 3,
+   "firstBloodAssists": 9,
    "deathlessGames": 0,
    "deathlessWins": 0,
-   "estDeadMin": 88.3857,
-   "estDeadPct": 18.144,
+   "estDeadMin": 110.1266,
+   "estDeadPct": 18.4318,
    "longestAliveMin": 7.2667,
-   "avgLongestAliveMin": 4.335,
-   "uniqueChampions": 25,
+   "avgLongestAliveMin": 4.2431,
+   "uniqueChampions": 28,
    "champions": [
     {
      "champion": "Dr. Mundo",
@@ -778,6 +855,13 @@
     },
     {
      "champion": "Lillia",
+     "games": 2,
+     "wins": 2,
+     "losses": 0,
+     "winRate": 100.0
+    },
+    {
+     "champion": "Vi",
      "games": 2,
      "wins": 2,
      "losses": 0,
@@ -796,6 +880,20 @@
      "wins": 1,
      "losses": 1,
      "winRate": 50.0
+    },
+    {
+     "champion": "Skarner",
+     "games": 2,
+     "wins": 1,
+     "losses": 1,
+     "winRate": 50.0
+    },
+    {
+     "champion": "Vel'Koz",
+     "games": 2,
+     "wins": 0,
+     "losses": 2,
+     "winRate": 0.0
     },
     {
      "champion": "Zac",
@@ -826,13 +924,6 @@
      "winRate": 100.0
     },
     {
-     "champion": "Vi",
-     "games": 1,
-     "wins": 1,
-     "losses": 0,
-     "winRate": 100.0
-    },
-    {
      "champion": "Viego",
      "games": 1,
      "wins": 1,
@@ -855,6 +946,13 @@
     },
     {
      "champion": "Ashe",
+     "games": 1,
+     "wins": 0,
+     "losses": 1,
+     "winRate": 0.0
+    },
+    {
+     "champion": "Garen",
      "games": 1,
      "wins": 0,
      "losses": 1,
@@ -924,14 +1022,7 @@
      "winRate": 0.0
     },
     {
-     "champion": "Skarner",
-     "games": 1,
-     "wins": 0,
-     "losses": 1,
-     "winRate": 0.0
-    },
-    {
-     "champion": "Vel'Koz",
+     "champion": "Sejuani",
      "games": 1,
      "wins": 0,
      "losses": 1,
@@ -939,6 +1030,13 @@
     },
     {
      "champion": "Wukong",
+     "games": 1,
+     "wins": 0,
+     "losses": 1,
+     "winRate": 0.0
+    },
+    {
+     "champion": "Xin Zhao",
      "games": 1,
      "wins": 0,
      "losses": 1,
@@ -951,7 +1049,7 @@
   {
    "id": "player-win-rates",
    "title": "Player win rates",
-   "tldr": "GRCX leads at 63.3%, ragnarneves trails at 36.7%, on 30 games. One standard error is about 9 points.",
+   "tldr": "GRCX leads at 63.9%, ragnarneves trails at 36.1%, on 36 games. One standard error is about 8 points.",
    "columns": [
     {
      "label": "Player",
@@ -993,54 +1091,54 @@
    "rows": [
     [
      "GRCX",
-     30,
-     19,
-     11,
-     0.6333,
-     0.6667,
-     "12-6",
-     0.5833,
-     "7-5"
-    ],
-    [
-     "RikiPlancha12",
-     30,
-     16,
-     14,
-     0.5333,
+     36,
+     23,
+     13,
+     0.6389,
+     0.6842,
+     "13-6",
      0.5882,
-     "10-7",
-     0.4615,
-     "6-7"
+     "10-7"
     ],
     [
      "BabyGolem",
-     30,
-     14,
-     16,
-     0.4667,
-     0.5385,
-     "7-6",
-     0.4118,
-     "7-10"
+     36,
+     19,
+     17,
+     0.5278,
+     0.5882,
+     "10-7",
+     0.4737,
+     "9-10"
+    ],
+    [
+     "RikiPlancha12",
+     36,
+     17,
+     19,
+     0.4722,
+     0.5238,
+     "11-10",
+     0.4,
+     "6-9"
     ],
     [
      "ragnarneves",
-     30,
-     11,
-     19,
-     0.3667,
-     0.4167,
-     "5-7",
+     36,
+     13,
+     23,
+     0.3611,
+     0.4,
+     "6-9",
      0.3333,
-     "6-12"
+     "7-14"
     ]
    ]
   },
   {
    "id": "duo-win-rates",
    "title": "Duo win rates",
-   "tldr": "Best pairing: GRCX + RikiPlancha12 at 85.7% (6-1). Worst: BabyGolem + ragnarneves at 14.3% (1-6). Every duo has few games, so none of this is settled.",
+   "tldr": "Best pairing: GRCX + RikiPlancha12 at 75.0% (6-2). Worst: BabyGolem + ragnarneves at 25.0% (2-6). Every duo has few games, so none of this is settled.",
    "columns": [
     {
      "label": "Duo",
@@ -1082,67 +1180,67 @@
    "rows": [
     [
      "GRCX + RikiPlancha12",
-     7,
+     8,
      6,
-     1,
-     0.8571,
+     2,
+     0.75,
      0.8333,
      "5-1",
-     1.0,
-     "1-0"
+     0.5,
+     "1-1"
     ],
     [
      "GRCX + BabyGolem",
-     11,
-     7,
+     14,
+     10,
      4,
-     0.6364,
-     0.5,
-     "3-3",
-     0.8,
-     "4-1"
+     0.7143,
+     0.5714,
+     "4-3",
+     0.8571,
+     "6-1"
     ],
     [
      "GRCX + ragnarneves",
-     12,
-     6,
-     6,
+     14,
+     7,
+     7,
      0.5,
      0.6667,
      "4-2",
-     0.3333,
-     "2-4"
+     0.375,
+     "3-5"
     ],
     [
      "BabyGolem + RikiPlancha12",
-     12,
-     6,
-     6,
+     14,
+     7,
+     7,
      0.5,
-     0.6667,
-     "4-2",
+     0.625,
+     "5-3",
      0.3333,
      "2-4"
     ],
     [
      "RikiPlancha12 + ragnarneves",
-     11,
+     14,
      4,
-     7,
-     0.3636,
-     0.2,
-     "1-4",
-     0.5,
-     "3-3"
+     10,
+     0.2857,
+     0.1429,
+     "1-6",
+     0.4286,
+     "3-4"
     ],
     [
      "BabyGolem + ragnarneves",
-     7,
-     1,
+     8,
+     2,
      6,
-     0.1429,
-     0.0,
-     "0-1",
+     0.25,
+     0.5,
+     "1-1",
      0.1667,
      "1-5"
     ]
@@ -1151,7 +1249,7 @@
   {
    "id": "champion-win-rates",
    "title": "Champion win rates",
-   "tldr": "83 distinct champions in 120 player-games. Best with >= 2 games: Dr. Mundo 100.0% (3-0), Sylas 100.0% (3-0), Tristana 100.0% (3-0).",
+   "tldr": "91 distinct champions in 144 player-games. Best with >= 2 games: Sylas 100.0% (4-0), Dr. Mundo 100.0% (3-0), Lillia 100.0% (3-0).",
    "columns": [
     {
      "label": "Champion",
@@ -1192,6 +1290,28 @@
    ],
    "rows": [
     [
+     "Sylas",
+     4,
+     4,
+     0,
+     1.0,
+     1.0,
+     "2-0",
+     1.0,
+     "2-0"
+    ],
+    [
+     "Tristana",
+     4,
+     3,
+     1,
+     0.75,
+     1.0,
+     "3-0",
+     0.0,
+     "0-1"
+    ],
+    [
      "Rek'Sai",
      4,
      2,
@@ -1214,6 +1334,17 @@
      "0-1"
     ],
     [
+     "Kai'Sa",
+     4,
+     1,
+     3,
+     0.25,
+     null,
+     "0-0",
+     0.25,
+     "1-3"
+    ],
+    [
      "Dr. Mundo",
      3,
      3,
@@ -1225,7 +1356,7 @@
      "2-0"
     ],
     [
-     "Sylas",
+     "Lillia",
      3,
      3,
      0,
@@ -1234,17 +1365,6 @@
      "2-0",
      1.0,
      "1-0"
-    ],
-    [
-     "Tristana",
-     3,
-     3,
-     0,
-     1.0,
-     1.0,
-     "3-0",
-     null,
-     "0-0"
     ],
     [
      "Kog'Maw",
@@ -1258,15 +1378,15 @@
      "0-1"
     ],
     [
-     "Kai'Sa",
+     "Yasuo",
      3,
-     1,
      2,
-     0.3333,
-     null,
-     "0-0",
-     0.3333,
-     "1-2"
+     1,
+     0.6667,
+     0.0,
+     "0-1",
+     1.0,
+     "2-0"
     ],
     [
      "Kalista",
@@ -1291,6 +1411,17 @@
      "1-1"
     ],
     [
+     "Samira",
+     3,
+     0,
+     3,
+     0.0,
+     0.0,
+     "0-1",
+     0.0,
+     "0-2"
+    ],
+    [
      "Kayle",
      2,
      2,
@@ -1302,18 +1433,18 @@
      "0-0"
     ],
     [
-     "Lillia",
+     "Mordekaiser",
      2,
      2,
      0,
      1.0,
      1.0,
-     "1-0",
-     1.0,
-     "1-0"
+     "2-0",
+     null,
+     "0-0"
     ],
     [
-     "Mordekaiser",
+     "Morgana",
      2,
      2,
      0,
@@ -1368,6 +1499,17 @@
      "2-0"
     ],
     [
+     "Vi",
+     2,
+     2,
+     0,
+     1.0,
+     1.0,
+     "1-0",
+     1.0,
+     "1-0"
+    ],
+    [
      "Viego",
      2,
      2,
@@ -1390,6 +1532,28 @@
      "1-0"
     ],
     [
+     "Yone",
+     2,
+     2,
+     0,
+     1.0,
+     1.0,
+     "1-0",
+     1.0,
+     "1-0"
+    ],
+    [
+     "Briar",
+     2,
+     1,
+     1,
+     0.5,
+     0.0,
+     "0-1",
+     1.0,
+     "1-0"
+    ],
+    [
      "Cho'Gath",
      2,
      1,
@@ -1399,6 +1563,17 @@
      "1-1",
      null,
      "0-0"
+    ],
+    [
+     "Lee Sin",
+     2,
+     1,
+     1,
+     0.5,
+     null,
+     "0-0",
+     0.5,
+     "1-1"
     ],
     [
      "Rakan",
@@ -1412,6 +1587,17 @@
      "1-0"
     ],
     [
+     "Sejuani",
+     2,
+     1,
+     1,
+     0.5,
+     null,
+     "0-0",
+     0.5,
+     "1-1"
+    ],
+    [
      "Shen",
      2,
      1,
@@ -1423,7 +1609,29 @@
      "0-0"
     ],
     [
-     "Yasuo",
+     "Skarner",
+     2,
+     1,
+     1,
+     0.5,
+     1.0,
+     "1-0",
+     0.0,
+     "0-1"
+    ],
+    [
+     "Thresh",
+     2,
+     1,
+     1,
+     0.5,
+     0.5,
+     "1-1",
+     null,
+     "0-0"
+    ],
+    [
+     "Zed",
      2,
      1,
      1,
@@ -1456,7 +1664,7 @@
      "0-1"
     ],
     [
-     "Samira",
+     "Vel'Koz",
      2,
      0,
      2,
@@ -1490,17 +1698,6 @@
     ],
     [
      "Bard",
-     1,
-     1,
-     0,
-     1.0,
-     null,
-     "0-0",
-     1.0,
-     "1-0"
-    ],
-    [
-     "Briar",
      1,
      1,
      0,
@@ -1555,6 +1752,17 @@
      "0-0"
     ],
     [
+     "Galio",
+     1,
+     1,
+     0,
+     1.0,
+     1.0,
+     "1-0",
+     null,
+     "0-0"
+    ],
+    [
      "Heimerdinger",
      1,
      1,
@@ -1577,7 +1785,7 @@
      "1-0"
     ],
     [
-     "Lee Sin",
+     "K'Sante",
      1,
      1,
      0,
@@ -1600,17 +1808,6 @@
     ],
     [
      "Master Yi",
-     1,
-     1,
-     0,
-     1.0,
-     1.0,
-     "1-0",
-     null,
-     "0-0"
-    ],
-    [
-     "Morgana",
      1,
      1,
      0,
@@ -1654,18 +1851,7 @@
      "1-0"
     ],
     [
-     "Sejuani",
-     1,
-     1,
-     0,
-     1.0,
-     null,
-     "0-0",
-     1.0,
-     "1-0"
-    ],
-    [
-     "Thresh",
+     "Taliyah",
      1,
      1,
      0,
@@ -1676,18 +1862,7 @@
      "0-0"
     ],
     [
-     "Vi",
-     1,
-     1,
-     0,
-     1.0,
-     1.0,
-     "1-0",
-     null,
-     "0-0"
-    ],
-    [
-     "Yone",
+     "Zeri",
      1,
      1,
      0,
@@ -1852,6 +2027,17 @@
      "0-0"
     ],
     [
+     "Garen",
+     1,
+     0,
+     1,
+     0.0,
+     0.0,
+     "0-1",
+     null,
+     "0-0"
+    ],
+    [
      "Gnar",
      1,
      0,
@@ -2006,17 +2192,6 @@
      "0-1"
     ],
     [
-     "Skarner",
-     1,
-     0,
-     1,
-     0.0,
-     null,
-     "0-0",
-     0.0,
-     "0-1"
-    ],
-    [
      "Tahm Kench",
      1,
      0,
@@ -2037,17 +2212,6 @@
      "0-1",
      null,
      "0-0"
-    ],
-    [
-     "Vel'Koz",
-     1,
-     0,
-     1,
-     0.0,
-     null,
-     "0-0",
-     0.0,
-     "0-1"
     ],
     [
      "Vladimir",
@@ -2083,7 +2247,18 @@
      "0-1"
     ],
     [
-     "Zed",
+     "Xin Zhao",
+     1,
+     0,
+     1,
+     0.0,
+     null,
+     "0-0",
+     0.0,
+     "0-1"
+    ],
+    [
+     "Yorick",
      1,
      0,
      1,
@@ -2103,13 +2278,24 @@
      "0-0",
      0.0,
      "0-1"
+    ],
+    [
+     "Zyra",
+     1,
+     0,
+     1,
+     0.0,
+     0.0,
+     "0-1",
+     null,
+     "0-0"
     ]
    ]
   },
   {
    "id": "tilt-tracker",
    "title": "Tilt tracker",
-   "tldr": "After a loss: 44.0% (50 games). After a win: 56.0% (50 games). Losses are followed by more losses, but within sampling noise.",
+   "tldr": "After a loss: 45.0% (60 games). After a win: 55.0% (60 games). Losses are followed by more losses, but within sampling noise.",
    "columns": [
     {
      "label": "Player",
@@ -2139,50 +2325,50 @@
    "rows": [
     [
      "GRCX",
-     14,
-     0.6429,
-     11,
-     0.6364,
-     -0.0065
+     18,
+     0.6111,
+     12,
+     0.6667,
+     0.0556
     ],
     [
      "BabyGolem",
-     12,
-     0.5833,
-     13,
-     0.3077,
-     -0.2756
+     16,
+     0.625,
+     14,
+     0.3571,
+     -0.2679
     ],
     [
      "RikiPlancha12",
      15,
      0.5333,
-     10,
-     0.4,
-     -0.1333
+     15,
+     0.3333,
+     -0.2
     ],
     [
      "ragnarneves",
-     9,
-     0.4444,
-     16,
-     0.4375,
-     -0.0069
+     11,
+     0.3636,
+     19,
+     0.4737,
+     0.11
     ],
     [
      "All players",
-     50,
-     0.56,
-     50,
-     0.44,
-     -0.12
+     60,
+     0.55,
+     60,
+     0.45,
+     -0.1
     ]
    ]
   },
   {
    "id": "session-fatigue",
    "title": "Session fatigue",
-   "tldr": "5 sessions, longest 10 games. Late-session samples are small and biased. Biggest drop from games 1-3 to 4+: BabyGolem (53.3% to 40.0%).",
+   "tldr": "6 sessions, longest 10 games. Late-session samples are small and biased. Biggest drop from games 1-3 to 4+: BabyGolem (61.1% to 44.4%).",
    "columns": [
     {
      "label": "Session game",
@@ -2228,42 +2414,54 @@
    "rows": [
     [
      "Game 1",
-     5,
-     "3-2",
-     0.6,
-     "3-2",
-     0.6,
-     "4-1",
-     0.8,
-     "0-5",
+     6,
+     "4-2",
+     0.6667,
+     "4-2",
+     0.6667,
+     "4-2",
+     0.6667,
+     "0-6",
      0.0
     ],
     [
      "Game 2",
-     5,
-     "3-2",
-     0.6,
-     "2-3",
-     0.4,
-     "2-3",
-     0.4,
-     "3-2",
-     0.6
+     6,
+     "4-2",
+     0.6667,
+     "3-3",
+     0.5,
+     "2-4",
+     0.3333,
+     "3-3",
+     0.5
     ],
     [
      "Game 3",
+     6,
+     "3-3",
+     0.5,
+     "4-2",
+     0.6667,
+     "2-4",
+     0.3333,
+     "3-3",
+     0.5
+    ],
+    [
+     "Game 4",
      5,
-     "3-2",
-     0.6,
-     "3-2",
-     0.6,
+     "4-1",
+     0.8,
+     "2-3",
+     0.4,
      "2-3",
      0.4,
      "2-3",
      0.4
     ],
     [
-     "Game 4",
+     "Game 5",
      4,
      "3-1",
      0.75,
@@ -2275,35 +2473,23 @@
      0.5
     ],
     [
-     "Game 5",
-     3,
-     "2-1",
-     0.6667,
-     "1-2",
-     0.3333,
-     "2-1",
-     0.6667,
-     "1-2",
-     0.3333
-    ],
-    [
      "Game 6+",
-     8,
-     "5-3",
-     0.625,
-     "4-4",
-     0.5,
-     "4-4",
-     0.5,
-     "3-5",
-     0.375
+     9,
+     "5-4",
+     0.5556,
+     "5-4",
+     0.5556,
+     "5-4",
+     0.5556,
+     "3-6",
+     0.3333
     ]
    ]
   },
   {
    "id": "time-of-day",
    "title": "Time of day",
-   "tldr": "19 of 30 games began between 00:00 and 05:59.",
+   "tldr": "25 of 36 games began between 00:00 and 05:59.",
    "columns": [
     {
      "label": "Hour (start)",
@@ -2397,38 +2583,38 @@
     ],
     [
      "00:00",
-     4,
-     "2-2",
-     0.5,
-     "2-2",
-     0.5,
-     "1-3",
-     0.25,
-     "3-1",
-     0.75
+     6,
+     "4-2",
+     0.6667,
+     "4-2",
+     0.6667,
+     "1-5",
+     0.1667,
+     "3-3",
+     0.5
     ],
     [
      "01:00",
-     3,
-     "1-2",
+     6,
+     "3-3",
+     0.5,
+     "5-1",
+     0.8333,
+     "2-4",
      0.3333,
-     "3-0",
-     1.0,
-     "2-1",
-     0.6667,
-     "0-3",
-     0.0
+     "2-4",
+     0.3333
     ],
     [
      "02:00",
-     4,
-     "3-1",
-     0.75,
-     "3-1",
-     0.75,
-     "2-2",
-     0.5,
-     "0-4",
+     5,
+     "3-2",
+     0.6,
+     "4-1",
+     0.8,
+     "3-2",
+     0.6,
+     "0-5",
      0.0
     ],
     [
@@ -2460,7 +2646,7 @@
   {
    "id": "game-length-buckets",
    "title": "Game length buckets",
-   "tldr": "Short: 2 games, mid: 25, long: 3. Best in short games: GRCX (100.0%). Best in long games: GRCX (66.7%).",
+   "tldr": "Short: 2 games, mid: 29, long: 5. Best in short games: GRCX (100.0%). Best in long games: GRCX (80.0%).",
    "columns": [
     {
      "label": "Game length",
@@ -2518,34 +2704,34 @@
     ],
     [
      "Mid (12-20 min)",
-     25,
-     "15-10",
-     0.6,
-     "12-13",
-     0.48,
-     "14-11",
-     0.56,
-     "9-16",
-     0.36
+     29,
+     "17-12",
+     0.5862,
+     "15-14",
+     0.5172,
+     "15-14",
+     0.5172,
+     "11-18",
+     0.3793
     ],
     [
      "Long (20+ min)",
-     3,
-     "2-1",
-     0.6667,
-     "0-3",
-     0.0,
-     "2-1",
-     0.6667,
-     "2-1",
-     0.6667
+     5,
+     "4-1",
+     0.8,
+     "2-3",
+     0.4,
+     "2-3",
+     0.4,
+     "2-3",
+     0.4
     ]
    ]
   },
   {
    "id": "stomp-vs-throw",
    "title": "Stomp vs throw",
-   "tldr": "Average game 16:14; shortest 10:18 (won by GRCX + BabyGolem), longest 22:31 (won by GRCX + RikiPlancha12). Widest loss-vs-win length gap: BabyGolem (+101 s).",
+   "tldr": "Average game 16:36; shortest 10:18 (won by GRCX + BabyGolem), longest 24:47 (won by GRCX + BabyGolem). Widest loss-vs-win length gap: GRCX (+49 s).",
    "columns": [
     {
      "label": "Player",
@@ -2579,38 +2765,38 @@
    "rows": [
     [
      "GRCX",
-     "15:41",
-     "17:12",
-     91,
+     "16:18",
+     "17:07",
+     49,
      "10:18",
-     "22:31",
+     "24:47",
      "Win"
     ],
     [
      "BabyGolem",
-     "15:20",
-     "17:01",
-     101,
+     "16:19",
+     "16:55",
+     36,
      "10:18",
-     "22:31",
-     "Loss"
-    ],
-    [
-     "RikiPlancha12",
-     "17:14",
-     "15:06",
-     -129,
-     "13:17",
-     "22:31",
+     "24:47",
      "Win"
     ],
     [
+     "RikiPlancha12",
+     "17:11",
+     "16:05",
+     -66,
+     "13:17",
+     "24:47",
+     "Loss"
+    ],
+    [
      "ragnarneves",
-     "16:53",
-     "15:52",
-     -61,
+     "16:47",
+     "16:30",
+     -17,
      "13:43",
-     "22:31",
+     "24:47",
      "Loss"
     ]
    ]
@@ -2618,7 +2804,7 @@
   {
    "id": "multikills",
    "title": "Multikills",
-   "tldr": "GRCX leads with 24 multikills. Group: 64 doubles, 0 triples, 0 quadras, 0 pentas.",
+   "tldr": "GRCX leads with 31 multikills. Group: 85 doubles, 0 triples, 0 quadras, 0 pentas.",
    "columns": [
     {
      "label": "Player",
@@ -2652,55 +2838,55 @@
    "rows": [
     [
      "GRCX",
-     24,
+     31,
      0,
      0,
      0,
-     24,
-     0.8
+     31,
+     0.8611
     ],
     [
      "BabyGolem",
-     20,
+     24,
      0,
      0,
      0,
-     20,
+     24,
      0.6667
     ],
     [
      "RikiPlancha12",
-     13,
+     20,
      0,
      0,
      0,
-     13,
-     0.4333
+     20,
+     0.5556
     ],
     [
      "ragnarneves",
-     7,
+     10,
      0,
      0,
      0,
-     7,
-     0.2333
+     10,
+     0.2778
     ],
     [
      "Group",
-     64,
+     85,
      0,
      0,
      0,
-     64,
-     0.5333
+     85,
+     0.5903
     ]
    ]
   },
   {
    "id": "first-blood",
    "title": "First blood",
-   "tldr": "Teams with first blood won 56.7% (17-13); without it 43.3% (13-17). Most first-blood kills: GRCX (14).",
+   "tldr": "Teams with first blood won 52.8% (19-17); without it 47.2% (17-19). Most first-blood kills: GRCX (16).",
    "columns": [
     {
      "label": "Player",
@@ -2738,60 +2924,60 @@
    "rows": [
     [
      "GRCX",
-     30,
-     14,
-     0.4667,
+     36,
+     16,
+     0.4444,
      3,
-     18,
-     0.6667,
-     0.5833
+     20,
+     0.65,
+     0.625
     ],
     [
      "BabyGolem",
-     30,
+     36,
+     11,
+     0.3056,
      10,
-     0.3333,
-     8,
-     19,
-     0.5263,
-     0.3636
+     22,
+     0.5455,
+     0.5
     ],
     [
      "RikiPlancha12",
-     30,
-     4,
-     0.1333,
-     8,
-     13,
-     0.6154,
-     0.4706
+     36,
+     6,
+     0.1667,
+     11,
+     18,
+     0.5,
+     0.4444
     ],
     [
      "ragnarneves",
-     30,
-     2,
-     0.0667,
-     8,
-     10,
-     0.4,
-     0.35
+     36,
+     3,
+     0.0833,
+     9,
+     12,
+     0.3333,
+     0.375
     ],
     [
      "Team-level",
-     60,
+     72,
      null,
      null,
      null,
-     30,
-     0.5667,
-     0.4333
+     36,
+     0.5278,
+     0.4722
     ]
    ]
   },
   {
    "id": "combat-profile",
    "title": "Combat profile",
-   "tldr": "Highest kill pace: GRCX (0.45/min). Highest death pace: BabyGolem (0.42/min), lowest: ragnarneves (0.37/min). Lowest damage per kill (kill-steal index): BabyGolem (4,452).",
+   "tldr": "Highest kill pace: GRCX (0.45/min). Highest death pace: BabyGolem (0.41/min), lowest: GRCX (0.38/min). Lowest damage per kill (kill-steal index): BabyGolem (4,407).",
    "columns": [
     {
      "label": "Player",
@@ -2845,66 +3031,66 @@
    "rows": [
     [
      "GRCX",
-     30,
-     487.1333,
-     0.4475,
-     0.3757,
-     0.2853,
-     1.9508,
-     0.6376,
-     5888.306,
-     2.374,
-     4942.9358,
-     "7.3/6.1/4.6"
+     36,
+     597.4833,
+     0.4469,
+     0.3766,
+     0.2728,
+     1.9111,
+     0.6105,
+     5813.1778,
+     2.3433,
+     4898.7453,
+     "7.4/6.2/4.5"
     ],
     [
      "BabyGolem",
-     30,
-     487.1333,
-     0.3859,
-     0.4208,
-     0.2997,
-     1.6293,
-     0.7766,
-     4082.6439,
-     1.8737,
-     4451.8191,
-     "6.3/6.8/4.9"
+     36,
+     597.4833,
+     0.3833,
+     0.405,
+     0.3113,
+     1.7149,
+     0.8122,
+     4170.4256,
+     1.8413,
+     4407.1747,
+     "6.4/6.7/5.2"
     ],
     [
      "RikiPlancha12",
-     30,
-     487.1333,
-     0.3551,
-     0.3859,
-     0.3305,
-     1.7766,
-     0.9306,
-     5101.7234,
-     2.1696,
-     5544.0694,
-     "5.8/6.3/5.4"
+     36,
+     597.4833,
+     0.3531,
+     0.3883,
+     0.3264,
+     1.75,
+     0.9242,
+     4840.9138,
+     2.0699,
+     5322.7109,
+     "5.9/6.4/5.4"
     ],
     [
      "ragnarneves",
-     30,
-     487.1333,
-     0.3428,
-     0.3716,
-     0.3408,
-     1.8398,
-     0.994,
-     4597.3867,
-     1.9153,
-     4982.7964,
-     "5.6/6.0/5.5"
+     36,
+     597.4833,
+     0.3398,
+     0.3766,
+     0.3331,
+     1.7867,
+     0.9803,
+     4525.6356,
+     1.9146,
+     5016.0985,
+     "5.6/6.2/5.5"
     ]
    ]
   },
   {
    "id": "team-share",
    "title": "Team share",
-   "tldr": "GRCX takes the largest damage share (55.8%); BabyGolem is the biggest punching bag (37,795 damage taken per game).",
+   "tldr": "GRCX takes the largest damage share (56.0%); ragnarneves is the biggest punching bag (37,905 damage taken per game).",
    "columns": [
     {
      "label": "Player",
@@ -2950,50 +3136,50 @@
    "rows": [
     [
      "GRCX",
-     0.5576,
-     0.9045,
-     35918.6667,
-     33897.0667,
-     2087.5435,
-     5556.8962,
-     37380.6333,
-     0.4986,
+     0.5598,
+     0.9097,
+     36332.3611,
+     33514.7778,
+     2019.3567,
+     5362.3644,
+     37152.2222,
+     0.4897,
      "Carrying"
     ],
     [
      "RikiPlancha12",
-     0.5089,
-     0.9111,
-     31970.8,
-     34673.9333,
-     2135.3866,
-     5533.0745,
-     41307.5333,
-     0.507,
+     0.5072,
+     0.9073,
+     31197,
+     35291.6667,
+     2126.4191,
+     5476.2931,
+     41111.4444,
+     0.5085,
      "Even split"
     ],
     [
      "BabyGolem",
-     0.4809,
-     0.924,
-     27898.0667,
-     37795.4667,
-     2327.6256,
-     5531.0439,
-     44504.2667,
-     0.4867,
+     0.4771,
+     0.9182,
+     28034.5278,
+     37870.8889,
+     2281.8243,
+     5633.686,
+     46432.1389,
+     0.4868,
      "Even split"
     ],
     [
      "ragnarneves",
-     0.4527,
-     0.9009,
-     27737.5667,
-     37282.6,
-     2296.0408,
-     6179.4365,
-     51094.2333,
-     0.5078,
+     0.456,
+     0.9032,
+     28285.2222,
+     37904.6389,
+     2283.8578,
+     6064.7422,
+     55854.0278,
+     0.515,
      "Even split"
     ]
    ]
@@ -3001,7 +3187,7 @@
   {
    "id": "champion-pool",
    "title": "Champion pool",
-   "tldr": "Widest pool: RikiPlancha12 (29 champions in 30 games). Narrowest: BabyGolem (favourite Rek'Sai x4).",
+   "tldr": "Widest pool: RikiPlancha12 (33 champions in 36 games). Narrowest: GRCX (favourite Tristana x4).",
    "columns": [
     {
      "label": "Player",
@@ -3044,12 +3230,12 @@
     [
      "GRCX",
      "Tristana",
-     3,
-     1.0,
-     25,
-     30,
-     0.8333,
-     "Tristana 100.0% (3-0)",
+     4,
+     0.75,
+     28,
+     36,
+     0.7778,
+     "Yone 100.0% (2-0)",
      "Kai'Sa 33.3% (1-2)"
     ],
     [
@@ -3057,10 +3243,10 @@
      "Rek'Sai",
      4,
      0.5,
-     24,
-     30,
-     0.8,
-     "Rek'Sai 50.0% (2-2)",
+     28,
+     36,
+     0.7778,
+     "Sylas 100.0% (2-0)",
      "Neeko 0.0% (0-2)"
     ],
     [
@@ -3068,29 +3254,29 @@
      "Seraphine",
      2,
      1.0,
-     29,
-     30,
-     0.9667,
+     33,
+     36,
+     0.9167,
      "Seraphine 100.0% (2-0)",
-     "-"
+     "Samira 0.0% (0-2)"
     ],
     [
      "ragnarneves",
      "Zac",
      2,
      0.0,
-     25,
-     30,
-     0.8333,
+     28,
+     36,
+     0.7778,
      "Lillia 100.0% (2-0)",
-     "Zac 0.0% (0-2)"
+     "Vel'Koz 0.0% (0-2)"
     ]
    ]
   },
   {
    "id": "liability-index",
    "title": "Liability index",
-   "tldr": "Highest deaths per minute: Kalista (0.51), then Neeko (0.50), Vayne (0.49). Min 2 games.",
+   "tldr": "Highest deaths per minute: Sejuani (0.55), then Vel'Koz (0.54), Kalista (0.51). Min 2 games.",
    "columns": [
     {
      "label": "Champion",
@@ -3123,6 +3309,24 @@
    ],
    "rows": [
     [
+     "Sejuani",
+     2,
+     30.8,
+     17,
+     0.5519,
+     0.5,
+     "BabyGolem, ragnarneves"
+    ],
+    [
+     "Vel'Koz",
+     2,
+     27.55,
+     15,
+     0.5445,
+     0.0,
+     "ragnarneves"
+    ],
+    [
      "Kalista",
      3,
      47.0,
@@ -3151,21 +3355,21 @@
     ],
     [
      "Kai'Sa",
-     3,
-     52.8833,
-     25,
-     0.4727,
-     0.3333,
-     "GRCX"
+     4,
+     74.4333,
+     35,
+     0.4702,
+     0.25,
+     "GRCX, RikiPlancha12"
     ],
     [
-     "Yasuo",
-     2,
-     40.3,
-     19,
-     0.4715,
-     0.5,
-     "GRCX, BabyGolem"
+     "Samira",
+     3,
+     45.4667,
+     21,
+     0.4619,
+     0.0,
+     "GRCX, RikiPlancha12"
     ],
     [
      "Shen",
@@ -3186,13 +3390,13 @@
      "GRCX, BabyGolem, RikiPlancha12, ragnarneves"
     ],
     [
-     "Samira",
-     2,
-     28.3167,
-     12,
-     0.4238,
-     0.0,
-     "GRCX, RikiPlancha12"
+     "Yasuo",
+     3,
+     55.5333,
+     24,
+     0.4322,
+     0.6667,
+     "GRCX, BabyGolem"
     ],
     [
      "Kog'Maw",
@@ -3213,6 +3417,24 @@
      "BabyGolem, RikiPlancha12"
     ],
     [
+     "Lee Sin",
+     2,
+     32.2,
+     13,
+     0.4037,
+     0.5,
+     "GRCX, ragnarneves"
+    ],
+    [
+     "Yone",
+     2,
+     29.8667,
+     12,
+     0.4018,
+     1.0,
+     "GRCX"
+    ],
+    [
      "Nautilus",
      2,
      32.6167,
@@ -3220,6 +3442,24 @@
      0.3986,
      1.0,
      "BabyGolem, ragnarneves"
+    ],
+    [
+     "Skarner",
+     2,
+     35.9333,
+     14,
+     0.3896,
+     0.5,
+     "ragnarneves"
+    ],
+    [
+     "Briar",
+     2,
+     33.7167,
+     13,
+     0.3856,
+     0.5,
+     "RikiPlancha12"
     ],
     [
      "Zac",
@@ -3232,11 +3472,11 @@
     ],
     [
      "Tristana",
-     3,
-     44.5333,
-     16,
-     0.3593,
-     1.0,
+     4,
+     60.75,
+     23,
+     0.3786,
+     0.75,
      "GRCX"
     ],
     [
@@ -3276,12 +3516,30 @@
      "BabyGolem"
     ],
     [
+     "Thresh",
+     2,
+     27.3667,
+     9,
+     0.3289,
+     0.5,
+     "BabyGolem"
+    ],
+    [
      "Twisted Fate",
      2,
      33.7333,
      11,
      0.3261,
      1.0,
+     "GRCX, RikiPlancha12"
+    ],
+    [
+     "Zed",
+     2,
+     43.0667,
+     14,
+     0.3251,
+     0.5,
      "GRCX, RikiPlancha12"
     ],
     [
@@ -3294,6 +3552,15 @@
      "GRCX, RikiPlancha12"
     ],
     [
+     "Sylas",
+     4,
+     57.8167,
+     17,
+     0.294,
+     1.0,
+     "GRCX, BabyGolem"
+    ],
+    [
      "Warwick",
      2,
      31.1,
@@ -3301,15 +3568,6 @@
      0.2894,
      1.0,
      "GRCX, RikiPlancha12"
-    ],
-    [
-     "Lillia",
-     2,
-     31.1,
-     9,
-     0.2894,
-     1.0,
-     "ragnarneves"
     ],
     [
      "Seraphine",
@@ -3321,6 +3579,15 @@
      "RikiPlancha12"
     ],
     [
+     "Lillia",
+     3,
+     47.3167,
+     13,
+     0.2747,
+     1.0,
+     "BabyGolem, ragnarneves"
+    ],
+    [
      "Mordekaiser",
      2,
      30.15,
@@ -3330,13 +3597,22 @@
      "GRCX, RikiPlancha12"
     ],
     [
-     "Sylas",
-     3,
-     42.4,
-     9,
-     0.2123,
+     "Morgana",
+     2,
+     38.7333,
+     10,
+     0.2582,
      1.0,
-     "GRCX, BabyGolem"
+     "BabyGolem, RikiPlancha12"
+    ],
+    [
+     "Vi",
+     2,
+     33.0167,
+     8,
+     0.2423,
+     1.0,
+     "ragnarneves"
     ],
     [
      "Dr. Mundo",
@@ -3413,12 +3689,12 @@
     ],
     [
      "Most deaths in one game",
-     "GRCX",
-     "11",
-     "4/11/5",
-     "Kai'Sa",
-     "18:47",
-     "2026-11-09 21:10"
+     "RikiPlancha12",
+     "12",
+     "4/12/10",
+     "Zyra",
+     "24:47",
+     "2026-11-16 00:39"
     ],
     [
      "Most damage taken in one game",
@@ -3461,7 +3737,7 @@
   {
    "id": "worst-defeats",
    "title": "Worst defeats",
-   "tldr": "Most deaths in a loss: BabyGolem on Shen, 11 deaths (61.1% of the team's deaths).",
+   "tldr": "Most deaths in a loss: RikiPlancha12 on Zyra, 12 deaths (60.0% of the team's deaths).",
    "columns": [
     {
      "label": "Rank",
@@ -3499,6 +3775,16 @@
    "rows": [
     [
      1,
+     "RikiPlancha12",
+     "Zyra",
+     12,
+     0.6,
+     "4/12/10",
+     "24:47",
+     "2026-11-16 00:39"
+    ],
+    [
+     2,
      "BabyGolem",
      "Shen",
      11,
@@ -3508,7 +3794,7 @@
      "2026-11-09 00:06"
     ],
     [
-     2,
+     3,
      "BabyGolem",
      "Aphelios",
      11,
@@ -3518,7 +3804,7 @@
      "2026-11-14 03:36"
     ],
     [
-     3,
+     4,
      "GRCX",
      "Kai'Sa",
      11,
@@ -3528,7 +3814,7 @@
      "2026-11-09 21:10"
     ],
     [
-     4,
+     5,
      "BabyGolem",
      "Xayah",
      11,
@@ -3536,23 +3822,13 @@
      "3/11/8",
      "20:15",
      "2026-11-14 04:14"
-    ],
-    [
-     5,
-     "GRCX",
-     "Yasuo",
-     10,
-     0.625,
-     "9/10/6",
-     "22:25",
-     "2026-11-10 22:51"
     ]
    ]
   },
   {
    "id": "clean-execution",
    "title": "Clean execution",
-   "tldr": "0 deathless wins across 120 player-games.",
+   "tldr": "0 deathless wins across 144 player-games.",
    "columns": [
     {
      "label": "Player",
@@ -3579,28 +3855,28 @@
     [
      "GRCX",
      0,
-     19,
+     23,
      0.0,
      0
     ],
     [
      "BabyGolem",
      0,
-     14,
+     19,
      0.0,
      0
     ],
     [
      "RikiPlancha12",
      0,
-     16,
+     17,
      0.0,
      0
     ],
     [
      "ragnarneves",
      0,
-     11,
+     13,
      0.0,
      0
     ]
@@ -3609,7 +3885,7 @@
   {
    "id": "time-dead",
    "title": "Time dead",
-   "tldr": "BabyGolem spends the most estimated time dead (20.8% of playtime). Dead time is estimated; alive time is exact.",
+   "tldr": "BabyGolem spends the most estimated time dead (20.0% of playtime). Dead time is estimated; alive time is exact.",
    "columns": [
     {
      "label": "Player",
@@ -3651,46 +3927,46 @@
    "rows": [
     [
      "BabyGolem",
-     30,
-     487.1333,
-     205,
-     101.2137,
-     0.2078,
-     6.1833,
-     3.9406,
-     "2026-11-09 Nilah"
+     36,
+     597.4833,
+     242,
+     119.3816,
+     0.1998,
+     9.7333,
+     4.0954,
+     "2026-11-16 Morgana"
     ],
     [
      "RikiPlancha12",
-     30,
-     487.1333,
-     188,
-     91.2937,
-     0.1874,
+     36,
+     597.4833,
+     232,
+     112.8149,
+     0.1888,
      9.1333,
-     4.2833,
+     4.219,
      "2026-11-10 Kog'Maw"
     ],
     [
      "GRCX",
-     30,
-     487.1333,
-     183,
-     89.943,
-     0.1846,
+     36,
+     597.4833,
+     225,
+     110.7483,
+     0.1854,
      6.0667,
-     4.1222,
+     4.0213,
      "2026-11-14 Sylas"
     ],
     [
      "ragnarneves",
-     30,
-     487.1333,
-     181,
-     88.3857,
-     0.1814,
+     36,
+     597.4833,
+     225,
+     110.1266,
+     0.1843,
      7.2667,
-     4.335,
+     4.2431,
      "2026-11-09 Lillia"
     ]
    ]
@@ -3733,45 +4009,45 @@
     [
      "GRCX",
      "-",
-     "63.2% (12-7)",
-     "56.5% (13-10)",
-     "72.2% (13-5)",
-     "RikiPlancha12",
+     "59.1% (13-9)",
+     "60.7% (17-11)",
+     "72.7% (16-6)",
+     "BabyGolem",
      "ragnarneves"
     ],
     [
      "BabyGolem",
-     "36.8% (7-12)",
+     "40.9% (9-13)",
      "-",
-     "44.4% (8-10)",
-     "56.5% (13-10)",
+     "54.5% (12-10)",
+     "60.7% (17-11)",
      "GRCX",
      "ragnarneves"
     ],
     [
      "RikiPlancha12",
-     "43.5% (10-13)",
-     "55.6% (10-8)",
+     "39.3% (11-17)",
+     "45.5% (10-12)",
      "-",
-     "63.2% (12-7)",
+     "59.1% (13-9)",
      "GRCX",
      "ragnarneves"
     ],
     [
      "ragnarneves",
-     "27.8% (5-13)",
-     "43.5% (10-13)",
-     "36.8% (7-12)",
+     "27.3% (6-16)",
+     "39.3% (11-17)",
+     "40.9% (9-13)",
      "-",
      "GRCX",
-     "BabyGolem"
+     "RikiPlancha12"
     ]
    ]
   },
   {
    "id": "streaks",
    "title": "Streaks",
-   "tldr": "Longest win streak: GRCX (4). Streaks run across sessions, in chronological order.",
+   "tldr": "Longest win streak: BabyGolem (5). Streaks run across sessions, in chronological order.",
    "columns": [
     {
      "label": "Player / Duo",
@@ -3797,80 +4073,80 @@
    "rows": [
     [
      "GRCX",
-     30,
+     36,
      4,
      3,
-     "W2"
+     "L1"
     ],
     [
      "BabyGolem",
-     30,
-     3,
+     36,
+     5,
      8,
      "W1"
     ],
     [
      "RikiPlancha12",
-     30,
+     36,
      3,
-     5,
-     "L2"
+     7,
+     "W1"
     ],
     [
      "ragnarneves",
-     30,
+     36,
      3,
      8,
      "L1"
     ],
     [
-     "GRCX + ragnarneves",
-     12,
-     2,
-     4,
-     "W1"
-    ],
-    [
-     "BabyGolem + RikiPlancha12",
-     12,
-     4,
-     2,
-     "L1"
-    ],
-    [
      "GRCX + BabyGolem",
-     11,
+     14,
+     4,
      2,
-     2,
-     "W1"
+     "W4"
     ],
     [
      "RikiPlancha12 + ragnarneves",
-     11,
+     14,
      2,
+     4,
+     "L4"
+    ],
+    [
+     "GRCX + ragnarneves",
+     14,
      2,
+     4,
      "L1"
     ],
     [
+     "BabyGolem + RikiPlancha12",
+     14,
+     4,
+     2,
+     "W1"
+    ],
+    [
      "GRCX + RikiPlancha12",
-     7,
+     8,
      6,
      1,
-     "W6"
+     "L1"
     ],
     [
      "BabyGolem + ragnarneves",
-     7,
+     8,
      1,
      6,
-     "L6"
+     "W1"
     ]
    ]
   },
   {
    "id": "augments",
    "title": "Augments",
-   "tldr": "161 distinct augments picked. Best with >= 3 games: Pressure Cooker 100.0% (4-0), Dual Wield 100.0% (3-0), Transmute: Gold 100.0% (3-0). Worst: Bread and Cheese 0.0% (0-6), Totentanz 0.0% (0-4), Snowday 0.0% (0-3).",
+   "tldr": "166 distinct augments picked. Best with >= 3 games: Pressure Cooker 100.0% (4-0), Armored Impact 100.0% (3-0), Dual Wield 100.0% (3-0). Worst: Totentanz 0.0% (0-4), Holy Snowball 0.0% (0-3), Rejuvenation 0.0% (0-3).",
    "columns": [
     {
      "label": "Augment",
@@ -3901,45 +4177,53 @@
     [
      "GoH_PentakillAug_Generic",
      "Gold",
-     24,
-     12,
-     12,
+     28,
+     14,
+     14,
      0.5
     ],
     [
      "HEAVY",
      "Gold",
-     18,
-     9,
-     9,
+     22,
+     11,
+     11,
      0.5
     ],
     [
      "Heavy Hitter",
      "Silver",
-     14,
+     15,
      9,
-     5,
-     0.6429
+     6,
+     0.6
     ],
     [
      "Blunt Force",
      "Silver",
+     14,
+     6,
+     8,
+     0.4286
+    ],
+    [
+     "Still Here",
+     "Gold",
      13,
      6,
      7,
      0.4615
     ],
     [
-     "Still Here",
-     "Gold",
+     "Siphon",
+     "Silver",
      12,
-     6,
-     6,
-     0.5
+     5,
+     7,
+     0.4167
     ],
     [
-     "Siphon",
+     "Goredrink",
      "Silver",
      11,
      5,
@@ -3947,20 +4231,68 @@
      0.4545
     ],
     [
-     "Goredrink",
-     "Silver",
+     "Transmute: Prismatic",
+     "Gold",
+     11,
+     1,
+     10,
+     0.0909
+    ],
+    [
+     "Final Form",
+     "Prismatic",
      10,
      5,
      5,
      0.5
     ],
     [
-     "Transmute: Prismatic",
+     "Growth Spurt",
      "Gold",
      10,
-     1,
+     5,
+     5,
+     0.5
+    ],
+    [
+     "Soul Siphon",
+     "Gold",
+     10,
+     5,
+     5,
+     0.5
+    ],
+    [
+     "Escape Plan",
+     "Silver",
      9,
-     0.1
+     7,
+     2,
+     0.7778
+    ],
+    [
+     "Giant Slayer",
+     "Prismatic",
+     9,
+     5,
+     4,
+     0.5556
+    ],
+    [
+     "Dawnbringer's Resolve",
+     "Gold",
+     9,
+     4,
+     5,
+     0.4444
+    ],
+    [
+     "Eureka",
+     "Prismatic",
+     9,
+     3,
+     6,
+     0.3333
     ],
     [
      "Deft",
@@ -3971,30 +4303,6 @@
      0.75
     ],
     [
-     "Escape Plan",
-     "Silver",
-     8,
-     6,
-     2,
-     0.75
-    ],
-    [
-     "Dawnbringer's Resolve",
-     "Gold",
-     8,
-     4,
-     4,
-     0.5
-    ],
-    [
-     "Giant Slayer",
-     "Prismatic",
-     8,
-     4,
-     4,
-     0.5
-    ],
-    [
      "Ocean Soul",
      "Silver",
      8,
@@ -4003,36 +4311,36 @@
      0.5
     ],
     [
-     "Soul Siphon",
-     "Gold",
+     "Erosion",
+     "Silver",
      8,
-     4,
-     4,
-     0.5
+     2,
+     6,
+     0.25
     ],
     [
-     "Eureka",
-     "Prismatic",
-     8,
-     3,
+     "Ravenous Bind",
+     "Gold",
+     7,
      5,
-     0.375
+     2,
+     0.7143
     ],
     [
-     "Final Form",
+     "Slap Around",
+     "Silver",
+     7,
+     5,
+     2,
+     0.7143
+    ],
+    [
+     "Symphony of War",
      "Prismatic",
      7,
-     4,
-     3,
-     0.5714
-    ],
-    [
-     "Growth Spurt",
-     "Gold",
-     7,
-     3,
-     4,
-     0.4286
+     5,
+     2,
+     0.7143
     ],
     [
      "Mad Scientist",
@@ -4051,32 +4359,24 @@
      0.4286
     ],
     [
-     "Erosion",
-     "Silver",
+     "Goliath",
+     "Prismatic",
      7,
      2,
      5,
      0.2857
     ],
     [
-     "Symphony of War",
-     "Prismatic",
-     6,
-     5,
+     "Bread and Cheese",
+     "Gold",
+     7,
      1,
-     0.8333
+     6,
+     0.1429
     ],
     [
      "Pursuit of Haste",
      "Gold",
-     6,
-     4,
-     2,
-     0.6667
-    ],
-    [
-     "Slap Around",
-     "Silver",
      6,
      4,
      2,
@@ -4089,6 +4389,30 @@
      4,
      2,
      0.6667
+    ],
+    [
+     "Bread And Jam",
+     "Gold",
+     6,
+     3,
+     3,
+     0.5
+    ],
+    [
+     "Tank It Or Leave It",
+     "Silver",
+     6,
+     3,
+     3,
+     0.5
+    ],
+    [
+     "Titan's Resolve",
+     "Prismatic",
+     6,
+     3,
+     3,
+     0.5
     ],
     [
      "Warlock Juicebox",
@@ -4107,23 +4431,39 @@
      0.3333
     ],
     [
-     "Goliath",
-     "Prismatic",
+     "Bread And Butter",
+     "Gold",
      6,
      1,
      5,
      0.1667
     ],
     [
-     "Bread and Cheese",
+     "Steel Your Heart",
      "Gold",
      6,
-     0,
-     6,
-     0.0
+     1,
+     5,
+     0.1667
     ],
     [
-     "Ravenous Bind",
+     "Flashy",
+     "Gold",
+     5,
+     4,
+     1,
+     0.8
+    ],
+    [
+     "Leg Day",
+     "Silver",
+     5,
+     4,
+     1,
+     0.8
+    ],
+    [
+     "BEES!!!",
      "Gold",
      5,
      3,
@@ -4131,8 +4471,8 @@
      0.6
     ],
     [
-     "Tank It Or Leave It",
-     "Silver",
+     "Shrink Ray",
+     "Gold",
      5,
      3,
      2,
@@ -4147,7 +4487,7 @@
      0.6
     ],
     [
-     "Titan's Resolve",
+     "Ultimate Awakening",
      "Prismatic",
      5,
      3,
@@ -4155,12 +4495,28 @@
      0.6
     ],
     [
-     "Steel Your Heart",
+     "Can't Touch This",
+     "Prismatic",
+     5,
+     2,
+     3,
+     0.4
+    ],
+    [
+     "Pursuit of Power",
      "Gold",
      5,
-     1,
-     4,
-     0.2
+     2,
+     3,
+     0.4
+    ],
+    [
+     "Upgrade Infinity Edge",
+     "Gold",
+     5,
+     2,
+     3,
+     0.4
     ],
     [
      "Pressure Cooker",
@@ -4169,22 +4525,6 @@
      4,
      0,
      1.0
-    ],
-    [
-     "BEES!!!",
-     "Gold",
-     4,
-     3,
-     1,
-     0.75
-    ],
-    [
-     "Leg Day",
-     "Silver",
-     4,
-     3,
-     1,
-     0.75
     ],
     [
      "Marksmage",
@@ -4203,8 +4543,16 @@
      0.75
     ],
     [
-     "Bread And Jam",
+     "Thread the Needle",
      "Gold",
+     4,
+     3,
+     1,
+     0.75
+    ],
+    [
+     "Biggest Snowball Ever",
+     "Prismatic",
      4,
      2,
      2,
@@ -4212,6 +4560,22 @@
     ],
     [
      "CRIMSON COBALT",
+     "Gold",
+     4,
+     2,
+     2,
+     0.5
+    ],
+    [
+     "Firebrand",
+     "Gold",
+     4,
+     2,
+     2,
+     0.5
+    ],
+    [
+     "It's Killing Time",
      "Gold",
      4,
      2,
@@ -4227,6 +4591,14 @@
      0.5
     ],
     [
+     "Mountain Soul",
+     "Silver",
+     4,
+     2,
+     2,
+     0.5
+    ],
+    [
      "Phenomenal Evil",
      "Gold",
      4,
@@ -4235,8 +4607,16 @@
      0.5
     ],
     [
-     "Ultimate Awakening",
-     "Prismatic",
+     "Porcupine",
+     "Gold",
+     4,
+     2,
+     2,
+     0.5
+    ],
+    [
+     "Recursion",
+     "Gold",
      4,
      2,
      2,
@@ -4251,16 +4631,8 @@
      0.5
     ],
     [
-     "Bread And Butter",
+     "Critical Rhythm",
      "Gold",
-     4,
-     1,
-     3,
-     0.25
-    ],
-    [
-     "Can't Touch This",
-     "Prismatic",
      4,
      1,
      3,
@@ -4283,8 +4655,32 @@
      0.0
     ],
     [
+     "Armored Impact",
+     "Gold",
+     3,
+     3,
+     0,
+     1.0
+    ],
+    [
      "Dual Wield",
      "Prismatic",
+     3,
+     3,
+     0,
+     1.0
+    ],
+    [
+     "Hand of Baron",
+     "Prismatic",
+     3,
+     3,
+     0,
+     1.0
+    ],
+    [
+     "Magic Missile",
+     "Gold",
      3,
      3,
      0,
@@ -4299,24 +4695,8 @@
      1.0
     ],
     [
-     "Biggest Snowball Ever",
+     "Back To Basics",
      "Prismatic",
-     3,
-     2,
-     1,
-     0.6667
-    ],
-    [
-     "Firebrand",
-     "Gold",
-     3,
-     2,
-     1,
-     0.6667
-    ],
-    [
-     "Flashy",
-     "Gold",
      3,
      2,
      1,
@@ -4331,8 +4711,24 @@
      0.6667
     ],
     [
+     "From Beginning To End",
+     "Gold",
+     3,
+     2,
+     1,
+     0.6667
+    ],
+    [
      "Homeguard",
      "Silver",
+     3,
+     2,
+     1,
+     0.6667
+    ],
+    [
+     "Impassable",
+     "Gold",
      3,
      2,
      1,
@@ -4347,7 +4743,7 @@
      0.6667
     ],
     [
-     "Recursion",
+     "Outlaw's Grit",
      "Gold",
      3,
      2,
@@ -4355,8 +4751,16 @@
      0.6667
     ],
     [
-     "Shrink Ray",
+     "Skilled Sniper",
      "Gold",
+     3,
+     2,
+     1,
+     0.6667
+    ],
+    [
+     "Spin To Win",
+     "Silver",
      3,
      2,
      1,
@@ -4372,14 +4776,6 @@
     ],
     [
      "Take'em Down Down Down",
-     "Gold",
-     3,
-     2,
-     1,
-     0.6667
-    ],
-    [
-     "Thread the Needle",
      "Gold",
      3,
      2,
@@ -4419,8 +4815,24 @@
      0.3333
     ],
     [
-     "Porcupine",
-     "Gold",
+     "Archmage",
+     "Prismatic",
+     3,
+     1,
+     2,
+     0.3333
+    ],
+    [
+     "Double Tap",
+     "Prismatic",
+     3,
+     1,
+     2,
+     0.3333
+    ],
+    [
+     "Mystic Punch",
+     "Prismatic",
      3,
      1,
      2,
@@ -4433,6 +4845,46 @@
      1,
      2,
      0.3333
+    ],
+    [
+     "Tap Dancer",
+     "Prismatic",
+     3,
+     1,
+     2,
+     0.3333
+    ],
+    [
+     "Ultimate Revolution",
+     "Prismatic",
+     3,
+     1,
+     2,
+     0.3333
+    ],
+    [
+     "Holy Snowball",
+     "Prismatic",
+     3,
+     0,
+     3,
+     0.0
+    ],
+    [
+     "Rejuvenation",
+     "Gold",
+     3,
+     0,
+     3,
+     0.0
+    ],
+    [
+     "Searing Dawn",
+     "Gold",
+     3,
+     0,
+     3,
+     0.0
     ],
     [
      "Snowday",
@@ -4453,14 +4905,6 @@
     [
      "Donation",
      "Gold",
-     2,
-     2,
-     0,
-     1.0
-    ],
-    [
-     "Hand of Baron",
-     "Prismatic",
      2,
      2,
      0,
@@ -4499,8 +4943,8 @@
      1.0
     ],
     [
-     "Skilled Sniper",
-     "Gold",
+     "Pin Cushion",
+     "Prismatic",
      2,
      2,
      0,
@@ -4523,16 +4967,16 @@
      1.0
     ],
     [
-     "Archmage",
-     "Prismatic",
+     "Big Brain",
+     "Gold",
      2,
      1,
      1,
      0.5
     ],
     [
-     "Back To Basics",
-     "Prismatic",
+     "Bolstered",
+     "Silver",
      2,
      1,
      1,
@@ -4555,6 +4999,14 @@
      0.5
     ],
     [
+     "Cruelty",
+     "Prismatic",
+     2,
+     1,
+     1,
+     0.5
+    ],
+    [
      "Dive Bomber",
      "Silver",
      2,
@@ -4563,8 +5015,8 @@
      0.5
     ],
     [
-     "Double Tap",
-     "Prismatic",
+     "Divine Intervention",
+     "Gold",
      2,
      1,
      1,
@@ -4595,7 +5047,7 @@
      0.5
     ],
     [
-     "It's Killing Time",
+     "From Downtown",
      "Gold",
      2,
      1,
@@ -4603,7 +5055,7 @@
      0.5
     ],
     [
-     "Mountain Soul",
+     "Kill Secured",
      "Silver",
      2,
      1,
@@ -4612,14 +5064,6 @@
     ],
     [
      "One Hit Wonder",
-     "Gold",
-     2,
-     1,
-     1,
-     0.5
-    ],
-    [
-     "Outlaw's Grit",
      "Gold",
      2,
      1,
@@ -4659,15 +5103,7 @@
      0.5
     ],
     [
-     "Sonata",
-     "Gold",
-     2,
-     1,
-     1,
-     0.5
-    ],
-    [
-     "Spin To Win",
+     "Shadow Runner",
      "Silver",
      2,
      1,
@@ -4675,8 +5111,8 @@
      0.5
     ],
     [
-     "Tap Dancer",
-     "Prismatic",
+     "Sonata",
+     "Gold",
      2,
      1,
      1,
@@ -4699,14 +5135,6 @@
      0.5
     ],
     [
-     "Upgrade Infinity Edge",
-     "Gold",
-     2,
-     1,
-     1,
-     0.5
-    ],
-    [
      "Wooglet's Witchcap",
      "Prismatic",
      2,
@@ -4717,14 +5145,6 @@
     [
      "Adaptive Ward",
      "Silver",
-     2,
-     0,
-     2,
-     0.0
-    ],
-    [
-     "Critical Rhythm",
-     "Gold",
      2,
      0,
      2,
@@ -4755,14 +5175,6 @@
      0.0
     ],
     [
-     "Holy Snowball",
-     "Prismatic",
-     2,
-     0,
-     2,
-     0.0
-    ],
-    [
      "Icathia's Fall",
      "Prismatic",
      2,
@@ -4771,7 +5183,7 @@
      0.0
     ],
     [
-     "Mystic Punch",
+     "Master of Duality",
      "Prismatic",
      2,
      0,
@@ -4779,7 +5191,15 @@
      0.0
     ],
     [
-     "Searing Dawn",
+     "Prom Queen",
+     "Prismatic",
+     2,
+     0,
+     2,
+     0.0
+    ],
+    [
+     "Quickstep",
      "Gold",
      2,
      0,
@@ -4795,14 +5215,6 @@
      0.0
     ],
     [
-     "Ultimate Revolution",
-     "Prismatic",
-     2,
-     0,
-     2,
-     0.0
-    ],
-    [
      "Upgrade Death's Dance",
      "Silver",
      2,
@@ -4811,16 +5223,8 @@
      0.0
     ],
     [
-     "Armored Impact",
+     "Chain Reaction",
      "Gold",
-     1,
-     1,
-     0,
-     1.0
-    ],
-    [
-     "Bolstered",
-     "Silver",
      1,
      1,
      0,
@@ -4829,14 +5233,6 @@
     [
      "Draw Your Sword",
      "Prismatic",
-     1,
-     1,
-     0,
-     1.0
-    ],
-    [
-     "From Beginning To End",
-     "Gold",
      1,
      1,
      0,
@@ -4853,14 +5249,6 @@
     [
      "Glass Cannon",
      "Prismatic",
-     1,
-     1,
-     0,
-     1.0
-    ],
-    [
-     "Impassable",
-     "Gold",
      1,
      1,
      0,
@@ -4907,24 +5295,8 @@
      1.0
     ],
     [
-     "Magic Missile",
-     "Gold",
-     1,
-     1,
-     0,
-     1.0
-    ],
-    [
      "No Mana, No Problem",
      "Silver",
-     1,
-     1,
-     0,
-     1.0
-    ],
-    [
-     "Pin Cushion",
-     "Prismatic",
      1,
      1,
      0,
@@ -4940,6 +5312,14 @@
     ],
     [
      "Rite of Ascension",
+     "Prismatic",
+     1,
+     1,
+     0,
+     1.0
+    ],
+    [
+     "Spell Split",
      "Prismatic",
      1,
      1,
@@ -4987,12 +5367,12 @@
      1.0
     ],
     [
-     "Big Brain",
-     "Gold",
+     "escAPADe",
+     "Silver",
+     1,
      1,
      0,
-     1,
-     0.0
+     1.0
     ],
     [
      "Big Shot",
@@ -5013,22 +5393,6 @@
     [
      "Clown College",
      "Prismatic",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Cruelty",
-     "Prismatic",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Divine Intervention",
-     "Gold",
      1,
      0,
      1,
@@ -5059,14 +5423,6 @@
      0.0
     ],
     [
-     "From Downtown",
-     "Gold",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
      "It's Critical",
      "Gold",
      1,
@@ -5083,14 +5439,6 @@
      0.0
     ],
     [
-     "Kill Secured",
-     "Silver",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
      "Lil' Extra Help",
      "Gold",
      1,
@@ -5099,56 +5447,8 @@
      0.0
     ],
     [
-     "Master of Duality",
-     "Prismatic",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
      "Nightstalking",
      "Gold",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Prom Queen",
-     "Prismatic",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Pursuit of Power",
-     "Gold",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Quickstep",
-     "Gold",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Rejuvenation",
-     "Gold",
-     1,
-     0,
-     1,
-     0.0
-    ],
-    [
-     "Shadow Runner",
-     "Silver",
      1,
      0,
      1,
@@ -5171,6 +5471,14 @@
      0.0
     ],
     [
+     "Tank Engine",
+     "Gold",
+     1,
+     0,
+     1,
+     0.0
+    ],
+    [
      "Upgrade Sundered Sky",
      "Gold",
      1,
@@ -5185,11 +5493,849 @@
      0,
      1,
      0.0
+    ],
+    [
+     "With Haste",
+     "Gold",
+     1,
+     0,
+     1,
+     0.0
     ]
    ]
   }
  ],
  "games": [
+  {
+   "id": 8047897311,
+   "date": "2026-11-16T02:05:39.165000+00:00",
+   "durationSec": 973,
+   "session": 6,
+   "sessionGame": 6,
+   "winnerSide": "Blue",
+   "teamFirstBlood": [
+    "Blue"
+   ],
+   "players": [
+    {
+     "name": "BabyGolem",
+     "champion": "Lillia",
+     "side": "Blue",
+     "win": true,
+     "kills": 10,
+     "deaths": 4,
+     "assists": 5,
+     "kda": 3.75,
+     "damage": 26896,
+     "taken": 21662,
+     "mitigated": 26110,
+     "gold": 15313,
+     "level": 18,
+     "longestAliveSec": 302,
+     "estDeadSec": 117.0,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "Flashy",
+      "Escape Plan",
+      "Giant Slayer",
+      "Spin To Win"
+     ]
+    },
+    {
+     "name": "RikiPlancha12",
+     "champion": "Galio",
+     "side": "Blue",
+     "win": true,
+     "kills": 6,
+     "deaths": 2,
+     "assists": 10,
+     "kda": 8.0,
+     "damage": 18291,
+     "taken": 29188,
+     "mitigated": 47989,
+     "gold": 14440,
+     "level": 18,
+     "longestAliveSec": 360,
+     "estDeadSec": 56.5,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "Growth Spurt",
+      "Slap Around",
+      "Cruelty",
+      "Shadow Runner"
+     ]
+    },
+    {
+     "name": "GRCX",
+     "champion": "Tristana",
+     "side": "Red",
+     "win": false,
+     "kills": 6,
+     "deaths": 7,
+     "assists": 0,
+     "kda": 0.86,
+     "damage": 21695,
+     "taken": 20469,
+     "mitigated": 9568,
+     "gold": 14907,
+     "level": 18,
+     "longestAliveSec": 171,
+     "estDeadSec": 206.5,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Critical Rhythm",
+      "Tank It Or Leave It",
+      "Symphony of War",
+      "Blunt Force"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Sejuani",
+     "side": "Red",
+     "win": false,
+     "kills": 0,
+     "deaths": 9,
+     "assists": 5,
+     "kda": 0.56,
+     "damage": 13591,
+     "taken": 31365,
+     "mitigated": 52474,
+     "gold": 12356,
+     "level": 18,
+     "longestAliveSec": 132,
+     "estDeadSec": 265.5,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Pursuit of Power",
+      "Mountain Soul",
+      "Final Form",
+      "Heavy Hitter"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8047901839,
+   "date": "2026-11-16T01:49:29.697000+00:00",
+   "durationSec": 914,
+   "session": 6,
+   "sessionGame": 5,
+   "winnerSide": "Red",
+   "teamFirstBlood": [
+    "Blue"
+   ],
+   "players": [
+    {
+     "name": "BabyGolem",
+     "champion": "Thresh",
+     "side": "Blue",
+     "win": false,
+     "kills": 3,
+     "deaths": 5,
+     "assists": 7,
+     "kda": 2.0,
+     "damage": 18089,
+     "taken": 33705,
+     "mitigated": 47163,
+     "gold": 12244,
+     "level": 17,
+     "longestAliveSec": 241,
+     "estDeadSec": 138.5,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "Tank Engine",
+      "Bolstered",
+      "Recursion",
+      "Impassable"
+     ]
+    },
+    {
+     "name": "RikiPlancha12",
+     "champion": "Yorick",
+     "side": "Blue",
+     "win": false,
+     "kills": 7,
+     "deaths": 5,
+     "assists": 3,
+     "kda": 2.0,
+     "damage": 28624,
+     "taken": 52642,
+     "mitigated": 69783,
+     "gold": 13462,
+     "level": 17,
+     "longestAliveSec": 204,
+     "estDeadSec": 138.5,
+     "multikills": [
+      2,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "Steel Your Heart",
+      "Siphon",
+      "Bread And Butter",
+      "Firebrand"
+     ]
+    },
+    {
+     "name": "GRCX",
+     "champion": "Yasuo",
+     "side": "Red",
+     "win": true,
+     "kills": 5,
+     "deaths": 5,
+     "assists": 5,
+     "kda": 2.0,
+     "damage": 53086,
+     "taken": 33523,
+     "mitigated": 38676,
+     "gold": 13964,
+     "level": 18,
+     "longestAliveSec": 181,
+     "estDeadSec": 148.0,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Soul Siphon",
+      "escAPADe",
+      "Critical Rhythm",
+      "Outlaw's Grit"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Vi",
+     "side": "Red",
+     "win": true,
+     "kills": 5,
+     "deaths": 5,
+     "assists": 5,
+     "kda": 2.0,
+     "damage": 26312,
+     "taken": 24623,
+     "mitigated": 49526,
+     "gold": 13047,
+     "level": 18,
+     "longestAliveSec": 173,
+     "estDeadSec": 148.0,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Thread the Needle",
+      "Mountain Soul",
+      "Divine Intervention",
+      "Ravenous Bind"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8047893731,
+   "date": "2026-11-16T01:24:59.269000+00:00",
+   "durationSec": 1293,
+   "session": 6,
+   "sessionGame": 4,
+   "winnerSide": "Blue",
+   "teamFirstBlood": [
+    "Blue"
+   ],
+   "players": [
+    {
+     "name": "GRCX",
+     "champion": "Zeri",
+     "side": "Blue",
+     "win": true,
+     "kills": 13,
+     "deaths": 9,
+     "assists": 4,
+     "kda": 1.89,
+     "damage": 44295,
+     "taken": 32011,
+     "mitigated": 28607,
+     "gold": 22152,
+     "level": 18,
+     "longestAliveSec": 311,
+     "estDeadSec": 268.8,
+     "multikills": [
+      4,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "Magic Missile",
+      "Pin Cushion",
+      "Can't Touch This",
+      "Ultimate Revolution"
+     ]
+    },
+    {
+     "name": "BabyGolem",
+     "champion": "Morgana",
+     "side": "Blue",
+     "win": true,
+     "kills": 6,
+     "deaths": 6,
+     "assists": 9,
+     "kda": 2.5,
+     "damage": 28840,
+     "taken": 30062,
+     "mitigated": 51662,
+     "gold": 20285,
+     "level": 19,
+     "longestAliveSec": 584,
+     "estDeadSec": 185.9,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "From Beginning To End",
+      "Ultimate Awakening",
+      "Spell Split",
+      "Final Form"
+     ]
+    },
+    {
+     "name": "RikiPlancha12",
+     "champion": "Kai'Sa",
+     "side": "Red",
+     "win": false,
+     "kills": 9,
+     "deaths": 10,
+     "assists": 3,
+     "kda": 1.2,
+     "damage": 31983,
+     "taken": 34062,
+     "mitigated": 25653,
+     "gold": 21379,
+     "level": 18,
+     "longestAliveSec": 240,
+     "estDeadSec": 295.1,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Upgrade Infinity Edge",
+      "Double Tap",
+      "Tap Dancer",
+      "Holy Snowball"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Xin Zhao",
+     "side": "Red",
+     "win": false,
+     "kills": 5,
+     "deaths": 9,
+     "assists": 7,
+     "kda": 1.33,
+     "damage": 25172,
+     "taken": 49785,
+     "mitigated": 78849,
+     "gold": 18821,
+     "level": 18,
+     "longestAliveSec": 195,
+     "estDeadSec": 268.8,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Pursuit of Power",
+      "Master of Duality",
+      "Biggest Snowball Ever",
+      "Final Form"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8047880189,
+   "date": "2026-11-16T01:05:58.786000+00:00",
+   "durationSec": 1029,
+   "session": 6,
+   "sessionGame": 3,
+   "winnerSide": "Blue",
+   "teamFirstBlood": [
+    "Red"
+   ],
+   "players": [
+    {
+     "name": "BabyGolem",
+     "champion": "Taliyah",
+     "side": "Blue",
+     "win": true,
+     "kills": 5,
+     "deaths": 6,
+     "assists": 9,
+     "kda": 2.33,
+     "damage": 26590,
+     "taken": 17918,
+     "mitigated": 18254,
+     "gold": 15163,
+     "level": 18,
+     "longestAliveSec": 261,
+     "estDeadSec": 176.7,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "GoH_PentakillAug_Generic",
+      "HEAVY",
+      "From Downtown",
+      "Pursuit of Power",
+      "Big Brain",
+      "Magic Missile"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Skarner",
+     "side": "Blue",
+     "win": true,
+     "kills": 10,
+     "deaths": 6,
+     "assists": 4,
+     "kda": 2.33,
+     "damage": 40908,
+     "taken": 41857,
+     "mitigated": 117306,
+     "gold": 16180,
+     "level": 18,
+     "longestAliveSec": 293,
+     "estDeadSec": 176.7,
+     "multikills": [
+      2,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "GoH_PentakillAug_Generic",
+      "HEAVY",
+      "Growth Spurt",
+      "Impassable",
+      "Armored Impact",
+      "Porcupine"
+     ]
+    },
+    {
+     "name": "GRCX",
+     "champion": "Lee Sin",
+     "side": "Red",
+     "win": false,
+     "kills": 9,
+     "deaths": 6,
+     "assists": 2,
+     "kda": 1.83,
+     "damage": 25114,
+     "taken": 39991,
+     "mitigated": 76555,
+     "gold": 15146,
+     "level": 18,
+     "longestAliveSec": 213,
+     "estDeadSec": 176.7,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "GoH_PentakillAug_Generic",
+      "HEAVY",
+      "From Beginning To End",
+      "It's Killing Time",
+      "Rejuvenation",
+      "Bread And Jam"
+     ]
+    },
+    {
+     "name": "RikiPlancha12",
+     "champion": "Samira",
+     "side": "Red",
+     "win": false,
+     "kills": 2,
+     "deaths": 9,
+     "assists": 6,
+     "kda": 0.89,
+     "damage": 23637,
+     "taken": 39089,
+     "mitigated": 30249,
+     "gold": 14974,
+     "level": 18,
+     "longestAliveSec": 138,
+     "estDeadSec": 265.9,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "GoH_PentakillAug_Generic",
+      "HEAVY",
+      "Growth Spurt",
+      "Soul Siphon",
+      "Upgrade Infinity Edge",
+      "Shrink Ray"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8047872041,
+   "date": "2026-11-16T00:39:55.500000+00:00",
+   "durationSec": 1487,
+   "session": 6,
+   "sessionGame": 2,
+   "winnerSide": "Red",
+   "teamFirstBlood": [
+    "Blue"
+   ],
+   "players": [
+    {
+     "name": "RikiPlancha12",
+     "champion": "Zyra",
+     "side": "Blue",
+     "win": false,
+     "kills": 4,
+     "deaths": 12,
+     "assists": 10,
+     "kda": 1.17,
+     "damage": 27453,
+     "taken": 43196,
+     "mitigated": 17030,
+     "gold": 22127,
+     "level": 18,
+     "longestAliveSec": 251,
+     "estDeadSec": 358.7,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "Erosion",
+      "Searing Dawn",
+      "Rejuvenation",
+      "Skilled Sniper"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Garen",
+     "side": "Blue",
+     "win": false,
+     "kills": 13,
+     "deaths": 8,
+     "assists": 3,
+     "kda": 2.0,
+     "damage": 58338,
+     "taken": 82737,
+     "mitigated": 169620,
+     "gold": 24225,
+     "level": 18,
+     "longestAliveSec": 375,
+     "estDeadSec": 239.0,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "Goredrink",
+      "Quickstep",
+      "Dawnbringer's Resolve",
+      "Bread And Butter"
+     ]
+    },
+    {
+     "name": "GRCX",
+     "champion": "Zed",
+     "side": "Red",
+     "win": true,
+     "kills": 13,
+     "deaths": 9,
+     "assists": 6,
+     "kda": 2.11,
+     "damage": 67907,
+     "taken": 38118,
+     "mitigated": 33617,
+     "gold": 23688,
+     "level": 18,
+     "longestAliveSec": 221,
+     "estDeadSec": 271.9,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Leg Day",
+      "Pursuit of Power",
+      "Bread and Cheese",
+      "It's Killing Time"
+     ]
+    },
+    {
+     "name": "BabyGolem",
+     "champion": "K'Sante",
+     "side": "Red",
+     "win": true,
+     "kills": 7,
+     "deaths": 8,
+     "assists": 8,
+     "kda": 1.88,
+     "damage": 48346,
+     "taken": 80382,
+     "mitigated": 159632,
+     "gold": 24318,
+     "level": 18,
+     "longestAliveSec": 212,
+     "estDeadSec": 239.0,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Kill Secured",
+      "Armored Impact",
+      "Chain Reaction",
+      "Bread And Jam"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8047863888,
+   "date": "2026-11-16T00:23:20.613000+00:00",
+   "durationSec": 925,
+   "session": 6,
+   "sessionGame": 1,
+   "winnerSide": "Red",
+   "teamFirstBlood": [
+    "Blue"
+   ],
+   "players": [
+    {
+     "name": "RikiPlancha12",
+     "champion": "Briar",
+     "side": "Blue",
+     "win": false,
+     "kills": 10,
+     "deaths": 6,
+     "assists": 2,
+     "kda": 2.0,
+     "damage": 33980,
+     "taken": 32105,
+     "mitigated": 50082,
+     "gold": 14129,
+     "level": 18,
+     "longestAliveSec": 210,
+     "estDeadSec": 176.5,
+     "multikills": [
+      3,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": true,
+     "firstBloodAssist": false,
+     "augments": [
+      "Still Here",
+      "Transmute: Prismatic",
+      "Titan's Resolve",
+      "Prom Queen"
+     ]
+    },
+    {
+     "name": "ragnarneves",
+     "champion": "Vel'Koz",
+     "side": "Blue",
+     "win": false,
+     "kills": 3,
+     "deaths": 7,
+     "assists": 9,
+     "kda": 1.71,
+     "damage": 21820,
+     "taken": 15722,
+     "mitigated": 10143,
+     "gold": 12735,
+     "level": 18,
+     "longestAliveSec": 194,
+     "estDeadSec": 206.5,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": true,
+     "augments": [
+      "BEES!!!",
+      "With Haste",
+      "Eureka",
+      "Archmage"
+     ]
+    },
+    {
+     "name": "GRCX",
+     "champion": "Yone",
+     "side": "Red",
+     "win": true,
+     "kills": 3,
+     "deaths": 6,
+     "assists": 7,
+     "kda": 1.67,
+     "damage": 18308,
+     "taken": 25508,
+     "mitigated": 29038,
+     "gold": 14413,
+     "level": 18,
+     "longestAliveSec": 169,
+     "estDeadSec": 176.5,
+     "multikills": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Upgrade Infinity Edge",
+      "Shrink Ray",
+      "Goliath",
+      "Hand of Baron"
+     ]
+    },
+    {
+     "name": "BabyGolem",
+     "champion": "Sylas",
+     "side": "Red",
+     "win": true,
+     "kills": 10,
+     "deaths": 8,
+     "assists": 2,
+     "kda": 1.5,
+     "damage": 23540,
+     "taken": 45759,
+     "mitigated": 33608,
+     "gold": 14114,
+     "level": 18,
+     "longestAliveSec": 153,
+     "estDeadSec": 233.0,
+     "multikills": [
+      1,
+      0,
+      0,
+      0
+     ],
+     "firstBloodKill": false,
+     "firstBloodAssist": false,
+     "augments": [
+      "Flashy",
+      "Ravenous Bind",
+      "Mystic Punch",
+      "Back To Basics"
+     ]
+    }
+   ]
+  },
   {
    "id": 8046751275,
    "date": "2026-11-15T04:05:15.007000+00:00",
