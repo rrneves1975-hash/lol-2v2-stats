@@ -38,6 +38,14 @@ AUG_URL = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/g
 BASE_RESPAWN = [10, 10, 12, 12, 14, 16, 20, 25, 28, 32.5, 35, 37.5, 40, 42.5, 45, 47.5, 50, 52.5]
 SECTIONS, ARGS = [], None
 
+# Jogos excluidos PARA SEMPRE das estatisticas (gameId). Ficam no customs_archive.json
+# de proposito: assim o lcu_archive.py nao os volta a adicionar como "novos".
+EXCLUDED_GAMES = {
+    8042550414,  # 2026-11-10 22:51 - sessao 3, jogo 3
+    8049862748,  # 2026-11-18 01:06 - sessao 7, jogo 9
+    8049865254,  # 2026-11-18 01:37 - sessao 7, jogo 10
+}
+
 
 # ----------------------------------------------------------------------------- helpers
 def canon(name):
@@ -153,6 +161,8 @@ def load_games(path, tz, min_dur, since, gap_min):
         raise SystemExit(f"Could not read {path}. Run lcu_archive.py first and keep this file next to stats.py.")
     games = []
     for g in sorted(raw, key=lambda g: g.get("gameCreation", 0)):
+        if g.get("gameId") in EXCLUDED_GAMES:
+            continue
         parts, dur = g.get("participants", []), g.get("gameDuration") or 0
         if len(parts) != 4 or dur < min_dur:
             continue
