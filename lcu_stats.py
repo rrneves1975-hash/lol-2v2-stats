@@ -25,7 +25,7 @@ import json
 import os
 import re
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from statistics import mean
 
 
@@ -37,6 +37,11 @@ DDRAGON = "https://ddragon.leagueoflegends.com"
 AUG_URL = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/cherry-augments.json"
 BASE_RESPAWN = [10, 10, 12, 12, 14, 16, 20, 25, 28, 32.5, 35, 37.5, 40, 42.5, 45, 47.5, 50, 52.5]
 SECTIONS, ARGS = [], None
+
+# Periodos do filtro do dashboard. O corte e calculado quando o script corre (ver build_periods).
+# "rules" = inicio das novas regras (hora local, --tz); mudar com --rules-start "AAAA-MM-DD HH:MM".
+RULES_START_DEFAULT = "2026-11-20 12:00"
+PERIOD_DAYS = {"day": 1, "week": 7, "month": 30, "year": 365}
 
 # Jogos excluidos PARA SEMPRE das estatisticas (gameId). Ficam no customs_archive.json
 # de proposito: assim o lcu_archive.py nao os volta a adicionar como "novos".
@@ -645,28 +650,9 @@ def _slug(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
 
-def export_to_web(games, pp, an):
-    """Exporta TODAS as estatisticas (secoes completas + perfil por jogador + historico de jogos) para stats_export.json."""
-    export_data = {
-        "totalGames": len(games),
-        "totalPlayerGames": sum(len(v) for v in pp.values()),
-        "firstGame": games[0][0]["dt"].isoformat(),
-        "lastGame": games[-1][0]["dt"].isoformat(),
-        "timezone": ARGS.tz,
-        "lastUpdated": datetime.now(timezone.utc).isoformat(),
-        "filters": {
-            "since": None if ARGS.all else ARGS.since,
-            "minDuration": ARGS.min_duration,
-            "minChampGames": ARGS.min_champ_games,
-            "minAugmentGames": ARGS.min_augment_games,
-            "sessionGap": ARGS.session_gap,
-        },
-        "players": {},
-        "sections": [],
-        "games": [],
-    }
-
-    # ---- perfil agregado por jogador (KPIs, graficos, scorecard)
+def profile(pp):
+    """Perfil agregado por jogador (KPIs, graficos, scorecard) para um conjunto de jogos."""
+    players = {}
     for p, rs in pp.items():
         t = tally(rs)
         gp = len(rs)
@@ -688,7 +674,7 @@ def export_to_web(games, pp, an):
         ]
         kp_vals = [div(r["k"] + r["a"], r["team_k"]) for r in rs if r["team_k"]]
 
-        export_data["players"][p.lower()] = {
+        players[p.lower()] = {
             "displayName": p,
             "games": gp,
             "wins": t.w,
@@ -725,16 +711,110 @@ def export_to_web(games, pp, an):
             "uniqueChampions": len(champs),
             "champions": champ_list,
         }
+    return players
 
-    # ---- TODAS as seccoes do relatorio (as mesmas que vao para o xlsx / consola)
-    for s in SECTIONS:
-        export_data["sections"].append({
-            "id": _slug(s["title"]),
-            "title": s["title"],
-            "tldr": s["tldr"],
-            "columns": [{"label": h, "kind": kind} for h, kind in s["cols"]],
-            "rows": _clean(s["rows"]),
-        })
+
+def sections_json():
+    """Converte as SECTIONS atuais (ja calculadas) para o formato do JSON."""
+    return [{
+        "id": _slug(s["title"]),
+        "title": s["title"],
+        "tldr": s["tldr"],
+        "columns": [{"label": h, "kind": kind} for h, kind in s["cols"]],
+        "rows": _clean(s["rows"]),
+    } for s in SECTIONS]
+
+
+def run_sections(games, an):
+    """Corre todas as seccoes sobre `games` (limpa SECTIONS antes) e devolve o dict por jogador."""
+    SECTIONS.clear()
+    pp = by_player(games)
+    sec_overview(games, pp)
+    sec_tilt(pp)
+    sec_session(pp)
+    sec_hour(pp)
+    sec_length(games, pp)
+    sec_multikill_fb(games, pp)
+    sec_combat(pp)
+    sec_team_share(pp)
+    sec_pool(pp)
+    sec_records(games, pp)
+    sec_time_dead(pp)
+    sec_h2h_streaks(games, pp)
+    sec_augments(pp, an)
+    return pp
+
+
+def period_block(games, pp, since):
+    """Tudo o que o dashboard mostra para um periodo: resumo + jogadores + seccoes."""
+    return {
+        "since": since.isoformat() if since else None,
+        "totalGames": len(games),
+        "totalPlayerGames": sum(len(v) for v in pp.values()),
+        "firstGame": games[0][0]["dt"].isoformat() if games else None,
+        "lastGame": games[-1][0]["dt"].isoformat() if games else None,
+        "players": profile(pp) if games else {},
+        "sections": sections_json() if games else [],
+    }
+
+
+def build_periods(games, an):
+    """Calcula as estatisticas completas para cada periodo do filtro (all, day, week, month, year, rules).
+
+    Os periodos relativos (ultimo dia/semana/mes/ano) contam para tras a partir do momento
+    em que este script corre, por isso convem corre-lo depois de cada sessao.
+    """
+    tz = games[0][0]["dt"].tzinfo
+    now = datetime.now(tz)
+    rules = datetime.strptime(ARGS.rules_start, "%Y-%m-%d %H:%M").replace(tzinfo=tz)
+    cutoffs = [("all", None)]
+    cutoffs += [(k, now - timedelta(days=d)) for k, d in PERIOD_DAYS.items()]
+    cutoffs.append(("rules", rules))
+
+    out = {}
+    for key, since in cutoffs:
+        sub = [g for g in games if since is None or g[0]["dt"] >= since]
+        if not sub:
+            out[key] = period_block([], {}, since)
+            continue
+        try:
+            pp = run_sections(sub, an)
+            out[key] = period_block(sub, pp, since)
+        except Exception as e:  # um periodo com poucos jogos nunca deve estragar o resto
+            print(f"(periodo '{key}': nao foi possivel calcular com {len(sub)} jogos: {e!r})")
+            out[key] = period_block([], {}, since)
+            out[key]["error"] = repr(e)
+    return out
+
+
+def export_to_web(games, an):
+    """Exporta TODAS as estatisticas (por periodo) + historico de jogos para stats_export.json.
+
+    O nivel de topo (players/sections/totalGames...) e o periodo "all" (compativel com o formato antigo);
+    os restantes periodos ficam em "periods". O historico de jogos e partilhado: o dashboard filtra-o por data.
+    """
+    periods = build_periods(games, an)
+    total = periods.pop("all")
+    export_data = {
+        "totalGames": total["totalGames"],
+        "totalPlayerGames": total["totalPlayerGames"],
+        "firstGame": total["firstGame"],
+        "lastGame": total["lastGame"],
+        "timezone": ARGS.tz,
+        "lastUpdated": datetime.now(timezone.utc).isoformat(),
+        "filters": {
+            "since": None if ARGS.all else ARGS.since,
+            "minDuration": ARGS.min_duration,
+            "minChampGames": ARGS.min_champ_games,
+            "minAugmentGames": ARGS.min_augment_games,
+            "sessionGap": ARGS.session_gap,
+            "rulesStart": ARGS.rules_start,
+        },
+        "players": total["players"],
+        "sections": total["sections"],
+        "periods": periods,
+        "games": [],
+    }
 
     # ---- historico completo de jogos (do mais recente para o mais antigo)
     for recs in reversed(games):
@@ -767,6 +847,8 @@ def export_to_web(games, pp, an):
         json.dump(_clean(export_data), f, ensure_ascii=False, indent=1, default=str)
     print(f"Ficheiro 'stats_export.json' gerado: {len(export_data['sections'])} seccoes, "
           f"{len(export_data['players'])} jogadores, {len(export_data['games'])} jogos.")
+    for k, p in periods.items():
+        print(f"  periodo {k:6s}: {p['totalGames']} jogos" + (f"  [erro: {p['error']}]" if p.get("error") else ""))
 
 
 def main():
@@ -780,6 +862,7 @@ def main():
     ap.add_argument("--min-augment-games", type=int, default=3)
     ap.add_argument("--session-gap", type=int, default=60, help="minutes between games that start a new session")
     ap.add_argument("--tz", default="Europe/Lisbon")
+    ap.add_argument("--rules-start", default=RULES_START_DEFAULT, help="start of the \"new rules\" period, local time (YYYY-MM-DD HH:MM)")
     ap.add_argument("--no-fetch", action="store_true")
     ap.add_argument("--out", default="stats.xlsx")
     ARGS = ap.parse_args()
@@ -794,24 +877,11 @@ def main():
     for g in games:
         for r in g:
             r["champ"] = cn.get(r["cid"], f"Champion {r['cid']}")
-    pp = by_player(games)
     print(f"\n{len(games)} games analysed ({games[0][0]['dt']:%Y-%m-%d} to {games[-1][0]['dt']:%Y-%m-%d}, {ARGS.tz})")
 
-    sec_overview(games, pp)
-    sec_tilt(pp)
-    sec_session(pp)
-    sec_hour(pp)
-    sec_length(games, pp)
-    sec_multikill_fb(games, pp)
-    sec_combat(pp)
-    sec_team_share(pp)
-    sec_pool(pp)
-    sec_records(games, pp)
-    sec_time_dead(pp)
-    sec_h2h_streaks(games, pp)
-    sec_augments(pp, an)
+    run_sections(games, an)
     print_sections()
-    export_to_web(games, pp, an)
+    export_to_web(games, an)
 
 if __name__ == "__main__":
     main()

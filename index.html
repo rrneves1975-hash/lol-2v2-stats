@@ -25,6 +25,10 @@
         details[open] > summary .chev { transform: rotate(90deg); }
         .chev { display: inline-block; transition: transform .15s; }
         .best { background: rgba(16, 185, 129, 0.12); border-radius: 6px; }
+        .period-btn { background: rgba(30, 41, 59, 0.9); border: 1px solid #334155; color: #cbd5e1; transition: background .15s, color .15s, border-color .15s; }
+        .period-btn:hover { background: rgba(6, 182, 212, 0.18); color: #67e8f9; }
+        .period-btn[aria-pressed="true"] { background: rgba(6, 182, 212, 0.25); border-color: #06b6d4; color: #67e8f9; }
+        .period-btn:focus-visible { outline: 2px solid #06b6d4; outline-offset: 2px; }
         input.filter { background: #0f172a; border: 1px solid #334155; color: #e2e8f0; }
         input.filter:focus { outline: 2px solid #06b6d4; outline-offset: 1px; }
         @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
@@ -50,11 +54,17 @@
             </div>
         </header>
 
+        <!-- Filtro de período -->
+        <div id="periodBar" class="glass-card rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 flex-wrap" id="periodButtons" role="group" aria-label="Período das estatísticas"></div>
+            <p class="text-xs text-slate-400" id="periodInfo"></p>
+        </div>
+
         <!-- KPI Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="kpiGrid"></div>
 
         <!-- Charts -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="chartsGrid">
             <div class="glass-card p-6 rounded-2xl glow-cyan">
                 <h3 class="text-lg font-bold text-slate-200 mb-4">⚔️ Dano Causado vs Dano Tomado (Média)</h3>
                 <div class="relative h-64 md:h-80"><canvas id="chartDamage"></canvas></div>
@@ -82,7 +92,7 @@
         </div>
 
         <!-- Player Scorecard -->
-        <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4" id="scorecardCard">
             <h2 class="text-xl font-bold text-slate-200 flex items-center gap-2">📋 Player Scorecard (Placar de Jogadores)</h2>
             <p class="text-xs text-slate-500">O valor destacado a verde é o melhor da linha (quando faz sentido comparar).</p>
             <div class="overflow-x-auto">
@@ -96,7 +106,7 @@
         </div>
 
         <!-- Section navigation -->
-        <nav class="sticky-nav -mx-4 md:-mx-8 px-4 md:px-8 py-3 border-y border-slate-800">
+        <nav class="sticky-nav -mx-4 md:-mx-8 px-4 md:px-8 py-3 border-y border-slate-800" id="navWrap">
             <div class="flex gap-2 overflow-x-auto pb-1" id="sectionNav"></div>
         </nav>
 
@@ -146,8 +156,18 @@
         const CHART_COLORS = ['rgba(6,182,212,.8)', 'rgba(168,85,247,.8)', 'rgba(245,158,11,.8)', 'rgba(16,185,129,.8)'];
         const charts = [];
         const sectionState = {};
-        let DATA = null;
+        let DATA = null;       // JSON completo (periodo "all" no topo, restantes em DATA.periods)
+        let CUR = null;        // dados do periodo ativo
+        let PERIOD = 'all';
         let gamesShown = 15;
+        const PERIODS = [
+            ['all', 'Tudo'],
+            ['day', 'Último dia'],
+            ['week', 'Última semana'],
+            ['month', 'Último mês'],
+            ['year', 'Último ano'],
+            ['rules', 'Since new rules']
+        ];
 
         const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const n0 = v => Math.round(v).toLocaleString('pt-PT');
@@ -174,19 +194,78 @@
                 const response = await fetch('./stats_export.json', {cache: 'no-store'});
                 if (!response.ok) throw new Error("Não foi possível carregar o ficheiro stats_export.json");
                 DATA = await response.json();
-                renderDashboard(DATA);
+                initPeriods();
             } catch (err) {
                 console.error("Erro a carregar dados:", err);
                 document.getElementById('totalGamesText').innerText = "Erro ao carregar stats_export.json";
             }
         }
 
+        // ------------------------------------------------------------------ Filtro de período
+        function periodData(key) {
+            if (key === 'all') return DATA;
+            return (DATA.periods || {})[key] || null;
+        }
+
+        function periodGames() {
+            const since = CUR && CUR.since ? new Date(CUR.since).getTime() : null;
+            return (DATA.games || []).filter(g => since === null || new Date(g.date).getTime() >= since);
+        }
+
+        function initPeriods() {
+            if (!DATA.periods) {   // stats_export.json antigo, sem periodos: esconde o filtro
+                document.getElementById('periodBar').classList.add('hidden');
+                CUR = DATA;
+                renderDashboard(DATA);
+                return;
+            }
+            let saved = null;
+            try { saved = localStorage.getItem('lolPeriod'); } catch (e) {}
+            applyPeriod(PERIODS.some(p => p[0] === saved) ? saved : 'all');
+        }
+
+        function applyPeriod(key) {
+            PERIOD = key;
+            try { localStorage.setItem('lolPeriod', key); } catch (e) {}
+            CUR = periodData(key) || { totalGames: 0, players: {}, sections: [] };
+            gamesShown = 15;
+            renderPeriodBar();
+            renderDashboard(CUR);
+        }
+
+        function renderPeriodBar() {
+            document.getElementById('periodButtons').innerHTML = PERIODS.map(([key, label]) => {
+                const p = periodData(key);
+                const n = p ? p.totalGames : 0;
+                return `<button type="button" data-period="${key}" aria-pressed="${key === PERIOD}" class="period-btn px-3 py-1.5 rounded-full text-sm font-semibold">${esc(label)} <span class="text-xs font-normal opacity-70">(${n})</span></button>`;
+            }).join('');
+            const info = CUR.since
+                ? `${CUR.totalGames} partidas desde ${fmtDate(CUR.since)}`
+                : `${CUR.totalGames} partidas · todo o histórico`;
+            document.getElementById('periodInfo').innerText = info;
+        }
+
         function renderDashboard(data) {
+            const empty = !data.totalGames;
+            ['chartsGrid', 'scorecardCard', 'navWrap'].forEach(id => document.getElementById(id).classList.toggle('hidden', empty));
+            const periodLabel = (PERIODS.find(p => p[0] === PERIOD) || [])[1] || '';
             document.getElementById('totalGamesText').innerText = `${data.totalGames} Partidas Registadas`;
             const parts = [];
             if (data.firstGame && data.lastGame) parts.push(`${fmtDate(data.firstGame).split(',')[0]} → ${fmtDate(data.lastGame).split(',')[0]}`);
-            if (data.lastUpdated) parts.push(`atualizado ${fmtDate(data.lastUpdated)}`);
+            if (DATA.lastUpdated) parts.push(`atualizado ${fmtDate(DATA.lastUpdated)}`);
             document.getElementById('metaText').innerText = parts.join(' · ');
+
+            if (empty) {
+                charts.splice(0).forEach(c => c.destroy());
+                document.getElementById('kpiGrid').innerHTML = `
+                    <div class="glass-card p-8 rounded-2xl text-center sm:col-span-2 lg:col-span-4">
+                        <p class="text-lg font-bold text-slate-200">Sem partidas neste período</p>
+                        <p class="text-sm text-slate-400 mt-1">${esc(periodLabel)}${CUR.since ? ' · desde ' + esc(fmtDate(CUR.since)) : ''}. Escolhe outro período ou volta a correr lcu_stats.py depois de jogares.</p>
+                    </div>`;
+                document.getElementById('sectionsContainer').innerHTML = '';
+                renderGames();
+                return;
+            }
 
             const names = Object.keys(data.players);
             renderKpis(data.players, names);
@@ -402,12 +481,16 @@
             }).join('');
 
             sections.forEach(s => drawTable(s));
+        }
 
+        // listeners anexados uma única vez; usam sempre os dados do período ativo (CUR)
+        (() => {
+            const box = document.getElementById('sectionsContainer');
             box.addEventListener('input', e => {
                 const id = e.target.dataset?.filter;
                 if (!id) return;
                 sectionState[id].filter = e.target.value.toLowerCase();
-                drawTable(DATA.sections.find(x => x.id === id));
+                drawTable(CUR.sections.find(x => x.id === id));
             });
             box.addEventListener('click', e => {
                 const th = e.target.closest('th[data-col]');
@@ -415,9 +498,13 @@
                 const id = th.dataset.sec, col = +th.dataset.col, st = sectionState[id];
                 st.dir = st.sort === col ? -st.dir : 1;
                 st.sort = col;
-                drawTable(DATA.sections.find(x => x.id === id));
+                drawTable(CUR.sections.find(x => x.id === id));
             });
-        }
+            document.getElementById('periodButtons').addEventListener('click', e => {
+                const b = e.target.closest('button[data-period]');
+                if (b && b.dataset.period !== PERIOD) applyPeriod(b.dataset.period);
+            });
+        })();
 
         function drawTable(s) {
             const st = sectionState[s.id];
@@ -461,7 +548,7 @@
         // ------------------------------------------------------------------ Match history
         function renderGames() {
             const q = document.getElementById('gameFilter').value.trim().toLowerCase();
-            let games = DATA.games || [];
+            let games = periodGames();
             if (q) games = games.filter(g => g.players.some(p => p.name.toLowerCase().includes(q) || p.champion.toLowerCase().includes(q)));
             const shown = games.slice(0, gamesShown);
 
